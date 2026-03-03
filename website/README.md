@@ -23,19 +23,13 @@ pip install markdown python-frontmatter jinja2
 ```
 
 ### Writing a New Blog Post
-1. Open your IDE (Claude Code, VS Code, etc.).
-2. Navigate to `content/blog/`.
-3. Create a new file ending in `.md` (e.g., `new-speaking-engagement.md`).
-4. At the very top of the file, add Frontmatter metadata:
-```markdown
----
-title: "Title of your post"
-date: "YYYY-MM-DD"
-summary: "A short 1-2 sentence description for the blog list page."
----
-Write your content here...
+The fastest way to write a new post is to use the included writing tool.
+1. Open your terminal in the `website/` directory.
+2. Run the `new_post.py` script with your title and an optional summary:
+```bash
+python new_post.py "My New Post" -s "This is a short summary."
 ```
-5. Save the file.
+3. This will automatically generate a new `.md` file in `content/blog/` with the correct date and frontmatter formatting. Open it in your IDE and start writing!
 
 ### Building and Publishing
 Whenever you change a template, or add/edit a markdown file:
