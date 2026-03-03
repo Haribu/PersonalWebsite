@@ -23,13 +23,30 @@ pip install markdown python-frontmatter jinja2
 ```
 
 ### Writing a New Blog Post
-The fastest way to write a new post is to use the included writing tool.
+
+**Method 1: Using the Local CLI Tool (Fastest)**
 1. Open your terminal in the `website/` directory.
 2. Run the `new_post.py` script with your title and an optional summary:
 ```bash
 python new_post.py "My New Post" -s "This is a short summary."
 ```
-3. This will automatically generate a new `.md` file in `content/blog/` with the correct date and frontmatter formatting. Open it in your IDE and start writing!
+3. This will automatically generate a new `.md` file in `content/blog/` with the correct date and frontmatter. Open it in your IDE and start writing!
+
+**Method 2: Directly from the GitHub Web UI (No Terminal Required)**
+1. Navigate to your repository on GitHub.
+2. Go to `website/content/blog/`.
+3. Click **Add file** -> **Create new file**.
+4. Name the file with a markdown extension (e.g., `my-new-post.md`).
+5. Copy/paste the frontmatter block at the very top of the file:
+```markdown
+---
+title: "Title of your post"
+date: "YYYY-MM-DD"
+summary: "A short 1-2 sentence description for the blog list page."
+---
+Write your content here...
+```
+6. Click **Commit changes**. GitHub Actions will automatically detect the new file, rebuild the site, and deploy your new post within seconds!
 
 ### Building and Publishing
 Whenever you change a template, or add/edit a markdown file:
