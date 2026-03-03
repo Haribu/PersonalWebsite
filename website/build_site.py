@@ -5,6 +5,9 @@ from jinja2 import Environment, FileSystemLoader
 import shutil
 from datetime import datetime
 
+# GitHub Pages serves from a subpath (/PersonalWebsite). Local uses root (/).
+BASE_URL = '/PersonalWebsite' if os.environ.get('GITHUB_ACTIONS') else ''
+
 # Define paths
 SITE_DIR = os.path.dirname(os.path.abspath(__file__))
 CONTENT_DIR = os.path.join(SITE_DIR, 'content')
@@ -53,13 +56,13 @@ def build_blog():
                 'title': post_data.get('title', 'Untitled'),
                 'date': post_data.get('date', datetime.now().strftime("%Y-%m-%d")),
                 'summary': post_data.get('summary', ''),
-                'url': f'/blog/{out_filename}',
+                'url': f'{BASE_URL}/blog/{out_filename}',
                 'content': html_content
             }
             posts.append(post_meta)
             
             # Render individual post
-            final_html = post_template.render(**post_meta)
+            final_html = post_template.render(**post_meta, base_url=BASE_URL)
             
             # Save output
             output_dir = os.path.join(PUBLIC_DIR, 'blog')
@@ -72,7 +75,7 @@ def build_blog():
     # Output the blog index page
     # Sort posts by date descending
     posts.sort(key=lambda x: x['date'], reverse=True)
-    blog_index_html = blog_list_template.render(title="Blog", posts=posts)
+    blog_index_html = blog_list_template.render(title="Blog", posts=posts, base_url=BASE_URL)
     with open(os.path.join(PUBLIC_DIR, 'blog.html'), 'w', encoding='utf-8') as f:
         f.write(blog_index_html)
         
@@ -87,7 +90,7 @@ def build_pages():
     for page in pages:
         try:
             template = env.get_template(page)
-            final_html = template.render()
+            final_html = template.render(base_url=BASE_URL)
             with open(os.path.join(PUBLIC_DIR, page), 'w', encoding='utf-8') as f:
                 f.write(final_html)
         except Exception as e:
