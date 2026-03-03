@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section>
+    <h1 style="margin-bottom: 0.5rem;">Transmission Log</h1>
+    <p style="font-size: 1.1rem; margin-bottom: 4rem;">Thoughts on cybersecurity, cloud architecture, and engineering management.</p>
+
+    {% if posts %}
+        <ul class="blog-list">
+        {% for post in posts %}
+            <li>
+                <time class="blog-meta" datetime="{{ post.date }}">{{ post.date }}</time>
+                <h3 style="margin-bottom: 0.75rem;"><a href="{{ post.url }}">{{ post.title }}</a></h3>
+                {% if post.summary %}
+                    <p style="margin-top: 0; max-width: 65ch;">{{ post.summary }}</p>
+                {% endif %}
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No posts found. Write some Markdown in the <code>content/blog</code> directory!</p>
+    {% endif %}
+</section>
+{% endblock %}

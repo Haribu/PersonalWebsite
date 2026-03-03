@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harry McLaren</title>
+    
+    <!-- Security Best Practices -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:;">
+    <meta name="description" content="Harry McLaren - Head of Cybersecurity Engineering, Writer, and Community Leader.">
+    
+    <!-- Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Inter:wght@400;500;600&family=Fira+Code&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="/" class="site-title">Harry McLaren</a>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/about.html">About & Experience</a>
+                <a href="/blog.html">Blog</a>
+                <a href="/contact.html">Contact</a>
+            </nav>
+        </header>
+
+        <main class="content">
+            
+<section style="margin-top: 4rem; margin-bottom: 6rem; max-width: 700px;">
+    <h1>Hi, I'm Harry.</h1>
+    <h2 class="gradient-text" style="margin-top: 0.5rem; font-size: 2.5rem;">Head of Cyber Defense.</h2>
+    <p style="font-size: 1.25rem; line-height: 1.8; margin-top: 2rem;">
+        Experienced security leader dedicated to threat intelligence, resilient architectures, and human-centered security operations. I currently lead Cyber Defense at Tesco and serve as a Board & Investor Advisor.
+    </p>
+    <div style="margin-top: 3rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+        <a href="/about.html" class="btn">View Experience</a>
+        <a href="/blog.html" class="btn" style="background-color: transparent; border-color: var(--border-subtle); color: var(--text-primary);">Read Articles</a>
+    </div>
+</section>
+
+<section>
+    <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 2rem;">
+        <h2 style="margin-top: 0;">Recent Writing</h2>
+        <a href="/blog.html" style="font-size: 0.95rem; font-weight: 500;">View all posts &rarr;</a>
+    </div>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+        
+        <div class="card">
+            <time class="blog-meta">2024-03-03</time>
+            <h3><a href="/blog.html">SplDevOps: Making Splunk Development a Breeze</a></h3>
+            <p>A deep dive into DevOps containerization, version control, and automation.</p>
+        </div>
+
+        <div class="card">
+            <time class="blog-meta">2023-11-15</time>
+            <h3><a href="/blog.html">Password Complexity vs. Password Length</a></h3>
+            <p>Exploring the tradeoffs in modern authentication strategies and mathematical entropy.</p>
+        </div>
+
+    </div>
+</section>
+
+        </main>
+
+        <footer>
+            <p>&copy; 2024 Harry McLaren. Built with security in mind.</p>
+        </footer>
+    </div>
+</body>
+</html>
