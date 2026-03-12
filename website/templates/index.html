@@ -1,15 +1,41 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section style="margin-top: 4rem; margin-bottom: 6rem; max-width: 700px;">
+<section style="margin-top: 4rem; margin-bottom: 4rem; max-width: 800px;">
     <h1>Hi, I'm Harry.</h1>
     <h2 class="gradient-text" style="margin-top: 0.5rem; font-size: 2.5rem;">Head of Cyber Defense.</h2>
     <p style="font-size: 1.25rem; line-height: 1.8; margin-top: 2rem;">
-        Experienced security leader dedicated to threat intelligence, resilient architectures, and human-centered security operations. I currently lead Cyber Defense at Tesco and serve as a Board & Investor Advisor.
+        As an experienced security leader, I am dedicated to bridging the gap between deep technical risk and strategic business objectives. My career has focused on intelligence-driven defense, engineering resilient architectures, and cultivating human-centered security operations. Beyond my operational leadership at Tesco, I serve as a trusted Board & Investor Advisor to help organizations navigate complex threat landscapes.
     </p>
-    <div style="margin-top: 3rem; display: flex; gap: 1rem; flex-wrap: wrap;">
-        <a href="{{ base_url }}/about.html" class="btn">View Experience</a>
-        <a href="{{ base_url }}/blog.html" class="btn" style="background-color: transparent; border-color: var(--border-subtle); color: var(--text-primary);">Read Articles</a>
+</section>
+
+<section style="margin-bottom: 6rem;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+        
+        <div class="card" style="margin-bottom: 0; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+                <h3 style="margin-top: 0; color: var(--accent-cyan); font-size: 1.2rem;">Executive Leadership</h3>
+                <p style="font-size: 0.95rem;">View my employment history, qualifications, and track record in scaling defense capabilities.</p>
+            </div>
+            <a href="{{ base_url }}/career.html" class="btn" style="text-align: center; margin-top: 1rem;">View Experience</a>
+        </div>
+
+        <div class="card" style="margin-bottom: 0; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+                <h3 style="margin-top: 0; color: var(--accent-purple); font-size: 1.2rem;">Board Advisory</h3>
+                <p style="font-size: 0.95rem;">Seeking strategic guidance or NED services? Let's discuss resilient business strategies.</p>
+            </div>
+            <a href="{{ base_url }}/advisory.html" class="btn" style="text-align: center; margin-top: 1rem; background-color: transparent; border-color: var(--accent-purple); color: var(--accent-purple);">Engage Services</a>
+        </div>
+
+        <div class="card" style="margin-bottom: 0; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+                <h3 style="margin-top: 0; font-size: 1.2rem;">Community & Ideas</h3>
+                <p style="font-size: 0.95rem;">Explore my latest articles on cyber operations, or connect regarding speaking engagements.</p>
+            </div>
+            <a href="{{ base_url }}/blog.html" class="btn" style="text-align: center; margin-top: 1rem; background-color: transparent; border-color: var(--border-subtle); color: var(--text-primary);">Read Articles</a>
+        </div>
+
     </div>
 </section>
 
@@ -20,18 +46,17 @@
     </div>
     
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
-        
+        {% for post in recent_posts %}
         <div class="card">
-            <time class="blog-meta">2024-03-03</time>
-            <h3><a href="{{ base_url }}/blog.html">SplDevOps: Making Splunk Development a Breeze</a></h3>
-            <p>A deep dive into DevOps containerization, version control, and automation.</p>
+            <time class="blog-meta">{{ post.date }}</time>
+            <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+            <p>{{ post.summary }}</p>
         </div>
-
+        {% else %}
         <div class="card">
-            <time class="blog-meta">2023-11-15</time>
-            <h3><a href="{{ base_url }}/blog.html">Password Complexity vs. Password Length</a></h3>
-            <p>Exploring the tradeoffs in modern authentication strategies and mathematical entropy.</p>
+            <p>No recent posts found.</p>
         </div>
+        {% endfor %}
 
     </div>
 </section>

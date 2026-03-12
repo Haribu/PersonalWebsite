@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section style="margin-top: 4rem; margin-bottom: 6rem; max-width: 800px;">
+    <h1>Board & Executive Advisory</h1>
+    <h2 class="gradient-text" style="margin-top: 0.5rem; font-size: 2rem;">Strategic Cyber Guidance for Modern Business Resilience.</h2>
+    <p style="font-size: 1.25rem; line-height: 1.8; margin-top: 2rem;">
+        In today's landscape, cybersecurity is no longer a localized IT problem—it is a critical board-level imperative. I partner with executives, founders, and boards of directors to navigate complex technical risks and build proactive defense strategies that protect long-term business value.
+    </p>
+</section>
+
+<section>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-bottom: 4rem;">
+        
+        <div class="card" style="border-color: var(--accent-purple); display: flex; flex-direction: column; justify-content: flex-start;">
+            <h3 style="margin-top: 0; color: var(--accent-purple); font-size: 1.5rem;">Non-Executive Director (NED)</h3>
+            <p style="font-size: 1.05rem; margin-bottom: 1.5rem;">
+                Providing independent strategic oversight, constructive challenge, and deep cyber expertise to the boardroom.
+            </p>
+            <ul style="list-style-type: none; padding: 0; margin: 0; color: var(--text-secondary);">
+                <li style="position: relative; padding-left: 1.5rem; margin-bottom: 0.8rem;">
+                    <span style="position: absolute; left: 0; color: var(--accent-cyan);">▹</span>
+                    Aligning cyber strategy with overarching business objectives.
+                </li>
+                <li style="position: relative; padding-left: 1.5rem; margin-bottom: 0.8rem;">
+                    <span style="position: absolute; left: 0; color: var(--accent-cyan);">▹</span>
+                    Reviewing and validating corporate risk appetite and threat tolerance.
+                </li>
+                <li style="position: relative; padding-left: 1.5rem; margin-bottom: 0.8rem;">
+                    <span style="position: absolute; left: 0; color: var(--accent-cyan);">▹</span>
+                    Ensuring regulatory compliance and executive accountability are met.
+                </li>
+            </ul>
+        </div>
+
+        <div class="card" style="display: flex; flex-direction: column; justify-content: flex-start;">
+            <h3 style="margin-top: 0; font-size: 1.5rem;">Strategic Advisor</h3>
+            <p style="font-size: 1.05rem; margin-bottom: 1.5rem;">
+                Partnering with founders, established CISOs, or engineering leaders to evolve their security capability or product roadmap.
+            </p>
+            <ul style="list-style-type: none; padding: 0; margin: 0; color: var(--text-secondary);">
+                <li style="position: relative; padding-left: 1.5rem; margin-bottom: 0.8rem;">
+                    <span style="position: absolute; left: 0; color: var(--accent-cyan);">▹</span>
+                    Building and scaling intelligence-driven Threat Detection & Response (TIDIR) functions.
+                </li>
+                <li style="position: relative; padding-left: 1.5rem; margin-bottom: 0.8rem;">
+                    <span style="position: absolute; left: 0; color: var(--accent-cyan);">▹</span>
+                    Product strategy for cybersecurity startups seeking market fit.
+                </li>
+                <li style="position: relative; padding-left: 1.5rem; margin-bottom: 0.8rem;">
+                    <span style="position: absolute; left: 0; color: var(--accent-cyan);">▹</span>
+                    Maturing human-centered security operations (SecOps) and engineering.
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+    <h2 style="margin-top: 3rem; text-align: center;">Select Advisory Experience</h2>
+    <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem;">A sample of sectors and organizations I have provided strategic oversight for.</p>
+    <div class="portfolio-grid" style="margin-bottom: 5rem;">
+        <img src="{{ base_url }}/assets/logo_client1.svg" alt="Financial Services Client">
+        <img src="{{ base_url }}/assets/logo_client2.svg" alt="Retail Client">
+        <img src="{{ base_url }}/assets/logo_client3.svg" alt="Technology Client">
+        <img src="{{ base_url }}/assets/logo_client4.svg" alt="Energy Client">
+    </div>
+
+    <div class="card" style="text-align: center; max-width: 600px; margin: 0 auto; padding: 3rem;">
+        <h2 style="margin-top: 0; margin-bottom: 1rem;">Let's Discuss Your Challenges</h2>
+        <p style="margin-bottom: 2rem;">If your organization requires confident, battle-tested cyber leadership at the advisory or board level, I invite you to reach out.</p>
+        <a href="mailto:contact@harrymclaren.com?subject=Strategic%20Advisory%20Inquiry" class="btn" style="background-color: transparent; border-color: var(--accent-purple); color: var(--text-primary); padding: 1rem 2rem; font-size: 1.1rem;">
+            Initiate a Conversation
+        </a>
+    </div>
+</section>
+{% endblock %}

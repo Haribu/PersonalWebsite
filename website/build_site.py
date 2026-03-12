@@ -81,16 +81,19 @@ def build_blog():
         
     return posts
 
-def build_pages():
+def build_pages(posts=[]):
     """Build root-level pages (Home, About, Contact)."""
     env = Environment(loader=FileSystemLoader(TEMPLATE_DIR))
     
-    pages = ['index.html', 'about.html', 'contact.html']
+    pages = ['index.html', 'advisory.html', 'career.html', 'contact.html']
     
     for page in pages:
         try:
             template = env.get_template(page)
-            final_html = template.render(base_url=BASE_URL)
+            if page == 'index.html':
+                final_html = template.render(base_url=BASE_URL, recent_posts=posts[:2])
+            else:
+                final_html = template.render(base_url=BASE_URL)
             with open(os.path.join(PUBLIC_DIR, page), 'w', encoding='utf-8') as f:
                 f.write(final_html)
         except Exception as e:
@@ -99,6 +102,6 @@ def build_pages():
 if __name__ == "__main__":
     print("Building static site for Harry McLaren...")
     setup_public_dir()
-    build_blog()
-    build_pages()
+    posts = build_blog()
+    build_pages(posts)
     print("Site built successfully in the /public directory!")

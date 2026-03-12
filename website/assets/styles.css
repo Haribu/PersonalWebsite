@@ -279,6 +279,44 @@ textarea {
   filter: none;
 }
 
+/* Logos & Portfolio */
+.company-logo {
+  max-height: 32px;
+  width: auto;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.card:hover .company-logo {
+  opacity: 1;
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 2rem;
+  align-items: center;
+  justify-items: center;
+  margin-top: 2rem;
+  padding: 2rem;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+}
+
+.portfolio-grid img {
+  max-width: 100%;
+  height: auto;
+  opacity: 0.6;
+  filter: grayscale(100%);
+  transition: all 0.3s ease;
+}
+
+.portfolio-grid img:hover {
+  opacity: 1;
+  filter: grayscale(0%);
+}
+
 footer {
   margin-top: 6rem;
   padding-top: 3rem;
