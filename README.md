@@ -57,12 +57,13 @@ For full instructions on updating content or maintaining the website, see the [W
 
 ## 📂 Directory Structure
 
-* `.github/` - GitHub Actions CI/CD workflows for automatic deployment and security analysis.
+* `.github/` - GitHub Actions CI/CD workflows for automatic deployment and security analysis (Dependabot enabled).
 * `.tmp/` - Temporary execution files used during AI processing. (Not committed)
 * `directives/` - Markdown SOPs for AI tools and workflows (Layer 1).
 * `execution/` - Python scripts representing deterministic tools (Layer 3).
 * `website/` - The static website source, templates, CSS, and markdown content.
   * `build_site.py` - Custom static site generator.
+  * `.well-known/` - Contains the standard `security.txt` configuration.
   * `public/` - The published artifacts ready for deployment.
 
 ---
@@ -71,4 +72,4 @@ For full instructions on updating content or maintaining the website, see the [W
 
 Changes pushed to the `main` branch automatically trigger `.github/workflows/deploy.yml` which rebuilds the static output using `build_site.py` and deploys it directly to **GitHub Pages**.
 
-Security tests are also executed via GitHub actions upon push (`security.yml`).
+Security tests (Trufflehog secret scanning) are also executed via GitHub actions upon push (`security.yml`). Dependencies and Actions are strictly pinned via SHA hashes and `requirements.txt` to mitigate supply-chain attacks.

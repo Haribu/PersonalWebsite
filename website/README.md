@@ -17,9 +17,12 @@ This is the source code for your static, markdown-powered personal website, desi
 ## How to Maintain This Site
 
 ### Prerequisites
-You need Python installed, and a few small packages.
+You need Python installed, and to install the project dependencies. Back out to the root repository folder to find the `requirements.txt` file.
+
 ```bash
-pip install markdown python-frontmatter jinja2
+cd ..
+pip install -r requirements.txt
+cd website
 ```
 
 ### Writing a New Blog Post
