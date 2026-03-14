@@ -58,4 +58,46 @@ document.addEventListener('DOMContentLoaded', () => {
     if (yearSpan) {
         yearSpan.textContent = new Date().getFullYear();
     }
+
+    // --- Mobile Nav Hamburger Toggle ---
+    const navToggle = document.getElementById('nav-toggle');
+    const navDrawer = document.getElementById('nav-drawer');
+
+    function closeNav() {
+        if (!navDrawer || !navToggle) return;
+        navDrawer.classList.remove('open');
+        navToggle.classList.remove('is-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+    }
+
+    function openNav() {
+        if (!navDrawer || !navToggle) return;
+        navDrawer.classList.add('open');
+        navToggle.classList.add('is-open');
+        navToggle.setAttribute('aria-expanded', 'true');
+    }
+
+    if (navToggle && navDrawer) {
+        navToggle.addEventListener('click', () => {
+            const isOpen = navDrawer.classList.contains('open');
+            if (isOpen) {
+                closeNav();
+            } else {
+                openNav();
+            }
+        });
+
+        // Close drawer when a nav link is tapped
+        navDrawer.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', closeNav);
+        });
+
+        // Close drawer if viewport is resized to desktop width
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                closeNav();
+            }
+        });
+    }
 });
+
