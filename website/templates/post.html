@@ -1,18 +1,50 @@
 {% extends "base.html" %}
 
 {% block content %}
-<article>
-    <h1>{{ title }}</h1>
-    {% if date %}
-    <time class="post-meta" datetime="{{ date }}">{{ date }}</time>
-    {% endif %}
+<article class="blog-post">
+    <header class="post-header">
+        <h1 class="post-title">{{ title }}</h1>
+        <div class="post-meta-badges">
+            {% if date %}
+            <span class="badge">{{ date }}</span>
+            {% endif %}
+            {% if read_time %}
+            <span class="badge">{{ read_time }} min read</span>
+            {% endif %}
+        </div>
+    </header>
     
-    <div class="post-content">
+    <div class="post-content lead-paragraph">
         {{ content | safe }}
     </div>
     
-    <div style="margin-top: 4rem;">
-        <a href="{{ base_url }}/blog.html">&larr; Back to all posts</a>
+    <hr class="post-divider" />
+    
+    <section class="author-bio-card">
+        <div class="bio-content">
+            <h3>Written by Harry McLaren</h3>
+            <p>Harry is a cybersecurity leader specialising in Detection Engineering, Incident Response, and pragmatic enterprise defence strategies. He helps organisations build resilience against modern threats.</p>
+            <a href="{{ base_url }}/contact.html" class="btn btn-primary mt-1">Work with Harry</a>
+        </div>
+    </section>
+
+    <section class="ai-transparency-card">
+        <div class="ai-transparency-content">
+            <h4>
+                <svg class="icon-inline" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2a10 10 0 1 0 10 10H12z"/>
+                    <path d="M12 12 2.1 7.1"/>
+                    <path d="M12 12l9.9 4.9"/>
+                </svg>
+                AI Transparency
+            </h4>
+            <p>The core ideas, technical direction, and experiences shared in this post are purely human. Generative AI was utilized to assist with drafting, structuring, and editing for clarity and readability.</p>
+        </div>
+    </section>
+    
+    <div class="post-navigation mt-4 flex-between">
+        <a href="{{ base_url }}/blog.html" class="nav-link">&larr; Transmission Log</a>
+        <a href="#" class="nav-link" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">Top &uarr;</a>
     </div>
 </article>
 {% endblock %}

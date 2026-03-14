@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Silent Threat: Data Poisoning in AI-Driven Security | Harry McLaren</title>
+    
+    <!-- Security Best Practices -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; frame-src 'self' https://docs.google.com;">
+    <meta name="description" content="Harry McLaren - Head of Cybersecurity Engineering, Writer, and Community Leader.">
+    
+    <!-- Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Inter:wght@400;500;600&family=Fira+Code&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="/" class="site-title">Harry McLaren</a>
+            <nav class="main-nav">
+                <a href="/">Home</a>
+                <a href="/advisory.html">Advisory</a>
+                <a href="/career.html">Career</a>
+                <a href="/blog.html">Blog</a>
+                <a href="/contact.html">Contact</a>
+                <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Dark/Light Mode">
+                    <svg id="moon-icon" class="theme-icon-hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                    <svg id="sun-icon" class="theme-icon-visible" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                </button>
+            </nav>
+        </header>
+
+        <main class="content">
+            
+<article class="blog-post">
+    <header class="post-header">
+        <h1 class="post-title">The Silent Threat: Data Poisoning in AI-Driven Security</h1>
+        <div class="post-meta-badges">
+            
+            <span class="badge">2026-03-12</span>
+            
+            
+            <span class="badge">3 min read</span>
+            
+        </div>
+    </header>
+    
+    <div class="post-content lead-paragraph">
+        <p><img alt="Abstract representation of poisoned data streams" src="/assets/header_data_poisoning.png" /></p>
+<p>Artificial Intelligence has fundamentally changed how we process logs and identify threats at scale. We now rely heavily on machine learning models to establish baselines of "normal" behaviour and flag anomalies within those massive datasets. Yet, this reliance poses a critical, often ignored question: what exactly happens when the baseline itself is compromised?</p>
+<p>Most security leaders view their telemetry ingestion pipelines as trusted internal structures. We invest millions into securing the perimeter, configuring strict robust Identity and Access Management, and tuning our SIEM alerts, but we rarely pause to audit the integrity of the raw data flowing into our most advanced detection algorithms. </p>
+<p><strong>The Boiling Frog Scenario</strong></p>
+<p>Data poisoning is an insidious risk where adversaries subtly manipulate the training data fed into our security models. Rather than launching a loud, smash-and-grab breach to exfiltrate a database, they slowly, methodically inject malicious activity into the training pipeline over an extended period. </p>
+<p>The rationale behind this is simple but devastating: if an attacker can trick the AI into classifying their specific attack signatures as entirely benign, they effectively render the defense mechanism totally blind to their presence.</p>
+<p>It is the digital equivalent of a boiling frog. The model's perception of "normal" shifts so gradually that the security team never notices the water getting hotter. By the time a ransomware payload executes, or lateral movement triggers a manual human intervention, the AI has already categorised the entire kill chain as standard weekend service behaviour. </p>
+<p>I've seen environments where seemingly minor data ingestion errors—such as a misconfigured log forwarder failing to parse essential IP addresses—led to an entirely flawed machine learning baseline. Now, imagine that disruption taking place intentionally, guided by a highly resourced state-backed group. The potential blast radius is catastrophic.</p>
+<p><strong>Recognising the Symptoms of a Poisoned Model</strong></p>
+<p>How do you know if your model is fundamentally compromised? It is remarkably difficult to spot manually, but certain leading indicators exist:
+*   <strong>Gradual Alert Decay:</strong> A slow, continuous drop-off in high-fidelity alerts outputted by the model over months, without a corresponding decrease in network traffic.
+*   <strong>Classification Flip-Flops:</strong> Specific domains or binaries that continuously oscillate between being marked "Suspicious" and "Clean" during retraining phases.
+*   <strong>The "Goldilocks" Attack:</strong> Threat actor behaviours that sit precisely on the edge of the model's confidence thresholds, intentionally crafted to stay just underneath the trigger point. </p>
+<p><strong>The Mitigation Strategy</strong></p>
+<p>To defend against data poisoning, we must treat our training data with the exact same level of suspicion as an external network request from an untrusted IP. Pragmatic defence is not about purchasing more advanced algorithms; it is about protecting the integrity of the data those algorithms rely upon. </p>
+<p>The key architectural principles include:</p>
+<ul>
+<li><strong>Strict Data Provenance:</strong> We cannot treat our training datasets as static or inherently trustworthy. We must track exactly where data originates, who has modified it, and how it is labelled prior to ingestion into the training lake. Cryptographic signing of key log sources is no longer overkill.</li>
+<li><strong>Ensemble Methods:</strong> Avoid reliance on a single, monolithic model. Utilising multiple distinct models—trained on disparate datasets and varied features—to cross-check each other ensures that a single poisoned data pipeline cannot compromise the entire defence strategy.</li>
+<li><strong>Immutable Historical Baselines:</strong> Always maintain a highly secure, immutable archive of known-good "clean" baselines to periodically benchmark current model behaviour against. If the divergence is sudden or unexplained, the current model must be quarantined.</li>
+<li><strong>Human-in-the-Loop:</strong> Maintain expert oversight for any critical baseline adjustments. Algorithms should flag shifts in behaviour, but a human engineer should authorise the new normal.</li>
+</ul>
+<p>AI is undoubtedly a powerful engine for defence, and adopting it is necessary scale. But we must remember that it is only as secure, and as honest, as the fuel it runs on. </p>
+<h3>Recommended Reading</h3>
+<ul>
+<li><strong>"Adversarial Machine Learning Threats"</strong> - ENISA Report (2025)</li>
+<li><strong>CISA Guidelines for Secure AI System Development</strong> - Extensive documentation mapping data integrity controls.</li>
+<li><strong>"The Malicious Use of Artificial Intelligence"</strong> - Oxford Environmental Change Institute. An older but foundational text on offensive uses of AI.</li>
+</ul>
+    </div>
+    
+    <hr class="post-divider" />
+    
+    <section class="author-bio-card">
+        <div class="bio-content">
+            <h3>Written by Harry McLaren</h3>
+            <p>Harry is a cybersecurity leader specialising in Detection Engineering, Incident Response, and pragmatic enterprise defence strategies. He helps organisations build resilience against modern threats.</p>
+            <a href="/contact.html" class="btn btn-primary mt-1">Work with Harry</a>
+        </div>
+    </section>
+
+    <section class="ai-transparency-card">
+        <div class="ai-transparency-content">
+            <h4>
+                <svg class="icon-inline" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2a10 10 0 1 0 10 10H12z"/>
+                    <path d="M12 12 2.1 7.1"/>
+                    <path d="M12 12l9.9 4.9"/>
+                </svg>
+                AI Transparency
+            </h4>
+            <p>The core ideas, technical direction, and experiences shared in this post are purely human. Generative AI was utilized to assist with drafting, structuring, and editing for clarity and readability.</p>
+        </div>
+    </section>
+    
+    <div class="post-navigation mt-4 flex-between">
+        <a href="/blog.html" class="nav-link">&larr; Transmission Log</a>
+        <a href="#" class="nav-link" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">Top &uarr;</a>
+    </div>
+</article>
+
+        </main>
+
+        <footer>
+            <p>&copy; <span id="copyright-year">2024</span> Harry McLaren. Built with security in mind.<br/>
+            <span class="ai-transparency-footer">Engineered by a human. Coded and maintained with AI.</span></p>
+        </footer>
+    </div>
+    <script src="/assets/theme.js"></script>
+</body>
+</html>

@@ -6,7 +6,7 @@
     <title>Blog | Harry McLaren</title>
     
     <!-- Security Best Practices -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; frame-src 'self' https://docs.google.com;">
     <meta name="description" content="Harry McLaren - Head of Cybersecurity Engineering, Writer, and Community Leader.">
     
     <!-- Typography -->
@@ -21,49 +21,103 @@
     <div class="container">
         <header>
             <a href="/" class="site-title">Harry McLaren</a>
-            <nav>
+            <nav class="main-nav">
                 <a href="/">Home</a>
                 <a href="/advisory.html">Advisory</a>
                 <a href="/career.html">Career</a>
                 <a href="/blog.html">Blog</a>
                 <a href="/contact.html">Contact</a>
+                <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Dark/Light Mode">
+                    <svg id="moon-icon" class="theme-icon-hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                    <svg id="sun-icon" class="theme-icon-visible" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                </button>
             </nav>
         </header>
 
         <main class="content">
             
 <section>
-    <h1 style="margin-bottom: 0.5rem;">Transmission Log</h1>
-    <p style="font-size: 1.1rem; margin-bottom: 4rem;">Thoughts on cybersecurity, cloud architecture, and engineering management.</p>
+    <h1 class="page-header-title">Transmission Log</h1>
+    <p class="page-header-subtitle">Thoughts on cybersecurity, cloud architecture, and engineering management.</p>
 
     
-        <ul class="blog-list">
         
-            <li>
-                <time class="blog-meta" datetime="2026-03-03">2026-03-03</time>
-                <h3 style="margin-bottom: 0.75rem;"><a href="/blog/potential_talks.html">Potencial Topics</a></h3>
-                
-                    <p style="margin-top: 0; max-width: 65ch;">Soon to be a list of new talks I'm preparing.</p>
-                
-            </li>
+        <!-- Featured Post (Latest) -->
         
-            <li>
-                <time class="blog-meta" datetime="2024-03-03">2024-03-03</time>
-                <h3 style="margin-bottom: 0.75rem;"><a href="/blog/welcome.html">Welcome to My New Site</a></h3>
+        <a href="/blog/ai_data_poisoning.html" class="featured-post-card">
+            
+            <div class="featured-image-container">
+                <img src="/assets/header_data_poisoning.png" class="featured-image-img" alt="Featured Post Thumbnail">
+            </div>
+            
+            <div class="featured-content">
+                <div class="blog-meta-badges">
+                    <span class="badge">2026-03-12</span>
+                    <span class="badge">3 min read</span>
+                </div>
+                <h2>The Silent Threat: Data Poisoning in AI-Driven Security</h2>
                 
-                    <p style="margin-top: 0; max-width: 65ch;">An introduction to my new professional portfolio and markdown-powered blog.</p>
+                    <p class="featured-summary">Why the data feeding your threat detection models might be your greatest vulnerability.</p>
                 
-            </li>
+                <span class="read-more">Read Featured Article &rarr;</span>
+            </div>
+        </a>
+
+        <hr class="post-divider post-divider-large" />
         
-        </ul>
+        <h3 class="previous-transmissions-title">Previous Transmissions</h3>
+        <!-- Grid of past posts -->
+        <div class="blog-grid">
+        
+            <a href="/blog/ai_over_reliance.html" class="blog-card">
+                
+                <div class="blog-card-image-container">
+                    <img src="/assets/header_automation_paradox.png" class="blog-card-image-img" alt="Post Thumbnail">
+                </div>
+                
+                <div class="blog-card-content">
+                    <div class="blog-meta-badges">
+                        <span class="badge">2026-03-11</span>
+                        <span class="badge">2 min read</span>
+                    </div>
+                    <h3>The Automation Paradox: Over-Reliance on Security AI</h3>
+                    
+                        <p>How blind trust in AI alert triaging degrades analyst intuition and creates new blind spots.</p>
+                    
+                    <span class="read-more">Read Article &rarr;</span>
+                </div>
+            </a>
+        
+            <a href="/blog/adversarial_ai_offense.html" class="blog-card">
+                
+                <div class="blog-card-image-container">
+                    <img src="/assets/header_adversarial_ai.png" class="blog-card-image-img" alt="Post Thumbnail">
+                </div>
+                
+                <div class="blog-card-content">
+                    <div class="blog-meta-badges">
+                        <span class="badge">2026-03-10</span>
+                        <span class="badge">2 min read</span>
+                    </div>
+                    <h3>Adversarial AI: The New Arms Race in Cyber Offence</h3>
+                    
+                        <p>Defenders aren&#39;t the only ones using AI. How threat actors are weaponising machine learning.</p>
+                    
+                    <span class="read-more">Read Article &rarr;</span>
+                </div>
+            </a>
+        
+        </div>
     
 </section>
 
         </main>
 
         <footer>
-            <p>&copy; 2024 Harry McLaren. Built with security in mind.</p>
+            <p>&copy; <span id="copyright-year">2024</span> Harry McLaren. Built with security in mind.<br/>
+            <span class="ai-transparency-footer">Engineered by a human. Coded and maintained with AI.</span></p>
         </footer>
     </div>
+    <script src="/assets/theme.js"></script>
 </body>
 </html>

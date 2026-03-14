@@ -1,0 +1,61 @@
+// Micro-animation: Fade in content elegantly
+document.addEventListener('DOMContentLoaded', () => {
+    const content = document.querySelector('.content');
+    if (content) {
+        // Add a utility class that handles the transition
+        content.classList.add('content-visible');
+    }
+
+    // Theme Toggle Logic
+    const toggleButton = document.getElementById('theme-toggle');
+    const moonIcon = document.getElementById('moon-icon');
+    const sunIcon = document.getElementById('sun-icon');
+    
+    // Function to set theme
+    function setTheme(isLight) {
+        if (isLight) {
+            document.documentElement.setAttribute('data-theme', 'light');
+            localStorage.setItem('theme', 'light');
+            if (moonIcon) {
+                moonIcon.classList.remove('theme-icon-hidden');
+                moonIcon.classList.add('theme-icon-visible');
+            }
+            if (sunIcon) {
+                sunIcon.classList.remove('theme-icon-visible');
+                sunIcon.classList.add('theme-icon-hidden');
+            }
+        } else {
+            document.documentElement.removeAttribute('data-theme');
+            localStorage.setItem('theme', 'dark');
+            if (moonIcon) {
+                moonIcon.classList.remove('theme-icon-visible');
+                moonIcon.classList.add('theme-icon-hidden');
+            }
+            if (sunIcon) {
+                sunIcon.classList.remove('theme-icon-hidden');
+                sunIcon.classList.add('theme-icon-visible');
+            }
+        }
+    }
+    
+    // Check for saved theme (Apply initial state properly)
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+        setTheme(true);
+    } else {
+        setTheme(false);
+    }
+
+    if (toggleButton) {
+        toggleButton.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            setTheme(currentTheme !== 'light');
+        });
+    }
+
+    // Dynamic Copyright Year
+    const yearSpan = document.getElementById('copyright-year');
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+    }
+});

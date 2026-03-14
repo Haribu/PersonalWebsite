@@ -1,51 +1,51 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section style="margin-top: 4rem; margin-bottom: 4rem; max-width: 800px;">
+<section class="section-hero">
     <h1>Hi, I'm Harry.</h1>
-    <h2 class="gradient-text" style="margin-top: 0.5rem; font-size: 2.5rem;">Head of Cyber Defense.</h2>
-    <p style="font-size: 1.25rem; line-height: 1.8; margin-top: 2rem;">
+    <h2 class="gradient-text hero-subtitle">Head of Cyber Defense.</h2>
+    <p class="hero-description">
         As an experienced security leader, I am dedicated to bridging the gap between deep technical risk and strategic business objectives. My career has focused on intelligence-driven defense, engineering resilient architectures, and cultivating human-centered security operations. Beyond my operational leadership at Tesco, I serve as a trusted Board & Investor Advisor to help organizations navigate complex threat landscapes.
     </p>
 </section>
 
-<section style="margin-bottom: 6rem;">
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+<section class="section-mb-large">
+    <div class="services-grid">
         
-        <div class="card" style="margin-bottom: 0; display: flex; flex-direction: column; justify-content: space-between;">
+        <div class="card card-service">
             <div>
-                <h3 style="margin-top: 0; color: var(--accent-cyan); font-size: 1.2rem;">Executive Leadership</h3>
-                <p style="font-size: 0.95rem;">View my employment history, qualifications, and track record in scaling defense capabilities.</p>
+                <h3 class="service-title service-title-cyan">Executive Leadership</h3>
+                <p class="service-desc">View my employment history, qualifications, and track record in scaling defense capabilities.</p>
             </div>
-            <a href="{{ base_url }}/career.html" class="btn" style="text-align: center; margin-top: 1rem;">View Experience</a>
+            <a href="{{ base_url }}/career.html" class="btn btn-service">View Experience</a>
         </div>
 
-        <div class="card" style="margin-bottom: 0; display: flex; flex-direction: column; justify-content: space-between;">
+        <div class="card card-service">
             <div>
-                <h3 style="margin-top: 0; color: var(--accent-purple); font-size: 1.2rem;">Board Advisory</h3>
-                <p style="font-size: 0.95rem;">Seeking strategic guidance or NED services? Let's discuss resilient business strategies.</p>
+                <h3 class="service-title service-title-purple">Board Advisory</h3>
+                <p class="service-desc">Seeking strategic guidance or NED services? Let's discuss resilient business strategies.</p>
             </div>
-            <a href="{{ base_url }}/advisory.html" class="btn" style="text-align: center; margin-top: 1rem; background-color: transparent; border-color: var(--accent-purple); color: var(--accent-purple);">Engage Services</a>
+            <a href="{{ base_url }}/advisory.html" class="btn btn-service btn-outline-purple">Engage Services</a>
         </div>
 
-        <div class="card" style="margin-bottom: 0; display: flex; flex-direction: column; justify-content: space-between;">
+        <div class="card card-service">
             <div>
-                <h3 style="margin-top: 0; font-size: 1.2rem;">Community & Ideas</h3>
-                <p style="font-size: 0.95rem;">Explore my latest articles on cyber operations, or connect regarding speaking engagements.</p>
+                <h3 class="service-title text-default">Community & Ideas</h3>
+                <p class="service-desc">Explore my latest articles on cyber operations, or connect regarding speaking engagements.</p>
             </div>
-            <a href="{{ base_url }}/blog.html" class="btn" style="text-align: center; margin-top: 1rem; background-color: transparent; border-color: var(--border-subtle); color: var(--text-primary);">Read Articles</a>
+            <a href="{{ base_url }}/blog.html" class="btn btn-service btn-outline-default">Read Articles</a>
         </div>
 
     </div>
 </section>
 
 <section>
-    <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 2rem;">
-        <h2 style="margin-top: 0;">Recent Writing</h2>
-        <a href="{{ base_url }}/blog.html" style="font-size: 0.95rem; font-weight: 500;">View all posts &rarr;</a>
+    <div class="recent-writing-header">
+        <h2 class="mt-0">Recent Writing</h2>
+        <a href="{{ base_url }}/blog.html" class="view-all-link">View all posts &rarr;</a>
     </div>
     
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+    <div class="recent-writing-grid">
         {% for post in recent_posts %}
         <div class="card">
             <time class="blog-meta">{{ post.date }}</time>

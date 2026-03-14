@@ -3,173 +3,187 @@
 {% block content %}
 <section>
     <h1>Career & Experience</h1>
-    <p style="font-size: 1.125rem; margin-bottom: 2rem;">
+    <p class="career-hero-desc">
         Hi, I'm Harry McLaren. I currently serve as the **Head of Cyber Defense at Tesco**, where I lead the organization's unified Threat Intelligence, Detection Engineering, Investigation, and Response (TIDIR) function. 
         I am focused on building a proactive, engineering-led defense capability that enables secure innovation and supports long-term business resilience. I also act as a Board & Investor Advisor and co-founder of Cyber Scotland Connect.
     </p>
 
-    <div style="margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border-subtle);">
+    <div class="career-resume-wrapper">
         <a href="{{ base_url }}/assets/harry_mclaren_resume.pdf" class="btn" target="_blank" rel="noopener noreferrer">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 0.5rem;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            <svg class="icon-inline-middle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
             Download Formal Resume (PDF)
         </a>
     </div>
 
-    <h2 style="margin-top: 0;">Employment History</h2>
+    <h2 class="mt-0">Employment History</h2>
     
-    <div class="card">
-        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
-            <h3 style="margin: 0; display: flex; align-items: center; gap: 1rem;">
+    <div class="timeline">
+
+    <div class="timeline-item">
+    <div class="card card-timeline">
+        <div class="timeline-header">
+            <h3 class="timeline-title">
                 <img src="{{ base_url }}/assets/logo_tesco.svg" alt="Tesco Logo" class="company-logo">
                 Head of Cyber Defense
             </h3>
-            <span style="color: var(--accent-cyan); font-family: var(--font-code); font-size: 0.9rem;">Aug 2025 - Present</span>
+            <span class="timeline-date">Aug 2025 - Present</span>
         </div>
-        <div style="color: var(--text-primary); font-size: 1.05rem; margin-bottom: 1rem; font-weight: 500;">Tesco</div>
-        <ul style="list-style-type: none; padding: 0; margin: 0; color: var(--text-secondary);">
-            <li style="position: relative; padding-left: 1.5rem; margin-bottom: 0.5rem;">
-                <span style="position: absolute; left: 0; color: var(--accent-purple);">▹</span>
+        <div class="timeline-company">Tesco</div>
+        <ul class="timeline-list">
+            <li>
+                <span class="timeline-bullet">▹</span>
                 Leading the TIDIR function, responsible for protecting critical business services through an intelligence-driven, threat-informed defense model.
             </li>
-            <li style="position: relative; padding-left: 1.5rem; margin-bottom: 0.5rem;">
-                <span style="position: absolute; left: 0; color: var(--accent-purple);">▹</span>
+            <li>
+                <span class="timeline-bullet">▹</span>
                 Managing a global team of security engineers and analysts to deliver 24/7 proactive security operations.
             </li>
-            <li style="position: relative; padding-left: 1.5rem; margin-bottom: 0.5rem;">
-                <span style="position: absolute; left: 0; color: var(--accent-purple);">▹</span>
+            <li>
+                <span class="timeline-bullet">▹</span>
                 Developing data-centric detection strategies that integrate seamlessly with agile engineering practices.
             </li>
         </ul>
     </div>
+    </div>
     
-    <div class="card">
-        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
-            <h3 style="margin: 0; display: flex; align-items: center; gap: 1rem;">
+    <div class="timeline-item">
+    <div class="card card-timeline">
+        <div class="timeline-header">
+            <h3 class="timeline-title">
                 <img src="{{ base_url }}/assets/logo_tesco.svg" alt="Tesco Logo" class="company-logo">
                 Head of Cybersecurity Engineering
             </h3>
-            <span style="color: var(--accent-cyan); font-family: var(--font-code); font-size: 0.9rem;">Feb 2024 - Aug 2025</span>
+            <span class="timeline-date">Feb 2024 - Aug 2025</span>
         </div>
-        <div style="color: var(--text-primary); font-size: 1.05rem; margin-bottom: 1rem; font-weight: 500;">Tesco</div>
-        <ul style="list-style-type: none; padding: 0; margin: 0; color: var(--text-secondary);">
-            <li style="position: relative; padding-left: 1.5rem; margin-bottom: 0.5rem;">
-                <span style="position: absolute; left: 0; color: var(--accent-purple);">▹</span>
+        <div class="timeline-company">Tesco</div>
+        <ul class="timeline-list">
+            <li>
+                <span class="timeline-bullet">▹</span>
                 Designed and evolved the cyber security technology enabling security operations and overall defense capability for Tesco.
             </li>
-            <li style="position: relative; padding-left: 1.5rem; margin-bottom: 0.5rem;">
-                <span style="position: absolute; left: 0; color: var(--accent-purple);">▹</span>
+            <li>
+                <span class="timeline-bullet">▹</span>
                 Architected automated response playbooks reducing manual intervention times by up to 60%.
             </li>
-            <li style="position: relative; padding-left: 1.5rem; margin-bottom: 0.5rem;">
-                <span style="position: absolute; left: 0; color: var(--accent-purple);">▹</span>
+            <li>
+                <span class="timeline-bullet">▹</span>
                 Fostered a secure-by-default engineering culture across multiple product lines.
             </li>
         </ul>
     </div>
+    </div>
 
-    <div class="card">
-        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
-            <h3 style="margin: 0; display: flex; align-items: center; gap: 1rem;">
+    <div class="timeline-item">
+    <div class="card card-timeline">
+        <div class="timeline-header">
+            <h3 class="timeline-title">
                 <img src="{{ base_url }}/assets/logo_senseon.svg" alt="SenseOn Logo" class="company-logo">
                 Director of Product Management
             </h3>
         </div>
-        <div style="color: var(--text-primary); font-size: 1.05rem; margin-bottom: 1rem; font-weight: 500;">SenseOn</div>
-        <ul style="list-style-type: none; padding: 0; margin: 0; color: var(--text-secondary);">
-            <li style="position: relative; padding-left: 1.5rem; margin-bottom: 0.5rem;">
-                <span style="position: absolute; left: 0; color: var(--accent-purple);">▹</span>
+        <div class="timeline-company">SenseOn</div>
+        <ul class="timeline-list">
+            <li>
+                <span class="timeline-bullet">▹</span>
                 Managed product strategy and development for advanced threat detection and response capabilities.
             </li>
         </ul>
     </div>
+    </div>
 
-    <div class="card">
-        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
-            <h3 style="margin: 0; display: flex; align-items: center; gap: 1rem;">
+    <div class="timeline-item">
+    <div class="card card-timeline">
+        <div class="timeline-header">
+            <h3 class="timeline-title">
                 <img src="{{ base_url }}/assets/logo_adarma.svg" alt="Adarma Logo" class="company-logo">
                 Product Lead for Detection & Response
             </h3>
         </div>
-        <div style="color: var(--text-primary); font-size: 1.05rem; margin-bottom: 1rem; font-weight: 500;">Adarma Security</div>
-        <ul style="list-style-type: none; padding: 0; margin: 0; color: var(--text-secondary);">
-            <li style="position: relative; padding-left: 1.5rem; margin-bottom: 0.5rem;">
-                <span style="position: absolute; left: 0; color: var(--accent-purple);">▹</span>
+        <div class="timeline-company">Adarma Security</div>
+        <ul class="timeline-list">
+            <li>
+                <span class="timeline-bullet">▹</span>
                 Led the product vision for security operations, focusing on rapid detection and automated response mechanisms.
             </li>
         </ul>
     </div>
+    </div>
 
-    <div class="card">
-        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
-            <h3 style="margin: 0; display: flex; align-items: center; gap: 1rem;">
+    <div class="timeline-item">
+    <div class="card card-timeline">
+        <div class="timeline-header">
+            <h3 class="timeline-title">
                 <img src="{{ base_url }}/assets/logo_adarma.svg" alt="Adarma Logo" class="company-logo">
                 Various Roles
             </h3>
-            <span style="color: var(--accent-cyan); font-family: var(--font-code); font-size: 0.9rem;">2013 - 2022</span>
+            <span class="timeline-date">2013 - 2022</span>
         </div>
-        <div style="color: var(--text-primary); font-size: 1.05rem; margin-bottom: 1rem; font-weight: 500;">Adarma Security (formerly ECS)</div>
-        <ul style="list-style-type: none; padding: 0; margin: 0; color: var(--text-secondary);">
-            <li style="position: relative; padding-left: 1.5rem; margin-bottom: 0.5rem;">
-                <span style="position: absolute; left: 0; color: var(--accent-purple);">▹</span>
+        <div class="timeline-company">Adarma Security (formerly ECS)</div>
+        <ul class="timeline-list">
+            <li>
+                <span class="timeline-bullet">▹</span>
                 Progressed through six different roles from Senior Security Analyst to Managing Consultant and Product Lead for Detection & Response.
             </li>
         </ul>
     </div>
+    </div>
 
-    <h2 style="margin-top: 3rem;">Community Contribution</h2>
-    <div class="card" style="border-color: rgba(255,255,255,0.05); background: transparent;">
-        <ul style="list-style-type: none; padding: 0; margin: 0; color: var(--text-secondary); display: flex; flex-direction: column; gap: 1rem;">
-            <li style="position: relative; padding-left: 1.5rem;">
-                <span style="position: absolute; left: 0; color: var(--accent-cyan);">▹</span>
+    </div>
+
+    <h2 class="career-section-title">Community Contribution</h2>
+    <div class="card card-transparent">
+        <ul class="timeline-list community-list">
+            <li>
+                <span class="bullet-cyan">▹</span>
                 <strong>Cyber Scotland Connect:</strong> Co-founder of a community networking initiative.
             </li>
-            <li style="position: relative; padding-left: 1.5rem;">
-                <span style="position: absolute; left: 0; color: var(--accent-cyan);">▹</span>
+            <li>
+                <span class="bullet-cyan">▹</span>
                 <strong>Building Cyber Collective:</strong> Advisor.
             </li>
-            <li style="position: relative; padding-left: 1.5rem;">
-                <span style="position: absolute; left: 0; color: var(--accent-cyan);">▹</span>
+            <li>
+                <span class="bullet-cyan">▹</span>
                 <strong>Journal of Cyber Security Technology:</strong> Reviewer.
             </li>
         </ul>
     </div>
 
-    <h2 style="margin-top: 3rem;">Education & Certifications</h2>
+    <h2 class="career-section-title">Education & Certifications</h2>
     
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
+    <div class="edu-grid">
         
-        <div class="card" style="margin-bottom: 0; display: flex; align-items: flex-start; gap: 1rem;">
-            <div style="background-color: var(--accent-purple); color: var(--bg-base); padding: 0.5rem; border-radius: 4px; font-weight: bold;">Edu</div>
+        <div class="card card-edu">
+            <div class="badge-edu">Edu</div>
             <div>
-                <h4 style="margin: 0;">BEng (Hons) Computer Security & Forensics</h4>
-                <p style="font-size: 0.9rem; margin-bottom: 0;">Edinburgh Napier University (2014) <br><em>Excellence Alumni Award</em></p>
+                <h4 class="edu-title">BEng (Hons) Computer Security & Forensics</h4>
+                <p class="edu-desc">Edinburgh Napier University (2014) <br><em>Excellence Alumni Award</em></p>
             </div>
         </div>
 
-        <div class="card" style="margin-bottom: 0; display: flex; align-items: flex-start; gap: 1rem;">
-            <div style="background-color: var(--accent-cyan); color: var(--bg-base); padding: 0.5rem; border-radius: 4px; font-weight: bold;">Exec</div>
+        <div class="card card-edu">
+            <div class="badge-exec">Exec</div>
             <div>
-                <h4 style="margin: 0;">SANS AI Security Essentials</h4>
-                <p style="font-size: 0.9rem; margin-bottom: 0;">for Business Leaders (2025)</p>
+                <h4 class="edu-title">SANS AI Security Essentials</h4>
+                <p class="edu-desc">for Business Leaders (2025)</p>
             </div>
         </div>
 
-        <div class="card" style="margin-bottom: 0; display: flex; align-items: flex-start; gap: 1rem;">
-            <div style="background-color: var(--accent-cyan); color: var(--bg-base); padding: 0.5rem; border-radius: 4px; font-weight: bold;">Exec</div>
+        <div class="card card-edu">
+            <div class="badge-exec">Exec</div>
             <div>
-                <h4 style="margin: 0;">SANS LDR514</h4>
-                <p style="font-size: 0.9rem; margin-bottom: 0;">Security Strategic Planning (2024)</p>
+                <h4 class="edu-title">SANS LDR514</h4>
+                <p class="edu-desc">Security Strategic Planning (2024)</p>
             </div>
         </div>
 
     </div>
 
-    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem;">
-        <span style="border: 1px solid var(--border-subtle); padding: 0.5rem 1rem; border-radius: 4px; font-size: 0.95rem;">CISSP</span>
-        <span style="border: 1px solid var(--border-subtle); padding: 0.5rem 1rem; border-radius: 4px; font-size: 0.95rem;">CISM</span>
-        <span style="border: 1px solid var(--border-subtle); padding: 0.5rem 1rem; border-radius: 4px; font-size: 0.95rem;">GSTRT</span>
-        <span style="border: 1px solid var(--border-subtle); padding: 0.5rem 1rem; border-radius: 4px; font-size: 0.95rem;">CIISec Full Member</span>
-        <span style="border: 1px solid var(--border-subtle); padding: 0.5rem 1rem; border-radius: 4px; font-size: 0.95rem;">Splunk Certified Consultant L2</span>
+    <div class="cert-grid">
+        <span class="cert-badge">CISSP</span>
+        <span class="cert-badge">CISM</span>
+        <span class="cert-badge">GSTRT</span>
+        <span class="cert-badge">CIISec Full Member</span>
+        <span class="cert-badge">Splunk Certified Consultant L2</span>
     </div>
 
 </section>

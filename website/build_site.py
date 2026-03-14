@@ -27,7 +27,7 @@ def setup_public_dir():
 
 def build_blog():
     """Convert .md files in content/blog to .html files in public/blog."""
-    env = Environment(loader=FileSystemLoader(TEMPLATE_DIR))
+    env = Environment(loader=FileSystemLoader(TEMPLATE_DIR), autoescape=True)
     post_template = env.get_template('post.html')
     blog_list_template = env.get_template('blog_list.html')
     
@@ -51,13 +51,23 @@ def build_blog():
             
             out_filename = filename.replace('.md', '.html')
             
+            import re
+            img_match = re.search(r'<img[^>]+src="([^">]+)"', html_content)
+            thumbnail = img_match.group(1).replace('{{ base_url }}', BASE_URL) if img_match else ''
+
+            # Approximate reading time: 200 words per minute
+            word_count = len(re.sub(r'<[^>]+>', '', html_content).split())
+            read_time = max(1, word_count // 200)
+
             # Store post metadata for the index page
             post_meta = {
                 'title': post_data.get('title', 'Untitled'),
                 'date': post_data.get('date', datetime.now().strftime("%Y-%m-%d")),
                 'summary': post_data.get('summary', ''),
+                'thumbnail': thumbnail,
+                'read_time': read_time,
                 'url': f'{BASE_URL}/blog/{out_filename}',
-                'content': html_content
+                'content': html_content.replace('{{ base_url }}', BASE_URL)
             }
             posts.append(post_meta)
             
@@ -83,7 +93,7 @@ def build_blog():
 
 def build_pages(posts=[]):
     """Build root-level pages (Home, About, Contact)."""
-    env = Environment(loader=FileSystemLoader(TEMPLATE_DIR))
+    env = Environment(loader=FileSystemLoader(TEMPLATE_DIR), autoescape=True)
     
     pages = ['index.html', 'advisory.html', 'career.html', 'contact.html']
     

@@ -2,21 +2,58 @@
 
 {% block content %}
 <section>
-    <h1 style="margin-bottom: 0.5rem;">Transmission Log</h1>
-    <p style="font-size: 1.1rem; margin-bottom: 4rem;">Thoughts on cybersecurity, cloud architecture, and engineering management.</p>
+    <h1 class="page-header-title">Transmission Log</h1>
+    <p class="page-header-subtitle">Thoughts on cybersecurity, cloud architecture, and engineering management.</p>
 
     {% if posts %}
-        <ul class="blog-list">
-        {% for post in posts %}
-            <li>
-                <time class="blog-meta" datetime="{{ post.date }}">{{ post.date }}</time>
-                <h3 style="margin-bottom: 0.75rem;"><a href="{{ post.url }}">{{ post.title }}</a></h3>
-                {% if post.summary %}
-                    <p style="margin-top: 0; max-width: 65ch;">{{ post.summary }}</p>
+        
+        <!-- Featured Post (Latest) -->
+        {% set featured = posts[0] %}
+        <a href="{{ featured.url }}" class="featured-post-card">
+            {% if featured.thumbnail %}
+            <div class="featured-image-container">
+                <img src="{{ featured.thumbnail }}" class="featured-image-img" alt="Featured Post Thumbnail">
+            </div>
+            {% endif %}
+            <div class="featured-content">
+                <div class="blog-meta-badges">
+                    <span class="badge">{{ featured.date }}</span>
+                    <span class="badge">{{ featured.read_time }} min read</span>
+                </div>
+                <h2>{{ featured.title }}</h2>
+                {% if featured.summary %}
+                    <p class="featured-summary">{{ featured.summary }}</p>
                 {% endif %}
-            </li>
+                <span class="read-more">Read Featured Article &rarr;</span>
+            </div>
+        </a>
+
+        <hr class="post-divider post-divider-large" />
+        
+        <h3 class="previous-transmissions-title">Previous Transmissions</h3>
+        <!-- Grid of past posts -->
+        <div class="blog-grid">
+        {% for post in posts[1:] %}
+            <a href="{{ post.url }}" class="blog-card">
+                {% if post.thumbnail %}
+                <div class="blog-card-image-container">
+                    <img src="{{ post.thumbnail }}" class="blog-card-image-img" alt="Post Thumbnail">
+                </div>
+                {% endif %}
+                <div class="blog-card-content">
+                    <div class="blog-meta-badges">
+                        <span class="badge">{{ post.date }}</span>
+                        <span class="badge">{{ post.read_time }} min read</span>
+                    </div>
+                    <h3>{{ post.title }}</h3>
+                    {% if post.summary %}
+                        <p>{{ post.summary }}</p>
+                    {% endif %}
+                    <span class="read-more">Read Article &rarr;</span>
+                </div>
+            </a>
         {% endfor %}
-        </ul>
+        </div>
     {% else %}
         <p>No posts found. Write some Markdown in the <code>content/blog</code> directory!</p>
     {% endif %}

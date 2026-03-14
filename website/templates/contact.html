@@ -3,34 +3,15 @@
 {% block content %}
 <section>
     <h1>Get in Touch</h1>
-    <p style="margin-bottom: 2rem; max-width: 700px;">Whether you'd like to discuss a community speaking engagement, connect regarding technical research, or say hello, you can use the secure form below or connect with me via LinkedIn.</p>
+    <p class="contact-desc">Whether you'd like to discuss a community speaking engagement, connect regarding technical research, or say hello, you can use the secure form below or connect with me via LinkedIn.</p>
 
-    <div style="margin-bottom: 3rem;">
+    <div class="contact-btn-wrapper">
         <a href="https://www.linkedin.com/in/harrymclaren/" target="_blank" rel="noopener noreferrer" class="btn">Connect on LinkedIn</a>
     </div>
 
-    <div class="card" style="max-width: 600px;">
-        <h2 style="margin-top: 0; margin-bottom: 1.5rem;">Secure Message Form</h2>
-        <!-- Using Formspree as a secure, static-site friendly endpoint placeholder -->
-        <!-- Action URL should be replaced by Harry's actual Formspree/Netlify form endpoint -->
-        <form action="https://formspree.io/f/placeholder" method="POST">
-            <div class="form-group">
-                <label for="name">Your Name</label>
-                <input type="text" id="name" name="name" required aria-required="true" placeholder="Jane Doe">
-            </div>
-            
-            <div class="form-group">
-                <label for="email">Your Email</label>
-                <input type="email" id="email" name="email" required aria-required="true" placeholder="jane@example.com">
-            </div>
-            
-            <div class="form-group">
-                <label for="message">Message</label>
-                <textarea id="message" name="message" required aria-required="true" placeholder="How can I help you?"></textarea>
-            </div>
-            
-            <button type="submit" class="btn">Send Secure Message</button>
-        </form>
+    <div class="card card-contact-form">
+        <!-- Embedded Google Form -->
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfMWFOH8dPLDubylzpgxNo3wa4N1u40e6tGL8LqW-HfSojuoQ/viewform?embedded=true" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
     </div>
 </section>
 {% endblock %}
