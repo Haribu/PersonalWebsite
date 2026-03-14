@@ -7,6 +7,8 @@ from datetime import datetime
 
 # GitHub Pages serves from a subpath (/PersonalWebsite). Local uses root (/).
 BASE_URL = '/PersonalWebsite' if os.environ.get('GITHUB_ACTIONS') else ''
+DOMAIN = 'https://harrymclaren.github.io'
+SITE_URL = f"{DOMAIN}{BASE_URL}"
 
 # Define paths
 SITE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -24,6 +26,14 @@ def setup_public_dir():
     if os.path.exists(public_assets):
         shutil.rmtree(public_assets)
     shutil.copytree(ASSETS_DIR, public_assets)
+
+    # Copy .well-known directory for security.txt, etc.
+    well_known_src = os.path.join(SITE_DIR, '.well-known')
+    well_known_dest = os.path.join(PUBLIC_DIR, '.well-known')
+    if os.path.exists(well_known_src):
+        if os.path.exists(well_known_dest):
+            shutil.rmtree(well_known_dest)
+        shutil.copytree(well_known_src, well_known_dest)
 
 def build_blog():
     """Convert .md files in content/blog to .html files in public/blog."""
@@ -67,12 +77,13 @@ def build_blog():
                 'thumbnail': thumbnail,
                 'read_time': read_time,
                 'url': f'{BASE_URL}/blog/{out_filename}',
+                'current_url': f'/blog/{out_filename}',
                 'content': html_content.replace('{{ base_url }}', BASE_URL)
             }
             posts.append(post_meta)
             
             # Render individual post
-            final_html = post_template.render(**post_meta, base_url=BASE_URL)
+            final_html = post_template.render(**post_meta, base_url=BASE_URL, site_url=SITE_URL, og_type="article")
             
             # Save output
             output_dir = os.path.join(PUBLIC_DIR, 'blog')
@@ -85,7 +96,7 @@ def build_blog():
     # Output the blog index page
     # Sort posts by date descending
     posts.sort(key=lambda x: x['date'], reverse=True)
-    blog_index_html = blog_list_template.render(title="Blog", posts=posts, base_url=BASE_URL)
+    blog_index_html = blog_list_template.render(title="Blog", posts=posts, base_url=BASE_URL, site_url=SITE_URL, current_url="/blog.html", og_type="website")
     with open(os.path.join(PUBLIC_DIR, 'blog.html'), 'w', encoding='utf-8') as f:
         f.write(blog_index_html)
         
@@ -100,18 +111,49 @@ def build_pages(posts=[]):
     for page in pages:
         try:
             template = env.get_template(page)
+            current_url = "/" if page == "index.html" else f"/{page}"
+            title_map = {"index.html": "Home", "advisory.html": "Advisory", "career.html": "Career", "contact.html": "Contact"}
+            page_title = title_map.get(page)
             if page == 'index.html':
-                final_html = template.render(base_url=BASE_URL, recent_posts=posts[:2])
+                final_html = template.render(base_url=BASE_URL, site_url=SITE_URL, current_url=current_url, recent_posts=posts[:2], og_type="website")
             else:
-                final_html = template.render(base_url=BASE_URL)
+                final_html = template.render(base_url=BASE_URL, site_url=SITE_URL, current_url=current_url, title=page_title, og_type="website")
             with open(os.path.join(PUBLIC_DIR, page), 'w', encoding='utf-8') as f:
                 f.write(final_html)
         except Exception as e:
             print(f"Skipping {page}, template not found yet.")
 
+    return pages
+
+def build_sitemap_and_robots(posts, pages):
+    """Generate sitemap.xml and robots.txt based on generated posts and pages."""
+    sitemap_xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+    
+    # Add pages
+    for page in pages:
+        url_path = "" if page == "index.html" else f"/{page}"
+        sitemap_xml += f'  <url>\n    <loc>{SITE_URL}{url_path}</loc>\n    <changefreq>weekly</changefreq>\n  </url>\n'
+        
+    # Add blog index
+    sitemap_xml += f'  <url>\n    <loc>{SITE_URL}/blog.html</loc>\n    <changefreq>weekly</changefreq>\n  </url>\n'
+    
+    # Add posts
+    for post in posts:
+        sitemap_xml += f'  <url>\n    <loc>{SITE_URL}{post["current_url"]}</loc>\n    <lastmod>{post["date"]}</lastmod>\n  </url>\n'
+        
+    sitemap_xml += '</urlset>'
+    
+    with open(os.path.join(PUBLIC_DIR, 'sitemap.xml'), 'w', encoding='utf-8') as f:
+        f.write(sitemap_xml)
+        
+    robots_txt = f"User-agent: *\nAllow: /\nSitemap: {SITE_URL}/sitemap.xml\n"
+    with open(os.path.join(PUBLIC_DIR, 'robots.txt'), 'w', encoding='utf-8') as f:
+        f.write(robots_txt)
+
 if __name__ == "__main__":
     print("Building static site for Harry McLaren...")
     setup_public_dir()
     posts = build_blog()
-    build_pages(posts)
+    pages = build_pages(posts)
+    build_sitemap_and_robots(posts, pages)
     print("Site built successfully in the /public directory!")
