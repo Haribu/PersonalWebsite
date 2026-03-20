@@ -77,6 +77,7 @@ def build_blog():
                 'summary': post_data.get('summary', ''),
                 'category': post_data.get('category', ''),
                 'external_link': external_link,
+                'featured': post_data.get('featured', False),
                 'thumbnail': thumbnail,
                 'read_time': read_time,
                 'url': external_link if external_link else f'{BASE_URL}/blog/{out_filename}',
@@ -99,7 +100,8 @@ def build_blog():
     # Output the blog index page
     # Sort posts by date descending
     posts.sort(key=lambda x: x['date'], reverse=True)
-    blog_index_html = blog_list_template.render(title="Blog", posts=posts, base_url=BASE_URL, site_url=SITE_URL, current_url="/blog.html", og_type="website")
+    blog_posts = [p for p in posts if p.get('category') not in ['speaking', 'writing', 'event']]
+    blog_index_html = blog_list_template.render(title="Blog", posts=blog_posts, base_url=BASE_URL, site_url=SITE_URL, current_url="/blog.html", og_type="website")
     with open(os.path.join(PUBLIC_DIR, 'blog.html'), 'w', encoding='utf-8') as f:
         f.write(blog_index_html)
         
@@ -121,7 +123,17 @@ def build_pages(posts=[]):
                 final_html = template.render(base_url=BASE_URL, site_url=SITE_URL, current_url=current_url, recent_posts=posts[:2], og_type="website")
             elif page == 'showcase.html':
                 showcase_posts = [p for p in posts if p.get('category') in ['speaking', 'writing', 'event']]
-                final_html = template.render(base_url=BASE_URL, site_url=SITE_URL, current_url=current_url, title=page_title, showcase_posts=showcase_posts, og_type="website")
+                featured_posts = [p for p in showcase_posts if p.get('featured')]
+                
+                # Exclude featured posts from archive pipelines
+                archive_pool = [p for p in showcase_posts if not p.get('featured')]
+                speaking_posts = [p for p in archive_pool if p.get('category') == 'speaking']
+                writing_posts = [p for p in archive_pool if p.get('category') == 'writing']
+                event_posts = [p for p in archive_pool if p.get('category') == 'event']
+                
+                final_html = template.render(
+                    base_url=BASE_URL, site_url=SITE_URL, current_url=current_url, title=page_title, 
+                    featured_posts=featured_posts, speaking_posts=speaking_posts, writing_posts=writing_posts, event_posts=event_posts, og_type="website")
             else:
                 final_html = template.render(base_url=BASE_URL, site_url=SITE_URL, current_url=current_url, title=page_title, og_type="website")
             with open(os.path.join(PUBLIC_DIR, page), 'w', encoding='utf-8') as f:

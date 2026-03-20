@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Behavioural Analytics (UBA): Machine Learning for Threat Detection | Harry McLaren</title>
+    
+    <!-- Security Best Practices -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; frame-src 'self' https://docs.google.com; upgrade-insecure-requests;">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta name="description" content="Main speaker at the Big Data in Cyber Security Conference, covering UBA to detect network and host-based attacks.">
+    
+    <!-- Canonical Link -->
+    
+    <link rel="canonical" href="https://harrymclaren.github.iohttps://thecyberacademy.org/bigdata-speakers/">
+    
+
+    <!-- Open Graph (OG) Tags -->
+    <meta property="og:title" content="User Behavioural Analytics (UBA): Machine Learning for Threat Detection | Harry McLaren">
+    <meta property="og:description" content="Main speaker at the Big Data in Cyber Security Conference, covering UBA to detect network and host-based attacks.">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Harry McLaren">
+    
+    <meta property="og:url" content="https://harrymclaren.github.iohttps://thecyberacademy.org/bigdata-speakers/">
+    
+    
+    <meta property="og:image" content="https://harrymclaren.github.io/assets/favicon.png">
+    
+
+    <!-- Google Analytics (Placeholder) -->
+    <!-- When enabling, ensure CSP script-src includes https://www.googletagmanager.com -->
+    <!-- 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    -->
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/assets/favicon.png">
+    
+    <!-- Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Inter:wght@400;500;600&family=Fira+Code&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-top">
+                <a href="/" class="site-title">Harry McLaren</a>
+                <div class="header-actions">
+                    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Dark/Light Mode">
+                        <svg id="moon-icon" class="theme-icon-hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                        <svg id="sun-icon" class="theme-icon-visible" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    </button>
+                    <button id="nav-toggle" class="nav-toggle-btn" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-drawer">
+                        <!-- Hamburger icon -->
+                        <svg class="hamburger-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                        <!-- Close icon -->
+                        <svg class="close-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <nav class="main-nav" id="nav-drawer" aria-label="Main navigation">
+                <a href="/">Home</a>
+                <a href="/career.html">Career</a>
+                <a href="/showcase.html">Showcase</a>
+                <a href="/advisory.html">Advisory</a>
+                <a href="/blog.html">Blog</a>
+                <a href="/contact.html">Contact</a>
+            </nav>
+        </header>
+
+        <main class="content">
+            
+<article class="blog-post">
+    <header class="post-header">
+        <h1 class="post-title">User Behavioural Analytics (UBA): Machine Learning for Threat Detection</h1>
+        <div class="post-meta-badges">
+            
+            <span class="badge">2016-05-01</span>
+            
+            
+            <span class="badge">1 min read</span>
+            
+        </div>
+    </header>
+    
+    <div class="post-content lead-paragraph">
+        <p>Main speaker at the Big Data in Cyber Security Conference, covering UBA to detect network and host-based attacks.</p>
+    </div>
+    
+    <hr class="post-divider" />
+    
+    <section class="author-bio-card">
+        <div class="bio-content">
+            <h3>Written by Harry McLaren</h3>
+            <p>Harry is a cybersecurity leader specialising in Detection Engineering, Incident Response, and pragmatic enterprise defence strategies. He helps organisations build resilience against modern threats.</p>
+            <a href="/contact.html" class="btn btn-primary mt-1">Work with Harry</a>
+        </div>
+    </section>
+
+    <section class="ai-transparency-card">
+        <div class="ai-transparency-content">
+            <h4>
+                <svg class="icon-inline" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2a10 10 0 1 0 10 10H12z"/>
+                    <path d="M12 12 2.1 7.1"/>
+                    <path d="M12 12l9.9 4.9"/>
+                </svg>
+                AI Transparency
+            </h4>
+            <p>The core ideas, technical direction, and experiences shared in this post are purely human. Generative AI was utilized to assist with drafting, structuring, and editing for clarity and readability.</p>
+        </div>
+    </section>
+    
+    <div class="post-navigation mt-4 flex-between">
+        <a href="/blog.html" class="nav-link">&larr; Transmission Log</a>
+        <a href="#" class="nav-link" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">Top &uarr;</a>
+    </div>
+</article>
+
+        </main>
+
+        <footer>
+            <p>&copy; <span id="copyright-year">2024</span> Harry McLaren. Built with security in mind.<br/>
+            <span class="ai-transparency-footer">Engineered by a human. Coded and maintained with AI.</span></p>
+        </footer>
+    </div>
+    <script src="/assets/theme.js"></script>
+</body>
+</html>

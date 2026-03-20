@@ -42,11 +42,18 @@ The site is generated using a custom Python script:
 # Move into the website directory
 cd website
 
+# (Optional) If you are DELETING posts, wipe the output folder first to prevent ghost artifacts
+# Windows: Remove-Item -Path "public\blog\*" -Recurse -Force
+# Mac/Linux: rm -rf public/blog/*
+
 # Rebuild the templates and markdown to public/
 python build_site.py
 
-# To write a new blog post
+# To write a new internal blog post
 python new_post.py "My New Post" -s "A quick summary"
+
+# To create a new Showcase item (Presentations, Writing, Events)
+python new_post.py "My Presentation" -s "A quick summary" -c speaking -l "https://link.com" -f
 ```
 
 The output is emitted to `website/public/`, which is fully static and ready for hosting. 

@@ -1,6 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
+<style>
+details > summary { 
+    list-style: none; 
+}
+details > summary::-webkit-details-marker { 
+    display: none; 
+}
+details[open] summary .dropdown-icon { 
+    transform: rotate(180deg); 
+}
+</style>
 <section class="container" style="padding: 4rem 1rem;">
     <header style="text-align: center; margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto;">
         <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">Speaking & Contributions</h1>
@@ -12,63 +23,120 @@
         </div>
     </header>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-        {% for post in showcase_posts %}
-        <article style="border: 1px solid var(--border-color, #eaeaea); border-radius: 8px; overflow: hidden; background-color: var(--surface-color, #fff); display: flex; flex-direction: column; transition: transform 0.2s ease, box-shadow 0.2s ease;"
-                 onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 10px 20px rgba(0,0,0,0.05)';"
+    {% if featured_posts %}
+    <h2 style="margin-bottom: 1.5rem; border-bottom: 2px solid var(--border-subtle); padding-bottom: 0.5rem; font-size: 1.8rem;">Featured Highlights</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 4rem;">
+        {% for post in featured_posts %}
+        <article style="border: 1px solid var(--border-subtle); border-radius: 8px; overflow: hidden; background-color: var(--bg-surface); display: flex; flex-direction: column; transition: transform 0.2s ease, box-shadow 0.2s ease;"
+                 onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 10px 20px rgba(0,0,0,0.2)';"
                  onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none';">
             
             {% if post.thumbnail %}
-            <div style="aspect-ratio: 16/9; overflow: hidden; background-color: #f5f5f5;">
+            <div style="aspect-ratio: 16/9; overflow: hidden; background-color: var(--bg-base);">
                 <img src="{{ post.thumbnail }}" alt="{{ post.title }}" style="width: 100%; height: 100%; object-fit: cover;">
             </div>
             {% else %}
-            <div style="aspect-ratio: 16/9; background-color: var(--border-color, #eaeaea); display: flex; align-items: center; justify-content: center;">
-                <span style="color: #999; font-size: 0.9rem;">No image available</span>
+            <div style="aspect-ratio: 16/9; background-color: var(--bg-base); border-bottom: 1px solid var(--border-subtle); display: flex; align-items: center; justify-content: center;">
+                <span style="color: var(--text-secondary); font-size: 0.9rem;">No image available</span>
             </div>
             {% endif %}
 
             <div style="padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-                    <span style="font-size: 0.85rem; color: var(--text-secondary, #666);">{{ post.date }}</span>
+                    <span style="font-size: 0.85rem; color: var(--text-secondary);">{{ post.date }}</span>
                     {% if post.category %}
-                    <span style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; padding: 0.25rem 0.5rem; border: 1px solid var(--primary-color, #0056b3); color: var(--primary-color, #0056b3); border-radius: 4px;">
+                    <span style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; padding: 0.25rem 0.5rem; border: 1px solid var(--accent-purple); color: var(--accent-purple); border-radius: 4px;">
                         {{ post.category }}
                     </span>
                     {% endif %}
                 </div>
                 
                 <h3 style="margin: 0 0 0.5rem 0; font-size: 1.25rem; line-height: 1.4;">
-                    <a href="{{ post.url }}" {% if post.external_link %}target="_blank" rel="noopener noreferrer"{% endif %} style="text-decoration: none; color: inherit;">
+                    {% if post.external_link %}
+                    <a href="{{ post.external_link }}" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
                         {{ post.title }}
-                        {% if post.external_link %}
                         <svg width="1em" height="1em" style="margin-left: 4px; vertical-align: baseline;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                            <polyline points="15 3 21 3 21 9"></polyline>
-                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line>
                         </svg>
-                        {% endif %}
                     </a>
+                    {% else %}
+                    <span style="color: var(--text-primary);">{{ post.title }}</span>
+                    {% endif %}
                 </h3>
                 
-                <p style="margin: 0; color: var(--text-secondary, #666); font-size: 0.95rem; line-height: 1.5; flex-grow: 1;">
-                    {{ post.summary }}
-                </p>
+                <div style="margin: 0; color: var(--text-secondary); font-size: 0.95rem; line-height: 1.5; flex-grow: 1;">
+                    {{ post.content | safe }}
+                </div>
                 
+                {% if post.external_link %}
                 <div style="margin-top: 1.5rem;">
-                    <a href="{{ post.url }}" {% if post.external_link %}target="_blank" rel="noopener noreferrer"{% endif %} style="text-decoration: none; color: var(--primary-color, #0056b3); font-weight: 600; font-size: 0.9rem;">
-                        View details &rarr;
+                    <a href="{{ post.external_link }}" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: var(--accent-cyan); font-weight: 600; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem;">
+                        View External Resource &rarr;
                     </a>
                 </div>
+                {% endif %}
             </div>
         </article>
         {% endfor %}
-        
-        {% if not showcase_posts %}
-        <div style="grid-column: 1 / -1; text-align: center; padding: 3rem; color: var(--text-secondary, #666); border: 1px dashed var(--border-color, #eaeaea); border-radius: 8px;">
-            <p>Check back later! No contributions have been published yet.</p>
-        </div>
-        {% endif %}
     </div>
+    {% endif %}
+
+    {% macro render_archive(title, posts) %}
+    {% if posts %}
+    <h2 style="margin-bottom: 1.5rem; border-bottom: 2px solid var(--border-subtle); padding-bottom: 0.5rem; font-size: 1.5rem;">{{ title }}</h2>
+    <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 3rem;">
+        {% for post in posts %}
+        <details style="border: 1px solid var(--border-subtle); border-radius: 8px; background-color: var(--bg-surface); transition: background-color 0.2s ease;">
+            <summary style="display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.5rem; cursor: pointer;"
+                     onmouseover="this.parentElement.style.backgroundColor='var(--bg-surface-hover)';"
+                     onmouseout="this.parentElement.style.backgroundColor='var(--bg-surface)';">
+                
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-grow: 1; flex-wrap: nowrap;">
+                    <span style="font-weight: 500; font-size: 1.05rem; flex-grow: 1; color: var(--text-primary);">
+                        {{ post.title }}
+                    </span>
+                    <span style="font-size: 0.9rem; color: var(--text-secondary); white-space: nowrap; margin-right: 1rem;">{{ post.date }}</span>
+                </div>
+                
+                <div style="display: flex; align-items: center; gap: 1rem; color: var(--text-secondary);">
+                    {% if post.external_link %}
+                    <svg width="1.2em" height="1.2em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                    {% endif %}
+                    <svg class="dropdown-icon" width="1.2em" height="1.2em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-cyan);">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </div>
+            </summary>
+            
+            <div style="padding: 0 1.5rem 1.5rem 1.5rem; border-top: 1px solid var(--border-subtle); margin-top: 0.5rem; padding-top: 1rem;">
+                <div style="color: var(--text-secondary); line-height: 1.6; font-size: 0.95rem;">
+                    {{ post.content | safe }}
+                </div>
+                {% if post.external_link %}
+                <div style="margin-top: 1rem;">
+                    <a href="{{ post.external_link }}" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; color: var(--accent-cyan); font-weight: 500; border: 1px solid var(--accent-cyan); padding: 0.5rem 1rem; border-radius: 4px; transition: all 0.2s;" onmouseover="this.style.backgroundColor='rgba(0, 229, 255, 0.1)'" onmouseout="this.style.backgroundColor='transparent'">
+                        View External Resource
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </details>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endmacro %}
+
+    {{ render_archive("Presentations & Public Speaking", speaking_posts) }}
+    {{ render_archive("External Writing & Publications", writing_posts) }}
+    {{ render_archive("Community Events & Advisory", event_posts) }}
+
+    {% if not featured_posts and not speaking_posts and not writing_posts and not event_posts %}
+    <div style="text-align: center; padding: 3rem; color: var(--text-secondary, #666); border: 1px dashed var(--border-color, #eaeaea); border-radius: 8px; margin-top: 2rem;">
+        <p>Check back later! No contributions have been published yet.</p>
+    </div>
+    {% endif %}
+
 </section>
 {% endblock %}
