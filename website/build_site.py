@@ -70,14 +70,17 @@ def build_blog():
             read_time = max(1, word_count // 200)
 
             # Store post metadata for the index page
+            external_link = post_data.get('external_link', '')
             post_meta = {
                 'title': post_data.get('title', 'Untitled'),
                 'date': post_data.get('date', datetime.now().strftime("%Y-%m-%d")),
                 'summary': post_data.get('summary', ''),
+                'category': post_data.get('category', ''),
+                'external_link': external_link,
                 'thumbnail': thumbnail,
                 'read_time': read_time,
-                'url': f'{BASE_URL}/blog/{out_filename}',
-                'current_url': f'/blog/{out_filename}',
+                'url': external_link if external_link else f'{BASE_URL}/blog/{out_filename}',
+                'current_url': external_link if external_link else f'/blog/{out_filename}',
                 'content': html_content.replace('{{ base_url }}', BASE_URL)
             }
             posts.append(post_meta)
@@ -106,16 +109,19 @@ def build_pages(posts=[]):
     """Build root-level pages (Home, About, Contact)."""
     env = Environment(loader=FileSystemLoader(TEMPLATE_DIR), autoescape=True)
     
-    pages = ['index.html', 'advisory.html', 'career.html', 'contact.html']
+    pages = ['index.html', 'advisory.html', 'career.html', 'contact.html', 'showcase.html']
     
     for page in pages:
         try:
             template = env.get_template(page)
             current_url = "/" if page == "index.html" else f"/{page}"
-            title_map = {"index.html": "Home", "advisory.html": "Advisory", "career.html": "Career", "contact.html": "Contact"}
+            title_map = {"index.html": "Home", "advisory.html": "Advisory", "career.html": "Career", "contact.html": "Contact", "showcase.html": "Showcase"}
             page_title = title_map.get(page)
             if page == 'index.html':
                 final_html = template.render(base_url=BASE_URL, site_url=SITE_URL, current_url=current_url, recent_posts=posts[:2], og_type="website")
+            elif page == 'showcase.html':
+                showcase_posts = [p for p in posts if p.get('category') in ['speaking', 'writing', 'event']]
+                final_html = template.render(base_url=BASE_URL, site_url=SITE_URL, current_url=current_url, title=page_title, showcase_posts=showcase_posts, og_type="website")
             else:
                 final_html = template.render(base_url=BASE_URL, site_url=SITE_URL, current_url=current_url, title=page_title, og_type="website")
             with open(os.path.join(PUBLIC_DIR, page), 'w', encoding='utf-8') as f:
@@ -123,7 +129,7 @@ def build_pages(posts=[]):
         except Exception as e:
             print(f"Skipping {page}, template not found yet.")
 
-    return pages
+    return [p for p in pages if os.path.exists(os.path.join(PUBLIC_DIR, p))]
 
 def build_sitemap_and_robots(posts, pages):
     """Generate sitemap.xml and robots.txt based on generated posts and pages."""
@@ -139,6 +145,8 @@ def build_sitemap_and_robots(posts, pages):
     
     # Add posts
     for post in posts:
+        if post["current_url"].startswith('http'):
+            continue
         sitemap_xml += f'  <url>\n    <loc>{SITE_URL}{post["current_url"]}</loc>\n    <lastmod>{post["date"]}</lastmod>\n  </url>\n'
         
     sitemap_xml += '</urlset>'

@@ -1,0 +1,12 @@
+.git
+.github
+.tmp/
+.env
+credentials.json
+token.json
+website/public/
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/

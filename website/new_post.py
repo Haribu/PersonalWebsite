@@ -5,7 +5,7 @@ from datetime import datetime
 # Path to the blog content directory
 BLOG_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'content', 'blog')
 
-def create_post(title, summary):
+def create_post(title, summary, category=None, external_link=None):
     """Generates a new Markdown file with the required frontmatter."""
     if not os.path.exists(BLOG_DIR):
         os.makedirs(BLOG_DIR)
@@ -29,7 +29,13 @@ def create_post(title, summary):
 title: "{title}"
 date: "{date_str}"
 summary: "{summary}"
----
+"""
+    if category:
+        frontmatter += f"category: \"{category}\"\n"
+    if external_link:
+        frontmatter += f"external_link: \"{external_link}\"\n"
+    
+    frontmatter += """---
 
 Write your post content here!
 """
@@ -43,6 +49,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Scaffold a new markdown blog post with frontmatter.")
     parser.add_argument("title", help="The title of the new blog post")
     parser.add_argument("--summary", "-s", default="A short summary of this post.", help="A 1-2 sentence description for the blog list page.")
+    parser.add_argument("--category", "-c", default=None, help="Optional category (e.g., speaking, writing, event)")
+    parser.add_argument("--external_link", "-l", default=None, help="Optional external link URL")
     
     args = parser.parse_args()
-    create_post(args.title, args.summary)
+    create_post(args.title, args.summary, args.category, args.external_link)
