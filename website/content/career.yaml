@@ -1,0 +1,155 @@
+timeline:
+  - title: "Head of Cyber Defense"
+    company: "Tesco"
+    logo: "logo_tesco.svg"
+    date: "Aug 2025 - Present"
+    bullets:
+      - "Leading the TIDIR function, responsible for protecting critical business services through an intelligence-driven, threat-informed defense model."
+      - "Managing a global team of security engineers and analysts to deliver 24/7 proactive security operations."
+      - "Developing data-centric detection strategies that integrate seamlessly with agile engineering practices."
+  - title: "Head of Cybersecurity Engineering"
+    company: "Tesco"
+    logo: "logo_tesco.svg"
+    date: "Feb 2024 - Aug 2025"
+    bullets:
+      - "Designed and evolved the cyber security technology enabling security operations and overall defense capability for Tesco."
+      - "Architected automated response playbooks reducing manual intervention times by up to 60%."
+      - "Fostered a secure-by-default engineering culture across multiple product lines."
+  - title: "Director of Product Management"
+    company: "SenseOn"
+    logo: "logo_senseon.svg"
+    date: ""
+    bullets:
+      - "Managed product strategy and development for advanced threat detection and response capabilities."
+  - title: "Product Lead for Detection & Response"
+    company: "Adarma Security"
+    logo: "logo_adarma.svg"
+    date: ""
+    bullets:
+      - "Led the product vision for security operations, focusing on rapid detection and automated response mechanisms."
+  - title: "Various Roles"
+    company: "Adarma Security (formerly ECS)"
+    logo: "logo_adarma.svg"
+    date: "2013 - 2022"
+    bullets:
+      - "Progressed through six different roles from Senior Security Analyst to Managing Consultant and Product Lead for Detection & Response."
+
+awards:
+  - org: "Edinburgh Napier University"
+    icon: "circle-check"
+    entries:
+      - title: "Napier Alumni Excellence Award"
+        year: "2024"
+      - title: "University Medal"
+        year: "2014"
+  - org: "SenseOn"
+    icon: "circle-check"
+    entries:
+      - title: "Discovered, Not Found"
+        year: "2022"
+  - org: "Adarma Security"
+    icon: "circle-check"
+    entries:
+      - title: "Adarma Champion"
+        year: "2020"
+      - title: "Most Valuable Player"
+        year: "2019"
+  - org: "Scottish Cyber Awards"
+    icon: "circle-check"
+    entries:
+      - title: "Cyber Evangelist of the Year"
+        year: "2018"
+      - title: "Best New Cyber Talent"
+        year: "2016"
+  - org: "Security Excellence Awards"
+    icon: "circle-check"
+    entries:
+      - title: "Security Professional Under 30"
+        year: "2018"
+  - org: "ECS"
+    icon: "circle-check"
+    entries:
+      - title: "Outstanding People Award"
+        year: "2017 & 2015"
+
+community:
+  - section: "Charities & Non-Profits"
+    icon: "heart"
+    entries:
+      - title: "Nightline Association"
+        desc: "Board Trustee & IT/Training Coordinator (2011 - 2023)"
+      - title: "Positive Realities"
+        desc: "Chairperson & Trustee (2015 - 2019)"
+      - title: "First Aid Africa"
+        desc: "Project Coordinator & Training Officer (2008 - 2010)"
+  - section: "Education & Academic"
+    icon: "heart"
+    entries:
+      - title: "Edinburgh Napier University"
+        desc: "Associate Staff (2019 - 2026)"
+      - title: "Journal of Cyber Security Technology"
+        desc: "Reviewer"
+      - title: "Skills Development Scotland"
+        desc: "Industry Rep for South of Scotland Digital Skills Hub"
+  - section: "Professional Bodies & Communities"
+    icon: "heart"
+    entries:
+      - title: "Cyber Scotland Connect"
+        desc: "Co-founder (2018 - Present)"
+      - title: "CompTIA"
+        desc: "Certification Advisory Committee Member (2022 - Present)"
+      - title: "Splunk"
+        desc: "Edinburgh User Group Leader (2016 - 2021)"
+      - title: "Building Cyber Collective"
+        desc: "Advisor"
+
+education:
+  - org: "SANS Technology Institute"
+    icon: "book"
+    entries:
+      - title: "AI Security Essentials"
+        desc: "2025"
+      - title: "Security Strategic Planning & Policy"
+        desc: "2024"
+  - org: "Edinburgh Napier University"
+    icon: "book"
+    entries:
+      - title: "BSc Computer Security & Forensics"
+        desc: "First Class Honours, 2014"
+  - org: "Wirral Metropolitan College"
+    icon: "book"
+    entries:
+      - title: "BTEC Nat. Cert. IT Practitioner"
+        desc: "Merit, 2009"
+  - org: "School / General"
+    icon: "book"
+    entries:
+      - title: "School & Personal Development"
+        desc: "GCSEs & Highers, DofE (2002 - 2007)"
+
+certifications:
+  - org: "Connectd"
+    badges: ["Certified Board Advisor"]
+  - org: "SABSA Institute"
+    badges: ["Chartered Architect (SCF)"]
+  - org: "CIISec"
+    badges: ["Fellow Member (FCIIS)"]
+  - org: "ISC2"
+    badges: ["CISSP"]
+  - org: "ISACA"
+    badges: ["CISM"]
+  - org: "Edinburgh Napier University"
+    badges: ["MScEd"]
+  - org: "Splunk"
+    badges:
+      - "Core Certified Consultant"
+      - "Certified Architect"
+      - "Certified Administrator"
+      - "Certified Power User"
+      - "Certified User"
+  - org: "SANS / GIAC"
+    badges: ["GIAC SEC504"]
+  - org: "Amazon Web Services"
+    badges: ["Solutions Architect Associate", "Cloud Practitioner"]
+  - org: "CompTIA"
+    badges: ["Security+", "Linux+"]

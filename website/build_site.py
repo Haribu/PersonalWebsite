@@ -1,6 +1,7 @@
 import os
 import markdown
 import frontmatter
+import yaml
 from jinja2 import Environment, FileSystemLoader
 import shutil
 from datetime import datetime
@@ -46,6 +47,9 @@ def build_blog():
         os.makedirs(blog_content_dir)
         
     posts = []
+    
+    # Initialize markdown converter once
+    md = markdown.Markdown(extensions=['fenced_code', 'tables', 'codehilite'])
 
     # Process each markdown file
     for filename in os.listdir(blog_content_dir):
@@ -55,9 +59,9 @@ def build_blog():
             # Extract frontmatter and content
             post_data = frontmatter.load(filepath)
             
-            # Markdown config (fenced code, tables)
-            md = markdown.Markdown(extensions=['fenced_code', 'tables', 'codehilite'])
+            # Convert markdown to html
             html_content = md.convert(post_data.content)
+            md.reset()  # Reset the markdown instance for the next use
             
             out_filename = filename.replace('.md', '.html')
             
@@ -122,49 +126,81 @@ def build_pages(posts=[]):
             if page == 'index.html':
                 final_html = template.render(base_url=BASE_URL, site_url=SITE_URL, current_url=current_url, recent_posts=posts[:2], og_type="website")
             elif page == 'showcase.html':
-                showcase_posts = [p for p in posts if p.get('category') in ['speaking', 'writing', 'event']]
-                featured_posts = [p for p in showcase_posts if p.get('featured')]
+                showcase_yaml_path = os.path.join(CONTENT_DIR, 'showcase.yaml')
+                showcase_posts = []
+                if os.path.exists(showcase_yaml_path):
+                    with open(showcase_yaml_path, 'r', encoding='utf-8') as f:
+                        showcase_posts = yaml.safe_load(f) or []
                 
-                # Exclude featured posts from archive pipelines
-                archive_pool = [p for p in showcase_posts if not p.get('featured')]
-                speaking_posts = [p for p in archive_pool if p.get('category') == 'speaking']
-                writing_posts = [p for p in archive_pool if p.get('category') == 'writing']
-                event_posts = [p for p in archive_pool if p.get('category') == 'event']
+                # Initialize markdown converter once
+                md = markdown.Markdown(extensions=['fenced_code', 'tables', 'codehilite'])
+                for p in showcase_posts:
+                    if p.get('content'):
+                        p['content'] = md.convert(p['content']).replace('{{ base_url }}', BASE_URL)
+                        md.reset()
+                
+                # Single pass bucketing
+                featured_posts, speaking_posts, writing_posts, event_posts = [], [], [], []
+                for p in showcase_posts:
+                    if p.get('featured'):
+                        featured_posts.append(p)
+                    else:
+                        cat = p.get('category')
+                        if cat == 'speaking': speaking_posts.append(p)
+                        elif cat == 'writing': writing_posts.append(p)
+                        elif cat == 'event': event_posts.append(p)
                 
                 final_html = template.render(
                     base_url=BASE_URL, site_url=SITE_URL, current_url=current_url, title=page_title, 
                     featured_posts=featured_posts, speaking_posts=speaking_posts, writing_posts=writing_posts, event_posts=event_posts, og_type="website")
+            elif page == 'career.html':
+                career_yaml_path = os.path.join(CONTENT_DIR, 'career.yaml')
+                career_data = {}
+                if os.path.exists(career_yaml_path):
+                    with open(career_yaml_path, 'r', encoding='utf-8') as f:
+                        career_data = yaml.safe_load(f) or {}
+                # Extract out for direct loop access in template
+                final_html = template.render(
+                    base_url=BASE_URL, site_url=SITE_URL, current_url=current_url, title=page_title, 
+                    career_timeline=career_data.get('timeline', []),
+                    career_awards=career_data.get('awards', []),
+                    career_community=career_data.get('community', []),
+                    career_education=career_data.get('education', []),
+                    career_certifications=career_data.get('certifications', []),
+                    og_type="website")
             else:
                 final_html = template.render(base_url=BASE_URL, site_url=SITE_URL, current_url=current_url, title=page_title, og_type="website")
             with open(os.path.join(PUBLIC_DIR, page), 'w', encoding='utf-8') as f:
                 f.write(final_html)
         except Exception as e:
-            print(f"Skipping {page}, template not found yet.")
+            import traceback
+            traceback.print_exc()
+            print(f"Skipping {page}, error: {e}")
 
     return [p for p in pages if os.path.exists(os.path.join(PUBLIC_DIR, p))]
 
 def build_sitemap_and_robots(posts, pages):
     """Generate sitemap.xml and robots.txt based on generated posts and pages."""
-    sitemap_xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+    sitemap_lines = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     
     # Add pages
     for page in pages:
         url_path = "" if page == "index.html" else f"/{page}"
-        sitemap_xml += f'  <url>\n    <loc>{SITE_URL}{url_path}</loc>\n    <changefreq>weekly</changefreq>\n  </url>\n'
+        sitemap_lines.append(f'  <url>\n    <loc>{SITE_URL}{url_path}</loc>\n    <changefreq>weekly</changefreq>\n  </url>')
         
     # Add blog index
-    sitemap_xml += f'  <url>\n    <loc>{SITE_URL}/blog.html</loc>\n    <changefreq>weekly</changefreq>\n  </url>\n'
+    sitemap_lines.append(f'  <url>\n    <loc>{SITE_URL}/blog.html</loc>\n    <changefreq>weekly</changefreq>\n  </url>')
     
     # Add posts
     for post in posts:
         if post["current_url"].startswith('http'):
             continue
-        sitemap_xml += f'  <url>\n    <loc>{SITE_URL}{post["current_url"]}</loc>\n    <lastmod>{post["date"]}</lastmod>\n  </url>\n'
+        sitemap_lines.append(f'  <url>\n    <loc>{SITE_URL}{post["current_url"]}</loc>\n    <lastmod>{post["date"]}</lastmod>\n  </url>')
         
-    sitemap_xml += '</urlset>'
+    sitemap_lines.append('</urlset>\n')
     
     with open(os.path.join(PUBLIC_DIR, 'sitemap.xml'), 'w', encoding='utf-8') as f:
-        f.write(sitemap_xml)
+        f.write('\n'.join(sitemap_lines))
         
     robots_txt = f"User-agent: *\nAllow: /\nSitemap: {SITE_URL}/sitemap.xml\n"
     with open(os.path.join(PUBLIC_DIR, 'robots.txt'), 'w', encoding='utf-8') as f:

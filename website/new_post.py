@@ -1,5 +1,6 @@
 import os
 import argparse
+import re
 from datetime import datetime
 
 # Path to the blog content directory
@@ -10,12 +11,8 @@ def create_post(title, summary, category=None, external_link=None, featured=Fals
     if not os.path.exists(BLOG_DIR):
         os.makedirs(BLOG_DIR)
         
-    # Generate a URL-friendly filename slug
-    slug = "".join(c if c.isalnum() else "-" for c in title.lower())
-    # Remove consecutive hyphens
-    while "--" in slug:
-        slug = slug.replace("--", "-")
-    slug = slug.strip("-") + '.md'
+    # Generate a URL-friendly filename slug using regex for performance
+    slug = re.sub(r'[^a-z0-9]+', '-', title.lower()).strip('-') + '.md'
     
     filepath = os.path.join(BLOG_DIR, slug)
     

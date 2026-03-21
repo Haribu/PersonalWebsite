@@ -44,3 +44,18 @@ jobs:
           python -m pip install --upgrade pip
           pip install safety
           find . -name "requirements.txt" -exec safety check -r {} \;
+
+  sast-scan:
+    name: Static Analysis (Bandit)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Bandit
+        run: pip install bandit
+      - name: Run Bandit
+        run: bandit -r website/ -c "bandit.yml" || bandit -r website/ -ll -ii
