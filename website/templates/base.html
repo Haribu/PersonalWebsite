@@ -49,12 +49,17 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{ base_url }}/assets/favicon.png">
     
-    <!-- Typography -->
+    <!-- Typography (Deferred to prevent render blocking) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Inter:wght@400;500;600&family=Fira+Code&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Inter:wght@400;500;600&family=Fira+Code&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Inter:wght@400;500;600&family=Fira+Code&display=swap" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Inter:wght@400;500;600&family=Fira+Code&display=swap">
+    </noscript>
     
     <!-- CSS -->
+    <link rel="preload" as="style" href="{{ base_url }}/assets/styles.css">
     <link rel="stylesheet" href="{{ base_url }}/assets/styles.css">
 </head>
 <body>
@@ -120,6 +125,6 @@
             </div>
         </footer>
     </div>
-    <script src="{{ base_url }}/assets/theme.js"></script>
+    <script src="{{ base_url }}/assets/theme.js" defer></script>
 </body>
 </html>
