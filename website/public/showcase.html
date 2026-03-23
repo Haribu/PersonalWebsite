@@ -53,9 +53,22 @@
 </head>
 <body>
     <div class="container">
-        <header>
-            <div class="header-top">
-                <a href="/" class="site-title">Harry McLaren</a>
+        <header class="site-header">
+            <div class="header-inner">
+                <a href="/" class="site-title">
+                    <svg class="site-logo" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-cyan);"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    <span>Harry McLaren</span>
+                </a>
+                
+                <nav class="main-nav" id="nav-drawer" aria-label="Main navigation">
+                    <a href="/" class="">Home</a>
+                    <a href="/career.html" class="">Career</a>
+                    <a href="/showcase.html" class="">Showcase</a>
+                    <a href="/advisory.html" class="">Advisory</a>
+                    <a href="/blog.html" class="">Blog</a>
+                    <a href="/contact.html" class="">Contact</a>
+                </nav>
+
                 <div class="header-actions">
                     <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Dark/Light Mode">
                         <svg id="moon-icon" class="theme-icon-hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
@@ -76,14 +89,6 @@
                     </button>
                 </div>
             </div>
-            <nav class="main-nav" id="nav-drawer" aria-label="Main navigation">
-                <a href="/">Home</a>
-                <a href="/career.html">Career</a>
-                <a href="/showcase.html">Showcase</a>
-                <a href="/advisory.html">Advisory</a>
-                <a href="/blog.html">Blog</a>
-                <a href="/contact.html">Contact</a>
-            </nav>
         </header>
 
         <main class="content">
@@ -99,16 +104,44 @@ details[open] summary .dropdown-icon {
     transform: rotate(180deg); 
 }
 </style>
-<section class="container" style="padding: 4rem 1rem;">
-    <header style="text-align: center; margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto;">
-        <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">Speaking & Contributions</h1>
-        <p style="color: var(--text-secondary, #666); font-size: 1.1rem; line-height: 1.6;">
-            A collection of my public talks, guest articles, and community events.
+<section>
+    <header class="page-hero">
+        <h1>Speaking & Contributions</h1>
+        <h2 class="subtitle gradient-text">Public Talks & Industry Contributions.</h2>
+        <p class="description">
+            As a recognized voice in cybersecurity, I regularly share strategic insights through keynotes, guest articles, and community leadership to advance industry practices and foster collaborative defense strategies.
         </p>
-        <div style="margin-top: 1.5rem;">
-            <a href="/contact.html" style="display: inline-block; padding: 0.75rem 1.5rem; background-color: var(--primary-color, #0056b3); color: #fff; text-decoration: none; border-radius: 4px; font-weight: 600;">Book me to speak</a>
-        </div>
     </header>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-bottom: 4rem;">
+            <!-- Community Leadership Card -->
+            <div class="card" style="margin-bottom: 0; display: flex; align-items: flex-start; gap: 1.25rem; border-color: rgba(179, 136, 255, 0.4);">
+                <div style="background: rgba(179, 136, 255, 0.1); padding: 0.85rem; border-radius: 8px; color: var(--accent-purple); display: flex;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                </div>
+                <div>
+                    <h3 style="margin-top: 0; margin-bottom: 0.5rem; font-size: 1.2rem;">Cyber Scotland Connect</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.25rem; line-height: 1.5;">
+                        As Co-Founder, I lead initiatives to connect and elevate the cybersecurity community across Scotland.
+                    </p>
+                    <a href="https://cyberscotlandconnect.com/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-purple); font-weight: 600; font-size: 0.85rem; text-decoration: none; text-transform: uppercase; letter-spacing: 0.5px;">Discover CSC &rarr;</a>
+                </div>
+            </div>
+
+            <!-- Speaking Engagement Card -->
+            <div class="card" style="margin-bottom: 0; display: flex; align-items: flex-start; gap: 1.25rem; border-color: rgba(0, 229, 255, 0.4);">
+                <div style="background: rgba(0, 229, 255, 0.1); padding: 0.85rem; border-radius: 8px; color: var(--accent-cyan); display: flex;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                </div>
+                <div>
+                    <h3 style="margin-top: 0; margin-bottom: 0.5rem; font-size: 1.2rem;">Speaking Engagements</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.25rem; line-height: 1.5;">
+                        Seeking a perspective on intelligence-driven defense or security leadership for your next event?
+                    </p>
+                    <a href="/contact.html" style="color: var(--accent-cyan); font-weight: 600; font-size: 0.85rem; text-decoration: none; text-transform: uppercase; letter-spacing: 0.5px;">Reach Out &rarr;</a>
+                </div>
+            </div>
+    </div>
 
     
     <h2 style="margin-bottom: 1.5rem; border-bottom: 2px solid var(--border-subtle); padding-bottom: 0.5rem; font-size: 1.8rem;">Featured Highlights</h2>
@@ -1889,9 +1922,23 @@ details[open] summary .dropdown-icon {
 
         </main>
 
-        <footer>
-            <p>&copy; <span id="copyright-year">2024</span> Harry McLaren. Built with security in mind.<br/>
-            <span class="ai-transparency-footer">Engineered by a human. Coded and maintained with AI.</span></p>
+        <footer class="site-footer">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <p>&copy; <span id="copyright-year">2024</span> Harry McLaren. Be Kind, Be Competent.</p>
+                    <p class="ai-transparency-footer">Engineered by a Human. Augmented & Improved with AI.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="https://www.linkedin.com/in/harrymclaren/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" class="social-link">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                            <rect x="2" y="9" width="4" height="12"></rect>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                        LinkedIn
+                    </a>
+                </div>
+            </div>
         </footer>
     </div>
     <script src="/assets/theme.js"></script>

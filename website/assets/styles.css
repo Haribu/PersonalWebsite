@@ -71,35 +71,45 @@ body {
   padding: 2rem;
 }
 
-/* Frosted Glass Header */
-header {
-  z-index: 50;
+/* Floating Glass Pill Header */
+.site-header {
+  position: sticky;
+  top: 1.5rem;
+  z-index: 100;
   margin-bottom: 4rem;
   background-color: var(--header-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--header-border);
+  border: 1px solid var(--header-border);
+  border-radius: 16px;
+  padding: 0 1.5rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  transition: all 0.3s ease;
 }
 
-/* Header top row: title + actions (theme toggle + hamburger) */
-.header-top {
+/* Header inner row: title, nav, and actions */
+.header-inner {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 0;
+  flex-wrap: wrap; /* Allows mobile menu to slide down */
+  padding: 0.75rem 0;
 }
 
-/* Right side of header: theme toggle + hamburger button */
+/* Action buttons */
 .header-actions {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  order: 2; /* Desktop: Right side */
 }
 
+/* Desktop single-row Navigation */
 nav.main-nav {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1.5rem;
+  margin: 0 auto; /* Optional: centers navigation if desired */
 }
 
 button.theme-toggle-btn {
@@ -586,16 +596,29 @@ textarea {
 
 /* Utilities */
 .site-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
   font-family: var(--font-heading);
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   color: var(--text-primary);
   text-decoration: none;
   letter-spacing: -0.02em;
+  order: 1;
 }
 
 .site-title:hover {
   filter: none;
+}
+
+.site-logo {
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.site-title:hover .site-logo {
+  transform: rotate(15deg) scale(1.1);
 }
 
 /* Logos & Portfolio */
@@ -636,13 +659,61 @@ textarea {
   filter: grayscale(0%);
 }
 
-footer {
+/* Reset trailing margins for consistent footer spacing */
+main.content > section:last-child,
+.carousel-section:last-child {
+  margin-bottom: 0 !important;
+}
+
+.site-footer {
   margin-top: 6rem;
-  padding-top: 3rem;
+  padding: 3rem 0 2rem;
   border-top: 1px solid var(--border-subtle);
-  text-align: center;
   color: var(--text-secondary);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .footer-content {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    text-align: left;
+  }
+}
+
+.footer-info p {
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.social-link:hover, .social-link:focus {
+  color: var(--accent-cyan);
+  transform: translateY(-2px);
 }
 
 /* Timeline Styles */
@@ -743,7 +814,9 @@ footer {
     padding: 1.5rem;
   }
 
-  header {
+  .site-header {
+    top: 1rem;
+    padding: 0 1rem;
     margin-bottom: 2rem;
   }
 
@@ -756,6 +829,7 @@ footer {
   nav.main-nav {
     flex-direction: column;
     align-items: stretch;
+    order: 3; /* Forces menu to its own row below title and actions */
     gap: 0;
     width: 100%;
     /* Slide animation via max-height */
@@ -789,10 +863,10 @@ footer {
 
 /* AI Transparency */
 .ai-transparency-footer {
-  font-size: 0.8rem;
-  opacity: 0.7;
+  font-size: 0.85rem !important;
+  opacity: 0.8;
+  margin-top: 0.25rem;
   display: block;
-  margin-top: 0.5rem;
 }
 
 .ai-transparency-card {
@@ -837,10 +911,12 @@ footer {
 .icon-inline { vertical-align: text-bottom; margin-right: 0.5rem; }
 .icon-inline-middle { vertical-align: middle; margin-right: 0.5rem; }
 
-/* Homepage Specific Utilities */
-.section-hero { margin-top: 4rem; margin-bottom: 4rem; max-width: 800px; }
-.hero-subtitle { margin-top: 0.5rem; font-size: 2.5rem; }
-.hero-description { font-size: 1.25rem; line-height: 1.8; margin-top: 2rem; }
+/* Unified Page Hero System */
+.page-hero { position: relative; margin-bottom: 4rem; max-width: 750px; margin-top: 1rem; }
+.page-hero h1 { font-size: 3.25rem; line-height: 1.1; margin-bottom: 1rem; letter-spacing: -0.03em; color: var(--text-primary); margin-top: 0; }
+.page-hero .subtitle { font-size: 1.5rem; font-weight: 500; margin-bottom: 1rem; margin-top: -0.5rem; color: var(--text-primary); }
+.page-hero .description { font-size: 1.15rem; line-height: 1.6; color: var(--text-secondary); margin-bottom: 2rem; }
+.page-hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; margin-top: 1.5rem; }
 .section-mb-large { margin-bottom: 6rem; }
 .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
 .card-service { margin-bottom: 0; display: flex; flex-direction: column; justify-content: space-between; }

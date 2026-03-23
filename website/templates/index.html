@@ -1,40 +1,56 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section class="section-hero">
+<header class="page-hero">
     <h1>Hi, I'm Harry.</h1>
-    <h2 class="gradient-text hero-subtitle">Head of Cyber Defense.</h2>
-    <p class="hero-description">
-        As an experienced security leader, I am dedicated to bridging the gap between deep technical risk and strategic business objectives. My career has focused on intelligence-driven defense, engineering resilient architectures, and cultivating human-centered security operations. Beyond my operational leadership at Tesco, I serve as a trusted Board & Investor Advisor to help organizations navigate complex threat landscapes.
+    <h2 class="subtitle gradient-text">Head of Cyber Defense & Strategic Advisor.</h2>
+    <p class="description">
+        As an experienced cybersecurity leader, I am dedicated to bridging the gap between deep technical risk and strategic business objectives. My career has focused on intelligence-driven defense, engineering resilient architectures, and cultivating human-centered security operations. Beyond my operational leadership at Tesco, I serve as a trusted Board & Investor Advisor to help organizations navigate complex threat landscapes.
     </p>
-</section>
+</header>
 
 <section class="section-mb-large">
-    <div class="services-grid">
+    <div class="glass-grid">
         
-        <div class="card card-service">
-            <div>
-                <h3 class="service-title service-title-cyan">Executive Leadership</h3>
-                <p class="service-desc">View my employment history, qualifications, and track record in scaling defense capabilities.</p>
+        <a href="{{ base_url }}/career.html" class="glass-card" style="text-decoration: none;">
+            <div class="glass-header" style="margin-bottom: 0.5rem;">
+                <div class="glass-icon-cyan">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                </div>
+                <h3 class="glass-title">Executive Leadership</h3>
             </div>
-            <a href="{{ base_url }}/career.html" class="btn btn-service">View Experience</a>
-        </div>
+            <p class="glass-desc">View my employment history, qualifications, and track record in scaling defense capabilities.</p>
+        </a>
 
-        <div class="card card-service">
-            <div>
-                <h3 class="service-title service-title-purple">Board Advisory</h3>
-                <p class="service-desc">Seeking strategic guidance or NED services? Let's discuss resilient business strategies.</p>
+        <a href="{{ base_url }}/advisory.html" class="glass-card card-purple" style="text-decoration: none;">
+            <div class="glass-header" style="margin-bottom: 0.5rem;">
+                <div class="glass-icon-purple">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                </div>
+                <h3 class="glass-title">Board Advisory</h3>
             </div>
-            <a href="{{ base_url }}/advisory.html" class="btn btn-service btn-outline-purple">Engage Services</a>
-        </div>
+            <p class="glass-desc">Seeking strategic guidance or NED services? Let's discuss resilient business strategies.</p>
+        </a>
 
-        <div class="card card-service">
-            <div>
-                <h3 class="service-title text-default">Showcase & Community</h3>
-                <p class="service-desc">Explore my public talks, community events, and industry contributions.</p>
+        <a href="{{ base_url }}/showcase.html" class="glass-card" style="text-decoration: none;">
+            <div class="glass-header" style="margin-bottom: 0.5rem;">
+                <div class="glass-icon-cyan">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                </div>
+                <h3 class="glass-title">Showcase & Community</h3>
             </div>
-            <a href="{{ base_url }}/showcase.html" class="btn btn-service btn-outline-default">View Showcase</a>
-        </div>
+            <p class="glass-desc">Explore my public talks, community events, and industry contributions.</p>
+        </a>
+
+        <a href="{{ base_url }}/blog.html" class="glass-card card-purple" style="text-decoration: none;">
+            <div class="glass-header" style="margin-bottom: 0.5rem;">
+                <div class="glass-icon-purple">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17l6-6-6-6M12 19h8"></path></svg>
+                </div>
+                <h3 class="glass-title">Transmission Log</h3>
+            </div>
+            <p class="glass-desc">Read my latest technical perspectives on proactive defense and engineering.</p>
+        </a>
 
     </div>
 </section>

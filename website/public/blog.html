@@ -53,9 +53,22 @@
 </head>
 <body>
     <div class="container">
-        <header>
-            <div class="header-top">
-                <a href="/" class="site-title">Harry McLaren</a>
+        <header class="site-header">
+            <div class="header-inner">
+                <a href="/" class="site-title">
+                    <svg class="site-logo" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-cyan);"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    <span>Harry McLaren</span>
+                </a>
+                
+                <nav class="main-nav" id="nav-drawer" aria-label="Main navigation">
+                    <a href="/" class="">Home</a>
+                    <a href="/career.html" class="">Career</a>
+                    <a href="/showcase.html" class="">Showcase</a>
+                    <a href="/advisory.html" class="">Advisory</a>
+                    <a href="/blog.html" class="">Blog</a>
+                    <a href="/contact.html" class="">Contact</a>
+                </nav>
+
                 <div class="header-actions">
                     <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Dark/Light Mode">
                         <svg id="moon-icon" class="theme-icon-hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
@@ -76,21 +89,15 @@
                     </button>
                 </div>
             </div>
-            <nav class="main-nav" id="nav-drawer" aria-label="Main navigation">
-                <a href="/">Home</a>
-                <a href="/career.html">Career</a>
-                <a href="/showcase.html">Showcase</a>
-                <a href="/advisory.html">Advisory</a>
-                <a href="/blog.html">Blog</a>
-                <a href="/contact.html">Contact</a>
-            </nav>
         </header>
 
         <main class="content">
             
-<section>
-    <h1 class="page-header-title">Transmission Log</h1>
-    <p class="page-header-subtitle">Thoughts on cybersecurity, cloud architecture, and engineering management.</p>
+<header class="page-hero">
+    <h1>Transmission Log</h1>
+    <h2 class="subtitle gradient-text">Insights on Proactive Defense & Engineering.</h2>
+    <p class="description">Thoughts on proactive cybersecurity strategy, threat detection engineering, and resilient cloud architectures. Please note: All opinions and views expressed here are strictly my own and do not represent those of my employer or any other organization.</p>
+</header>
 
     
         
@@ -165,9 +172,23 @@
 
         </main>
 
-        <footer>
-            <p>&copy; <span id="copyright-year">2024</span> Harry McLaren. Built with security in mind.<br/>
-            <span class="ai-transparency-footer">Engineered by a human. Coded and maintained with AI.</span></p>
+        <footer class="site-footer">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <p>&copy; <span id="copyright-year">2024</span> Harry McLaren. Be Kind, Be Competent.</p>
+                    <p class="ai-transparency-footer">Engineered by a Human. Augmented & Improved with AI.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="https://www.linkedin.com/in/harrymclaren/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" class="social-link">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                            <rect x="2" y="9" width="4" height="12"></rect>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                        LinkedIn
+                    </a>
+                </div>
+            </div>
         </footer>
     </div>
     <script src="/assets/theme.js"></script>

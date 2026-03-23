@@ -1,19 +1,34 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section>
+<header class="page-hero" style="max-width: 100%;">
     <h1>Career & Experience</h1>
-    <p class="career-hero-desc">
-        Hi, I'm Harry McLaren. I currently serve as the **Head of Cyber Defense at Tesco**, where I lead the organization's unified Threat Intelligence, Detection Engineering, Investigation, and Response (TIDIR) function. 
-        I am focused on building a proactive, engineering-led defense capability that enables secure innovation and supports long-term business resilience. I also act as a Board & Investor Advisor and co-founder of Cyber Scotland Connect.
-    </p>
-
-    <div class="career-resume-wrapper">
-        <a href="{{ base_url }}/assets/harry_mclaren_resume.pdf" class="btn" target="_blank" rel="noopener noreferrer">
-            <svg class="icon-inline-middle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-            Download Formal Resume (PDF)
-        </a>
+    <h2 class="subtitle gradient-text">My Professional Journey & Qualifications.</h2>
+    
+    <div style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 3rem; align-items: flex-start; margin-top: 1.5rem;">
+        <div style="flex: 1 1 500px; max-width: 750px;">
+            <p class="description" style="margin-bottom: 0;">
+                I currently serve as the <strong>Head of Cyber Defense at Tesco</strong>, leading the organization's unified Threat Intelligence, Detection Engineering, Investigation, and Response (TIDIR) function. 
+                I am focused on building a proactive, engineering-led defense capability that enables secure innovation and supports long-term business resilience. I also act as a Board & Investor Advisor and co-founder of Cyber Scotland Connect. Review my comprehensive employment history, certifications, and educational background below.
+            </p>
+        </div>
+        
+        <div style="display: flex; flex-direction: column; gap: 1rem; flex-shrink: 0; min-width: 200px;">
+            <strong style="color: var(--text-primary); font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.05em; display: flex; align-items: center; gap: 0.5rem;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-cyan);"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                Resume Downloads
+            </strong>
+            <a href="{{ base_url }}/assets/harry_mclaren_resume.pdf" class="btn" target="_blank" rel="noopener noreferrer">
+                <svg class="icon-inline" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                PDF Version
+            </a>
+            <a href="https://docs.google.com/document/d/YOUR_DOCUMENT_ID_HERE/edit" class="btn btn-outline-default" target="_blank" rel="noopener noreferrer" style="border-color: var(--accent-cyan); color: var(--accent-cyan);">
+                <svg class="icon-inline" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                Google Doc
+            </a>
+        </div>
     </div>
+</header>
 
     <h2 class="mt-0">Employment History</h2>
     
