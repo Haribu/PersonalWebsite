@@ -3,3 +3,18 @@
 credentials.json
 token.json
 
+# IDE
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.tox/
+.venv/
+venv/
+
+# Build
+website/public/
+personalwebsite-website

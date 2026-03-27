@@ -12,11 +12,15 @@ DOMAIN = 'https://harrymclaren.github.io'
 SITE_URL = f"{DOMAIN}{BASE_URL}"
 
 # Define paths
-SITE_DIR = os.path.dirname(os.path.abspath(__file__))
-CONTENT_DIR = os.path.join(SITE_DIR, 'content')
-TEMPLATE_DIR = os.path.join(SITE_DIR, 'templates')
-PUBLIC_DIR = os.path.join(SITE_DIR, 'public')
-ASSETS_DIR = os.path.join(SITE_DIR, 'assets')
+EXECUTION_DIR = os.path.dirname(os.path.abspath(__file__))
+ROOT_DIR = os.path.dirname(EXECUTION_DIR)
+WEBSITE_DIR = os.path.join(ROOT_DIR, 'website')
+
+CONTENT_DIR = os.path.join(WEBSITE_DIR, 'content')
+TEMPLATE_DIR = os.path.join(WEBSITE_DIR, 'templates')
+PUBLIC_DIR = os.path.join(WEBSITE_DIR, 'public')
+ASSETS_DIR = os.path.join(WEBSITE_DIR, 'assets')
+SITE_DIR = WEBSITE_DIR # For backward compatibility in the script
 
 def setup_public_dir():
     """Ensure public directory exists and copy assets over."""
@@ -139,20 +143,42 @@ def build_pages(posts=[]):
                         p['content'] = md.convert(p['content']).replace('{{ base_url }}', BASE_URL)
                         md.reset()
                 
-                # Single pass bucketing
-                featured_posts, speaking_posts, writing_posts, event_posts = [], [], [], []
+                # Group by year for initial render balance
+                from collections import defaultdict
+                showcase_by_year = defaultdict(list)
+                featured_posts = []
+                
+                # Sort posts by date descending first
+                showcase_posts.sort(key=lambda x: x.get('date', ''), reverse=True)
+                
                 for p in showcase_posts:
                     if p.get('featured'):
                         featured_posts.append(p)
                     else:
-                        cat = p.get('category')
-                        if cat == 'speaking': speaking_posts.append(p)
-                        elif cat == 'writing': writing_posts.append(p)
-                        elif cat == 'event': event_posts.append(p)
+                        date_str = p.get('date', '')
+                        if date_str and len(date_str) >= 4 and date_str[:4].isdigit():
+                            year = date_str[:4]
+                        else:
+                            year = "Archive"
+                        showcase_by_year[year].append(p)
+                
+                # Convert to sorted list of years (descending, but Archive at the end)
+                years_only = [y for y in showcase_by_year.keys() if y.isdigit()]
+                sorted_years = sorted(years_only, reverse=True)
+                if "Archive" in showcase_by_year:
+                    sorted_years.append("Archive")
+                
+                grouped_showcase = [{"year": year, "posts": showcase_by_year[year]} for year in sorted_years]
+                
+                # For JS filtering, we also want the flat list of all non-featured posts
+                all_showcase_posts = [p for p in showcase_posts if not p.get('featured')]
                 
                 final_html = template.render(
                     base_url=BASE_URL, site_url=SITE_URL, current_url=current_url, title=page_title, 
-                    featured_posts=featured_posts, speaking_posts=speaking_posts, writing_posts=writing_posts, event_posts=event_posts, og_type="website")
+                    featured_posts=featured_posts, 
+                    grouped_showcase=grouped_showcase,
+                    all_showcase_posts=all_showcase_posts,
+                    og_type="website")
             elif page == 'career.html':
                 career_yaml_path = os.path.join(CONTENT_DIR, 'career.yaml')
                 career_data = {}

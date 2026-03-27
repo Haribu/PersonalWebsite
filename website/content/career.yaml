@@ -1,155 +1,311 @@
 timeline:
-  - title: "Head of Cyber Defense"
-    company: "Tesco"
-    logo: "logo_tesco.svg"
-    date: "Aug 2025 - Present"
-    bullets:
-      - "Leading the TIDIR function, responsible for protecting critical business services through an intelligence-driven, threat-informed defense model."
-      - "Managing a global team of security engineers and analysts to deliver 24/7 proactive security operations."
-      - "Developing data-centric detection strategies that integrate seamlessly with agile engineering practices."
-  - title: "Head of Cybersecurity Engineering"
-    company: "Tesco"
-    logo: "logo_tesco.svg"
-    date: "Feb 2024 - Aug 2025"
-    bullets:
-      - "Designed and evolved the cyber security technology enabling security operations and overall defense capability for Tesco."
-      - "Architected automated response playbooks reducing manual intervention times by up to 60%."
-      - "Fostered a secure-by-default engineering culture across multiple product lines."
-  - title: "Director of Product Management"
-    company: "SenseOn"
-    logo: "logo_senseon.svg"
-    date: ""
-    bullets:
-      - "Managed product strategy and development for advanced threat detection and response capabilities."
-  - title: "Product Lead for Detection & Response"
-    company: "Adarma Security"
-    logo: "logo_adarma.svg"
-    date: ""
-    bullets:
-      - "Led the product vision for security operations, focusing on rapid detection and automated response mechanisms."
-  - title: "Various Roles"
-    company: "Adarma Security (formerly ECS)"
-    logo: "logo_adarma.svg"
-    date: "2013 - 2022"
-    bullets:
-      - "Progressed through six different roles from Senior Security Analyst to Managing Consultant and Product Lead for Detection & Response."
-
+- title: Head of Cyber Defence
+  company: Tesco
+  logo: logo_tesco.svg
+  date: Aug 2025 – Present
+  bullets:
+  - Leads the defensive function (Prevention, Intel, Detection, IR). Responsible for the full "intelligence-to-action" lifecycle. Focuses on MTTC reduction, executive risk reporting, and endpoint/identity hardening (AD, DLP, SEG).
+- title: Head of Cybersecurity Engineering
+  company: Tesco
+  logo: logo_tesco.svg
+  date: Feb 2024 – Aug 2025
+  bullets:
+  - Owned the design and efficacy of security tech stacks (SOAR, monitoring). Led technical roadmaps and engineering recruitment while providing crisis expertise during incidents.
+- title: Director, Product Management
+  company: SenseOn
+  logo: logo_senseon.svg
+  date: Mar 2023 – Jan 2024
+  bullets:
+  - Led strategic initiatives for MITRE ATT&CK coverage. Managed the Security Engineering squad and SIRT. Developed outcome-driven OKRs and established product risk management.
+- title: Advisor (Freelance)
+  company: Building Cyber Collective
+  logo: ''
+  date: Jan 2023 – Jun 2023
+  bullets:
+  - Strategic advisor to cybersecurity founders on XDR, EDR, and SIEM product-market fit.
+- title: Senior Product Manager
+  company: SenseOn
+  logo: logo_senseon.svg
+  date: Jan 2022 – Feb 2023
+  bullets:
+  - Defined strategy for multi-cloud detection (AWS/Azure/GCP). Coached detection engineers and collaborated on GTM messaging and competitive analysis.
+- title: Product Lead, Detection & Response
+  company: Adarma Security
+  logo: logo_adarma.svg
+  date: Nov 2019 – Jan 2022
+  bullets:
+  - Directed product vision for 70% of company revenue. Designed SOC Transformation programmes and provided direct line management for software engineers.
+- title: Managing Consultant
+  company: Adarma Security
+  logo: logo_adarma.svg
+  date: Jan 2018 – Nov 2019
+  bullets:
+  - Led Splunk enterprise deployments using CI/CD. Developed board-level business cases and mentored senior consultants. AWS Security certified.
+- title: Senior Security Consultant
+  company: Adarma Security
+  logo: logo_adarma.svg
+  date: Jan 2017 – Dec 2017
+  bullets:
+  - Appointed Splunk Enablement Lead. Recognised in "Tech 100 for Scotland." Focused on TCO/ROI models and organisational governance.
+- title: Security Consultant
+  company: Adarma Security
+  logo: logo_adarma.svg
+  date: Sep 2014 – Dec 2016
+  bullets:
+  - SIEM engineering and ISO27001 assessments. Awarded "Best New Cyber Talent" at the 2016 Scottish Cyber Awards.
+- title: Senior Security Analyst
+  company: Adarma Security
+  logo: logo_adarma.svg
+  date: May 2013 – Aug 2014
+  bullets:
+  - SOC analyst for a global bank. Built MI reporting packs and improved SLA accuracy for security alert triage.
+- title: Desktop Support Analyst
+  company: BlackRock
+  logo: ''
+  date: May 2011 – Dec 2012
+  bullets:
+  - Improved ticket resolution (SLA breaches down from 15% to 1.5%). Led Windows 7 rollout for 500+ users.
+- title: Senior Technician
+  company: Hoylake Computer Center
+  logo: ''
+  date: Jul 2006 – Jul 2010
+  bullets:
+  - Managed store relocation. Handled hardware diagnostics, repairs, and SOHO network installations.
 awards:
-  - org: "Edinburgh Napier University"
-    icon: "circle-check"
-    entries:
-      - title: "Napier Alumni Excellence Award"
-        year: "2024"
-      - title: "University Medal"
-        year: "2014"
-  - org: "SenseOn"
-    icon: "circle-check"
-    entries:
-      - title: "Discovered, Not Found"
-        year: "2022"
-  - org: "Adarma Security"
-    icon: "circle-check"
-    entries:
-      - title: "Adarma Champion"
-        year: "2020"
-      - title: "Most Valuable Player"
-        year: "2019"
-  - org: "Scottish Cyber Awards"
-    icon: "circle-check"
-    entries:
-      - title: "Cyber Evangelist of the Year"
-        year: "2018"
-      - title: "Best New Cyber Talent"
-        year: "2016"
-  - org: "Security Excellence Awards"
-    icon: "circle-check"
-    entries:
-      - title: "Security Professional Under 30"
-        year: "2018"
-  - org: "ECS"
-    icon: "circle-check"
-    entries:
-      - title: "Outstanding People Award"
-        year: "2017 & 2015"
-
+- org: Napier University
+  icon: circle-check
+  entries:
+  - title: Napier Alumni Excellence Award
+    year: '2024'
+- org: SenseOn
+  icon: circle-check
+  entries:
+  - title: Discovered, Not Found
+    year: '2022'
+- org: Adarma
+  icon: circle-check
+  entries:
+  - title: Adarma Champion
+    year: '2020'
+  - title: Adarma Most Valuable Player
+    year: '2019'
+- org: Scottish Cyber Awards
+  icon: circle-check
+  entries:
+  - title: Cyber Evangelist of the Year
+    year: '2018'
+- org: Security Excellence Awards
+  icon: circle-check
+  entries:
+  - title: Security Professional Under 30
+    year: '2018'
+- org: ECS
+  icon: circle-check
+  entries:
+  - title: Outstanding People Award
+    year: '2017'
+  - title: Outstanding People Award
+    year: '2015'
+- org: Scottish Government
+  icon: circle-check
+  entries:
+  - title: Best New Cyber Talent at the Scottish Cyber Awards
+    year: '2016'
+- org: Edinburgh Napier University
+  icon: circle-check
+  entries:
+  - title: University Medal
+    year: '2014'
 community:
-  - section: "Charities & Non-Profits"
-    icon: "heart"
-    entries:
-      - title: "Nightline Association"
-        desc: "Board Trustee & IT/Training Coordinator (2011 - 2023)"
-      - title: "Positive Realities"
-        desc: "Chairperson & Trustee (2015 - 2019)"
-      - title: "First Aid Africa"
-        desc: "Project Coordinator & Training Officer (2008 - 2010)"
-  - section: "Education & Academic"
-    icon: "heart"
-    entries:
-      - title: "Edinburgh Napier University"
-        desc: "Associate Staff (2019 - 2026)"
-      - title: "Journal of Cyber Security Technology"
-        desc: "Reviewer"
-      - title: "Skills Development Scotland"
-        desc: "Industry Rep for South of Scotland Digital Skills Hub"
-  - section: "Professional Bodies & Communities"
-    icon: "heart"
-    entries:
-      - title: "Cyber Scotland Connect"
-        desc: "Co-founder (2018 - Present)"
-      - title: "CompTIA"
-        desc: "Certification Advisory Committee Member (2022 - Present)"
-      - title: "Splunk"
-        desc: "Edinburgh User Group Leader (2016 - 2021)"
-      - title: "Building Cyber Collective"
-        desc: "Advisor"
-
+- section: Cyber Scotland Connect
+  icon: heart
+  entries:
+  - title: Co-Founder
+    desc: Encourage, connect and enable cyber communities across Scotland by bringing together leaders and organisations with similar objectives together.
+    date: Jan 2018 - Present
+- section: Positive Realities
+  icon: heart
+  entries:
+  - title: Chairperson (Trustee)
+    desc: ''
+    date: Nov 2015 - Mar 2019
+- section: First Aid Africa
+  icon: heart
+  entries:
+  - title: Project Coordinator & Internal Training Officer
+    desc: ''
+    date: Jul 2008 - Oct 2010
+- section: Nightline Association
+  icon: heart
+  entries:
+  - title: IT Volunteer
+    desc: ''
+    date: May 2014 - Oct 2015
+  - title: Board Trustee
+    desc: ''
+    date: May 2021 - May 2023
+- section: Edinburgh Nightline
+  icon: heart
+  entries:
+  - title: Training & IT Coordinator
+    desc: ''
+    date: Feb 2011 - May 2013
+- section: Splunk
+  icon: heart
+  entries:
+  - title: User Group Leader
+    desc: ''
+    date: Sep 2016 - Sep 2021
+  - title: Customer Advisory Board Member
+    desc: ''
+    date: 2016-2021
+  - title: Customer Advisory Board Member
+    desc: ''
+    date: 2024-2025
+  - title: Executive Advisory Board Member
+    desc: ''
+    date: 2025 - Present
+- section: Edinburgh Napier University
+  icon: heart
+  entries:
+  - title: Associate Staff
+    desc: ''
+    date: May 2019 - Jan 2026
+- section: Skills Development Scotland
+  icon: heart
+  entries:
+  - title: Industry Representative for Cyber Skills Workstream
+    desc: ''
+    date: Jan 2019 - Jan 2023
+- section: South of Scotland Digital Skills Hub
+  icon: heart
+  entries:
+  - title: Industry Specialist
+    desc: including contribution to Digital Economy Skills Action Plan (DESAP) and the National Occupational Standards (NOS).
+    date: Jan 2020 - Dec 2023
+- section: CIISec
+  icon: heart
+  entries:
+  - title: Volunteer and guest presenter, moderator and event chair.
+    desc: ''
+    date: 2020 - Present
+- section: Scottish Cyber Awards
+  icon: heart
+  entries:
+  - title: Awards Judge, Award Presenter (Volunteer)
+    desc: ''
+    date: '2026'
+- section: CompTIA
+  icon: heart
+  entries:
+  - title: Industry Specialist
+    desc: Member of the Certification Advisory Committee for Cybersecurity.
+    date: Jan 2022 - Present
 education:
-  - org: "SANS Technology Institute"
-    icon: "book"
-    entries:
-      - title: "AI Security Essentials"
-        desc: "2025"
-      - title: "Security Strategic Planning & Policy"
-        desc: "2024"
-  - org: "Edinburgh Napier University"
-    icon: "book"
-    entries:
-      - title: "BSc Computer Security & Forensics"
-        desc: "First Class Honours, 2014"
-  - org: "Wirral Metropolitan College"
-    icon: "book"
-    entries:
-      - title: "BTEC Nat. Cert. IT Practitioner"
-        desc: "Merit, 2009"
-  - org: "School / General"
-    icon: "book"
-    entries:
-      - title: "School & Personal Development"
-        desc: "GCSEs & Highers, DofE (2002 - 2007)"
-
+- org: Edinburgh Napier University
+  icon: book
+  entries:
+  - title: Bachelor’s Degree, Computer Security & Digital Forensics
+    desc: 'Grade: First Class Honours'
+    date: 2010 – 2014
+- org: SANS Technology Institute
+  icon: book
+  entries:
+  - title: AI Security Essentials for Business Leaders, AI Security
+    desc: Essential knowledge to understand, oversee, and govern AI adoption responsibly and securely, including generative AI, risk management frameworks, and policy governance.
+    date: Jul 2025 – Jul 2025
+  - title: 'LDR514: Security Strategic Planning, Policy, and Leadership, Cybersecurity'
+    desc: 'Grade: Pass. Skills Learned: Developing strategic security plans, creating effective information security policy, understanding strategic planning phases, and using leadership techniques.'
+    date: Aug 2024 – Aug 2024
+- org: Wirral Metropolitan College
+  icon: book
+  entries:
+  - title: BTEC Level 3 National Certificate, IT Practitioner & System Support
+    desc: 'Grade: Merit'
+    date: 2006 – 2009
+- org: edX
+  icon: book
+  entries:
+  - title: Cyber Security Economics
+    desc: ''
+    date: '2016'
 certifications:
-  - org: "Connectd"
-    badges: ["Certified Board Advisor"]
-  - org: "SABSA Institute"
-    badges: ["Chartered Architect (SCF)"]
-  - org: "CIISec"
-    badges: ["Fellow Member (FCIIS)"]
-  - org: "ISC2"
-    badges: ["CISSP"]
-  - org: "ISACA"
-    badges: ["CISM"]
-  - org: "Edinburgh Napier University"
-    badges: ["MScEd"]
-  - org: "Splunk"
-    badges:
-      - "Core Certified Consultant"
-      - "Certified Architect"
-      - "Certified Administrator"
-      - "Certified Power User"
-      - "Certified User"
-  - org: "SANS / GIAC"
-    badges: ["GIAC SEC504"]
-  - org: "Amazon Web Services"
-    badges: ["Solutions Architect Associate", "Cloud Practitioner"]
-  - org: "CompTIA"
-    badges: ["Security+", "Linux+"]
+- org: Connectd
+  badges:
+  - Certified Board Advisor
+- org: The SABSA Institute
+  badges:
+  - SABSA Chartered Architect - Foundation (SCF)
+- org: Chartered Institute of Information Security (CIISec)
+  badges:
+  - Fellow Member (FCIIS)
+  - Chartered Institute of Information Security (CIISec) Full Member
+- org: GIAC Certifications
+  badges:
+  - GIAC Strategic Planning, Policy, and Leadership (GSTRT)
+- org: ProductLed
+  badges:
+  - Product-Led Growth Fundamentals
+- org: CompTIA
+  badges:
+  - SecurityX (CASP+)
+  - Security+
+- org: GitLab
+  badges:
+  - How to Manage a Remote Team
+  - Remote Foundations
+- org: LinkedIn
+  badges:
+  - Critical Thinking for Better Judgment and Decision-Making
+  - Executive Presence on Video Conference Calls
+  - Becoming a Product Manager
+- org: BCS (British Computer Society)
+  badges:
+  - Chartered IT Professional (CITP)
+- org: SANS Technology Institute
+  badges:
+  - AI Security Essentials for Business Leaders
+- org: Splunk
+  badges:
+  - Splunk Enterprise Security Certified Admin
+  - Splunk Certified Enterprise Security Implementation
+  - Splunk Certified Architect
+  - Splunk Certified Consultant - Level 1 & 2
+  - Splunk Certified Admin
+  - Splunk Certified Power User
+  - Splunk Certified Knowledge Manager
+- org: ISACA
+  badges:
+  - CISM (Certified Information Security Manager)
+  - AAISM (Advanced in AI Security Management)
+- org: QA Ltd
+  badges:
+  - Lean Six Sigma Yellow Belt
+- org: Amazon Web Services (AWS)
+  badges:
+  - AWS Certified Cloud Practitioner
+- org: ISC2
+  badges:
+  - CISSP (Certified Information Systems Security Professional)
+  - CCSP (Certified Cloud Security Professional)
+- org: EC-Council
+  badges:
+  - CEH (Certified Ethical Hacker)
+- org: APMG International
+  badges:
+  - PRINCE2 Foundation
+  - ITIL Foundation
+- org: IBM
+  badges:
+  - MSS Security Intelligence and Analysis
+- org: Microsoft
+  badges:
+  - Microsoft Certified Solutions Associate (MCSA)
+  - Microsoft Certified IT Professional (MCITP)
+  - Microsoft Certified Technology Specialist (MCTS)
+  - Microsoft Office Specialist (MOS)
+  - Microsoft Certified Desktop Support Technician (MCDST)
+  - Microsoft Certified Professional (MCP)
+- org: Cisco
+  badges:
+  - Cisco Certified Network Associate (CCNA)

@@ -1,4 +1,6 @@
-Contact: mailto:info@harrymclaren.co.uk
-Expires: 2027-01-01T00:00:00.000Z
+Contact: https://www.linkedin.com/in/harrymclaren/
+Expires: 2027-03-27T16:11:00Z
 Preferred-Languages: en
-Canonical: https://harrymclaren.com/.well-known/security.txt
+Canonical: https://harrymclaren.github.io/.well-known/security.txt
+Policy: https://harrymclaren.github.io/contact.html
+Job: https://harrymclaren.github.io/career.html

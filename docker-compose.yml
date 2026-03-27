@@ -6,6 +6,7 @@ services:
     # To enable live reloading of content when drafting posts, we mount the local blog content directory
     volumes:
       - ./website:/app/website
+      - ./execution:/app/execution
     # The default command rebuilds the site and starts the server
     command: >
-      sh -c "python website/build_site.py && python -m http.server 8080 -d website/public"
+      sh -c "python execution/build_site.py && python -m http.server 8080 -d website/public"

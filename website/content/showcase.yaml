@@ -1,367 +1,518 @@
-- title: 'There is no fortress anymore: How Tesco thinks about modern security'
-  date: '2026-03-01'
-  summary: Video/Podcast (Hackajob) discussing identity-centric security at Tesco.
-  category: speaking
-  external_link: http://hackajob.com/talent/blog/there-is-no-fortress-anymore-how-tesco-thinks-about-modern-security?hs_amp=true
-  featured: true
-  content: Video/Podcast (Hackajob) discussing identity-centric security at Tesco.
-- title: Edinburgh Meetup at CodeBase!
-  date: '2026-02-01'
-  summary: In-person meetup hosted by Cyber Scotland Connect.
-  category: event
-  external_link: https://www.meetup.com/cyberscotconnect/events/312549322/?eventOrigin=group_past_events
-  featured: false
-  content: In-person meetup hosted by Cyber Scotland Connect.
-- title: Scottish Cyber Awards
-  date: '2026-01-01'
-  summary: Awards Judge.
-  category: event
-  external_link: https://scottishcyberawards.co.uk/judges
-  featured: false
-  content: Awards Judge.
-- title: How to Shift From Overwhelming Stress to Optimal Stress
-  date: '2025-09-01'
-  summary: Hosted a roundtable at the Gartner Summit.
-  category: speaking
-  featured: false
-  content: Hosted a roundtable at the Gartner Summit.
-- title: Mitigating Burnout in Your Cybersecurity Team
-  date: '2025-09-01'
-  summary: Executive Story Workshop facilitated at the Gartner Security & Risk Management
-    Summit.
-  category: speaking
-  featured: false
-  content: Executive Story Workshop facilitated at the Gartner Security & Risk Management
-    Summit.
-- title: 'New-to-Role CISOs: A Structured Approach...'
-  date: '2025-09-01'
-  summary: Facilitated a workshop at the Gartner Summit to accelerate speed to value
-    for new CISOs.
-  category: speaking
-  featured: false
-  content: Facilitated a workshop at the Gartner Summit to accelerate speed to value
-    for new CISOs.
-- title: Kids N Clicks
-  date: '2024-10-01'
-  summary: Collaboration event focused on community outreach.
+- title: 'Cyber Scotland Connect: Leith (Edinburgh) Meetup!'
   category: event
   featured: false
-  content: Collaboration event focused on community outreach.
+  date: '2025-10-08'
+- title: 'Emerging Technology: Threat Detection, Investigation & Response Platform Architecture'
+  category: speaking
+  featured: false
+  date: '2025-10-06'
+- title: 'Cyber Scotland Connect: Dundee Meetup!'
+  category: event
+  featured: false
+  date: '2025-08-06'
+- title: 'Cyber Scotland Connect Post: Centralised Resources and Community Support'
+  category: writing
+  featured: false
+  date: '2025-07-15'
+- title: Cyber Scotland Connect / Extrahop
+  category: event
+  featured: false
+  date: '2025-07-04'
+- title: Digital Skills - Whiteinch Primary School
+  category: speaking
+  featured: false
+  date: '2025-06-09'
 - title: Presentation at Salute My Job
-  date: '2024-09-01'
-  summary: Webinar presentation.
   category: speaking
   featured: false
-  content: Webinar presentation.
-- title: 'Technical Insights: Cybersecurity Mesh Architecture v.3.0'
-  date: '2024-09-01'
-  summary: Lecture on the next generation of security architecture.
-  category: speaking
+  date: '2024-09-03'
+- title: Cyber Scotland Connect at Trustpilot
+  category: event
   featured: false
-  content: Lecture on the next generation of security architecture.
+  date: '2024-08-21'
 - title: 'ADP: F1 & F2 - Intrusion Detection and Analysis & Incident Management'
-  date: '2024-06-01'
-  summary: Presentation for the CIISec ADP programme.
   category: speaking
   featured: false
-  content: Presentation for the CIISec ADP programme.
+  date: '2024-06-27'
 - title: Le Tour Du Hack Presentation
+  category: speaking
+  featured: false
+  date: '2024-05-18'
+- title: Digital Skills - St Blane's Primary School
+  category: speaking
+  featured: false
+  date: '2024-05-10'
+- title: Cyber Scotland Connect at Trustpilot (OT/ICS, Diversity, AppSec, Third Sector)
+  category: event
+  featured: false
   date: '2024-05-01'
-  summary: Speaking slot at the Le Tour Du Hack 2024 event.
-  category: speaking
-  featured: true
-  content: Speaking slot at the Le Tour Du Hack 2024 event.
-- title: AS Expert Insights - Cybersecurity Interview
-  date: '2024-04-01'
-  summary: Cybersecurity insights interview.
+- title: Digital Skills - St Charles' Primary School
   category: speaking
   featured: false
-  content: Cybersecurity insights interview.
-- title: Digital Skills for Primary Schools
-  date: '2024-04-01'
-  summary: Volunteered teaching digital skills at St Charles', St Blane's, and Whiteinch
-    Primary Schools.
+  date: '2024-04-15'
+- title: AS Expert Insights - Cybersecurity Interview - Harry McLaren
+  category: speaking
+  featured: false
+  date: '2024-04-12'
+- title: Stax Interview on MDR Services <> Harry McLaren, Head of Security Engineering at Tesco
+  category: speaking
+  featured: false
+  date: '2024-02-13'
+- title: 'Cyber Scotland Connect: Inaugural Dundee Meetup!'
   category: event
   featured: false
-  content: Volunteered teaching digital skills at St Charles', St Blane's, and Whiteinch
-    Primary Schools.
-- title: Stax Interview on MDR Services
-  date: '2024-02-01'
-  summary: Interview regarding MDR services from the perspective of Head of Security
-    Engineering at Tesco.
-  category: speaking
-  featured: true
-  content: Interview regarding MDR services from the perspective of Head of Security
-    Engineering at Tesco.
-- title: Office Hours Mentoring
-  date: '2024-01-01'
-  summary: Consultations and mentoring for security software and cyber operations.
+  date: '2024-01-25'
+- title: 'Cyber Scotland Connect: November Meetup!'
   category: event
-  external_link: https://officehours.com/harry-mclaren
   featured: false
-  content: Consultations and mentoring for security software and cyber operations.
-- title: 'CIISec ADP12: F1, F2 Intrusion Detection...'
-  date: '2023-11-01'
-  summary: Presentation on SecOps for CIISec.
+  content: Cyber Scotland Connect in November.
+  date: '2023-11-22'
+  summary: Cyber Scotland Connect in November.
+- title: 'CIISec ADP12: F1, F2 Intrusion Detection and Analysis & Incident'
   category: speaking
   featured: false
   content: Presentation on SecOps for CIISec.
-- title: Harry McLaren at SenseOn - Episode 11
-  date: '2023-07-01'
-  summary: The Route to Networking Podcast discussing startups and breaking into cyber.
+  date: '2023-11-15'
+  summary: Presentation on SecOps for CIISec.
+- title: 'Cyber Scotland Connect: September Meetup!'
+  category: event
+  featured: false
+  content: Cyber Scotland Connect in September.
+  date: '2023-09-26'
+  summary: Cyber Scotland Connect in September.
+- title: 'Cyber Scotland Connect: August Meetup!'
+  category: event
+  featured: false
+  content: Cyber Scotland Connect in August
+  date: '2023-08-23'
+  summary: Cyber Scotland Connect in August
+- title: Harry McLaren at SenseOn
   category: speaking
+  featured: false
+  date: '2023-07-13'
   external_link: https://www.hamilton-barnes.com/resources/podcast/e11---harry-mclaren-at-senseon/
+- title: 'Cyber Scotland Connect: Summer Meetup!'
+  category: event
   featured: false
-  content: The Route to Networking Podcast discussing startups and breaking into cyber.
-- title: Cyber Scotland Connect Receives Sponsorship...
-  date: '2023-06-01'
-  summary: Published on the CSC Moderator Blog.
+  content: Hosting/Presenting Event
+  date: '2023-06-26'
+  summary: Hosting/Presenting Event
+- title: Cyber Scotland Connect Receives Sponsorship from Community Supporters
   category: writing
   featured: false
-  content: Published on the CSC Moderator Blog.
-- title: Big Data Conference Panel
-  date: '2023-05-01'
-  summary: Panelist at the 6th Intl. Conference on Big Data, Cybersecurity.
-  category: speaking
-  featured: false
-  content: Panelist at the 6th Intl. Conference on Big Data, Cybersecurity.
+  date: '2023-06-06'
 - title: West Lothian College Presentation
-  date: '2023-05-01'
-  summary: Presentation at West Lothian College.
   category: speaking
   featured: false
-  content: Presentation at West Lothian College.
-- title: BA Life Conference Presentation
-  date: '2023-04-01'
-  summary: Speaking engagement at BA Life 2023.
+  content: Presenting at West Lothian College
+  date: '2023-05-25'
+  summary: Presenting at West Lothian College
+- title: 6th Intl. Conference on Big Data, Cybersecurity
   category: speaking
   featured: false
-  content: Speaking engagement at BA Life 2023.
+  content: Big Data Conference - Panel
+  date: '2023-05-11'
+  summary: Big Data Conference - Panel
+- title: BA Life - Conference Presentation
+  category: speaking
+  featured: false
+  content: Presenting at BA Life 2023
+  date: '2023-04-27'
+  summary: Presenting at BA Life 2023
 - title: Cyber Security Community of Practice
+  category: speaking
+  featured: false
+  content: An event for Scotland's Careers Advisers.
   date: '2023-03-01'
-  summary: Delivered for Scotland's Careers Advisers.
-  category: speaking
-  featured: false
-  content: Delivered for Scotland's Careers Advisers.
-- title: Solving problems when nobody will admit they have one
-  date: '2022-12-01'
-  summary: Contributed to Venture in Security article authored by Ross Haleliuk.
-  category: writing
-  external_link: https://ventureinsecurity.net/p/solving-problems-when-nobody-will
-  featured: false
-  content: Contributed to Venture in Security article authored by Ross Haleliuk.
-- title: 'Cybersecurity Operations: Starting from Scratch...'
-  date: '2022-11-01'
-  summary: Delivered at DIGIT Expo 2022.
-  category: speaking
-  featured: false
-  content: Delivered at DIGIT Expo 2022.
-- title: Intrusion Detection and Analysis & Incident Management
-  date: '2022-11-01'
-  summary: Presentation for CIISec ADP.
-  category: speaking
-  featured: false
-  content: Presentation for CIISec ADP.
-- title: 'Being Blue: An Overview of Security Operations'
-  date: '2022-10-01'
-  summary: Delivered at BeerCon4.
-  category: speaking
-  featured: false
-  content: Delivered at BeerCon4.
-- title: CIISec Live 2022
-  date: '2022-09-01'
-  summary: Volunteer moderator.
+  summary: An event for Scotland's Careers Advisers.
+- title: Cyber Scotland Connect Event
   category: event
   featured: false
-  content: Volunteer moderator.
-- title: 'Security Operations 101: Working in/with SecOps!'
-  date: '2022-09-01'
-  summary: Delivered at ScotSoft 2022.
+  content: Attending CSC event.
+  date: '2022-11-30'
+  summary: Attending CSC event.
+- title: 'Cybersecurity Operations: Starting From Scratch, Bulking Out, Reporting To The Boss'
   category: speaking
   featured: false
-  content: Delivered at ScotSoft 2022.
-- title: ICSF Exam Presentation (SOC 101)
-  date: '2022-05-01'
-  summary: Security Operations 101 for CIISec.
+  date: '2022-11-25'
+  external_link: https://youtu.be/i7ZbLhVlR9s?si=qvpTzUHiW_6SXAiZ
+- title: DIGIT Expo 2022
   category: speaking
   featured: false
-  content: Security Operations 101 for CIISec.
-- title: Intrusion Detection & Analysis
-  date: '2022-05-01'
-  summary: Presentation for CAP15 via CIISec.
+  content: 'Presenting on Cybersecurity Operations: Starting from Scratch, Bulking Out, Reporting to the Boss'
+  date: '2022-11-10'
+  summary: 'Presenting on Cybersecurity Operations: Starting from Scratch, Bulking Out, Reporting to the Boss'
+- title: CIISec ADP
   category: speaking
   featured: false
-  content: Presentation for CAP15 via CIISec.
-- title: Comment | Reconnecting with Scotland's Cyber Community
-  date: '2022-03-01'
-  summary: Article on Digit.fyi, co-authored with Stu Hirst on reviving CSC.
-  category: writing
-  external_link: https://www.digit.fyi/comment-reconnecting-with-scotlands-cyber-community/
-  featured: false
-  content: Article on Digit.fyi, co-authored with Stu Hirst on reviving CSC.
-- title: Community Feedback Survey 2022
-  date: '2022-03-01'
-  summary: Published on the CSC Moderator Blog.
-  category: writing
-  featured: false
-  content: Published on the CSC Moderator Blog.
-- title: Cyber Insight Panel
-  date: '2022-02-01'
-  summary: Panelist at Napier University.
+  content: Presenting on Intrusion Detection and Analysis & Incident Management
+  date: '2022-11-08'
+  summary: Presenting on Intrusion Detection and Analysis & Incident Management
+- title: Being Blue An Overview of Security Operations
   category: speaking
   featured: false
-  content: Panelist at Napier University.
-- title: South of Scotland Digital Skills Hub
-  date: '2022-01-01'
-  summary: Industry Representative / Advisor.
-  category: event
+  date: '2022-10-18'
+  external_link: https://youtu.be/PlZTkS4deLM?si=B1bnLQV0i16AN94Y
+- title: BeerCon4
+  category: speaking
   featured: false
-  content: Industry Representative / Advisor.
-- title: Secure Operations Management
+  content: 'Presenting on Being Blue: An Overview of Security Operations'
+  date: '2022-10-13'
+  summary: 'Presenting on Being Blue: An Overview of Security Operations'
+- title: ScotSoft 2022
+  category: speaking
+  featured: false
+  content: 'Presenting on: Security Operations 101: Working in/with SecOps! at ScotSoft 2022'
+  date: '2022-09-29'
+  summary: 'Presenting on: Security Operations 101: Working in/with SecOps! at ScotSoft 2022'
+- title: 'CAP15: Intrusion Detection & Analysis'
+  category: speaking
+  featured: false
+  content: Prepared and delivered a 1-hour presentation on intrusion detection and analysis for CIISec.
+  date: '2022-05-23'
+  summary: Prepared and delivered a 1-hour presentation on intrusion detection and analysis for CIISec.
+- title: ICSF Exam Presentation
+  category: speaking
+  featured: false
+  content: Prepared and delivered a 1-hour presentation on SOC 101 for CIISec.
+  date: '2022-05-23'
+  summary: Prepared and delivered a 1-hour presentation on SOC 101 for CIISec.
+- title: Cyber Insight Panel at Napier University
+  category: speaking
+  featured: false
+  content: Careers event focused on giving students an overview of cyber careers.
+  date: '2022-02-25'
+  summary: Careers event focused on giving students an overview of cyber careers.
+- title: 'CIISec Apprentice Programme: Secure Operations Management'
+  category: speaking
+  featured: false
+  content: Presented to the CIISec apprentices about Secure Operations Management.
   date: '2021-12-01'
-  summary: Presented to CIISec apprentices.
-  category: speaking
-  featured: false
-  content: Presented to CIISec apprentices.
+  summary: Presented to the CIISec apprentices about Secure Operations Management.
 - title: Lessons from Working in Cyber During the Pandemic
-  date: '2021-10-01'
-  summary: Co-hosted round table.
   category: event
   featured: false
-  content: Co-hosted round table.
+  content: Co-hosted an event where a round table of attendees shared with an audience their personal experiences of working within the cyber profession during the pandemic.
+  date: '2021-10-19'
+  summary: Co-hosted an event where a round table of attendees shared with an audience their personal experiences of working within the cyber profession during the pandemic.
 - title: CompTIA Guest Speaker
-  date: '2021-04-01'
-  summary: Presented to an audience starting their cyber careers.
   category: speaking
   featured: false
-  content: Presented to an audience starting their cyber careers.
-- title: CSC Workshop on Modernising Security Operations
-  date: '2021-03-01'
-  summary: Presentation and workshop delivered at ScotSecure 2021.
+  content: Presenting at a CompTIA event targeting those just starting their careers into cyber. Giving them an overview of myself, my career and how to get into Security Operations.
+  date: '2021-04-28'
+  summary: Presenting at a CompTIA event targeting those just starting their careers into cyber. Giving them an overview of myself, my career and how to get into Security Operations.
+- title: 'ScotSecure 2021: CSC Workshop on Modernising Security Operations'
   category: speaking
   featured: false
-  content: Presentation and workshop delivered at ScotSecure 2021.
-- title: 'Cyber War Stories: Challenges & Triumph'
-  date: '2021-02-01'
-  summary: Hosted virtual CSC round table.
+  content: Prepared, presented and hosted a 1-hour presentation and workshop on Modernising Security Operations.
+  date: '2021-03-25'
+  summary: Prepared, presented and hosted a 1-hour presentation and workshop on Modernising Security Operations.
+- title: Talk at Napier University (My Journey in Cyber)
+  category: speaking
+  featured: false
+  content: I prepared and presented a 1-hour presentation on my journey into cybersecurity, common skills and behaviours which are needed within the profession.
+  date: '2021-02-24'
+  summary: I prepared and presented a 1-hour presentation on my journey into cybersecurity, common skills and behaviours which are needed within the profession.
+- title: 'Cyber War Stories: Challenges & Triumph (CSC Virtual Event)'
   category: event
   featured: false
-  content: Hosted virtual CSC round table.
+  content: A round table discussion about the experiences of responding to being under attack, tough challenges and valuable lessons learned.
+  date: '2021-02-24'
+  summary: A round table discussion about the experiences of responding to being under attack, tough challenges and valuable lessons learned.
 - title: Edinburgh Virtual User Group - Risk-Based Alerting
-  date: '2021-02-01'
-  summary: Demonstration of Risk-Based Alerting in Phantom.
+  category: event
+  featured: false
+  content: Demonstration of Risk-Based Alerting in Phantom, and a round table on implementing large-scale Splunk Infrastructure.
+  date: '2021-02-10'
+  summary: Demonstration of Risk-Based Alerting in Phantom, and a round table on implementing large-scale Splunk Infrastructure.
+- title: Modern Security Operations Centre (Edinburgh Napier University)
   category: speaking
   featured: false
-  content: Demonstration of Risk-Based Alerting in Phantom.
-- title: My Journey in Cyber
-  date: '2021-02-01'
-  summary: 1-hour talk at Napier University sharing career journey and required skills.
+  content: Presented to students on the CSN09112 Networked Services module.
+  date: '2020-11-26'
+  external_link: https://youtu.be/DwBg12JL--A?si=_-Eou5Fgdsfg5n-I
+- title: An Interview with Harry McLaren (Bill Buchanan OBE)
   category: speaking
   featured: false
-  content: 1-hour talk at Napier University sharing career journey and required skills.
-- title: An Interview with Harry McLaren
-  date: '2020-01-01'
-  summary: Interview hosted by Bill Buchanan OBE covering career history and soft
-    skills.
-  category: speaking
+  content: Interview hosted by Bill Buchanan OBE covering career history and soft skills.
+  date: '2020-06-30'
   external_link: https://www.youtube.com/watch?v=fzQWK_qGyKc
-  featured: false
-  content: Interview hosted by Bill Buchanan OBE covering career history and soft
-    skills.
-- title: ScotlandIS Coaching Programme & NOS Governance
-  date: '2020-01-01'
-  summary: Industry Representative and Information Security Framework Reviewer.
-  category: event
-  featured: false
-  content: Industry Representative and Information Security Framework Reviewer.
-- title: Unleash the Hunters
-  date: '2019-03-01'
-  summary: Delivered at the e-Crime & Cybersecurity Congress 2019.
-  category: speaking
-  featured: false
-  content: Delivered at the e-Crime & Cybersecurity Congress 2019.
-- title: Hunting Hard & Failing Fast
-  date: '2019-01-01'
-  summary: Presentation delivered at ScotSoft 2019.
-  category: speaking
-  featured: false
-  content: Presentation delivered at ScotSoft 2019.
-- title: Cyber Connect Scotland Panel
-  date: '2018-11-01'
-  summary: Hosted panel at DIGIT Expo 2018.
-  category: event
-  external_link: https://www.digit.fyi/cybersecurity-in-scotland-connect/
-  featured: false
-  content: Hosted panel at DIGIT Expo 2018.
-- title: Cyber Scotland Connect (CSC) Meetups
-  date: '2018-01-01'
-  summary: Co-founder and organiser alongside Stu Hirst. Hosted numerous events.
-  category: event
-  external_link: https://www.meetup.com/cyberscotconnect/
-  featured: false
-  content: Co-founder and organiser alongside Stu Hirst. Hosted numerous events.
-- title: SplDevOps
-  date: '2018-01-01'
-  summary: Presentations at Splunk .conf18 and User Groups on applying DevOps principles
-    to SIEM.
-  category: speaking
-  external_link: https://www.slideshare.net/slideshow/splunk-conf18-updates-config-addon-spldevops/120545580
-  featured: false
-  content: Presentations at Splunk .conf18 and User Groups on applying DevOps principles
-    to SIEM.
-- title: Using Metrics for Fun, Developing with the KV Store + Javascript & News from
-    Conf 2018!
-  date: '2018-01-01'
-  summary: Slide deck from presentations on security, IT operations, and Splunk features.
-  category: speaking
-  external_link: https://www.slideshare.net/slideshow/using-metrics-for-fun-developing-with-the-kv-store-javascript-news-from-conf-2018-security-itops-more/124361599
-  featured: false
-  content: Slide deck from presentations on security, IT operations, and Splunk features.
-- title: 'Deconstructing SIEM: What are SIEM platforms made of?'
-  date: '2017-08-01'
-  summary: Security Scotland Meetup breaking down SIEM components and frameworks.
-  category: speaking
-  external_link: https://www.slideshare.net/slideshow/security-meetup-scotland-august-2017-deconstructing-siem/78590806
-  featured: false
-  content: Security Scotland Meetup breaking down SIEM components and frameworks.
-- title: Frameworks for Enforcing Change Management
-  date: '2017-05-01'
-  summary: Delivered a session at the Cybersecurity Revolution Conference at Edinburgh
-    Napier University.
-  category: speaking
-  external_link: https://www.napier.ac.uk/about-us/news/cybersecurityrevolution
-  featured: false
-  content: Delivered a session at the Cybersecurity Revolution Conference at Edinburgh
-    Napier University.
-- title: 'User Behavioural Analytics (UBA): Machine Learning for Threat Detection'
-  date: '2016-05-01'
-  summary: Main speaker at the Big Data in Cyber Security Conference, covering UBA
-    to detect network and host-based attacks.
-  category: speaking
-  external_link: https://thecyberacademy.org/bigdata-speakers/
-  featured: false
-  content: Main speaker at the Big Data in Cyber Security Conference, covering UBA
-    to detect network and host-based attacks.
-- title: ATT&CK Use Cases with MaGMa!
-  date: '2015-01-01'
-  summary: Authored article regarding applying the MaGMa framework and MITRE ATT&CK
-    to use case management.
+- title: 'Cyber Scotland Connect Post: The Scottish Tech Army needs you'
   category: writing
+  featured: false
+  date: '2020-05-18'
+  external_link: https://cyberscotlandconnect.com/2020/05/the-scottish-tech-army-needs-you/
+- title: Splunk .conf19 Overview & Boss of the SOC (Adarma HQ)
+  category: event
+  featured: false
+  content: Splunk Edinburgh User Group
+  date: '2020-01-15'
+  summary: Splunk Edinburgh User Group
+- title: ATT&CK Use Cases with MaGMa!
+  category: writing
+  featured: false
+  date: '2019-11-06'
   external_link: https://medium.com/adarma-tech-blog/att-ck-use-cases-with-magma-3a5c83775d86
+- title: 'Platform Management at Scale: Configuration Management for Automation & Recovery'
+  category: event
   featured: false
-  content: Authored article regarding applying the MaGMa framework and MITRE ATT&CK
-    to use case management.
-- title: Modern Security Operations & Common Roles/Competencies
-  date: '2015-01-01'
-  summary: Slide deck detailing the evolution of SOC roles and defender competencies.
+  content: Splunk Edinburgh User Group
+  date: '2019-09-25'
+  summary: Splunk Edinburgh User Group
+- title: 'Storage Special: SmartStore Overview, Practical Lab & On-prem Options'
+  category: event
+  featured: false
+  content: Splunk Edinburgh User Group
+  date: '2019-07-23'
+  summary: Splunk Edinburgh User Group
+- title: 'Security-focused: Phantom, Endpoint Data Model & Security Essentials App'
+  category: event
+  featured: false
+  content: Splunk Edinburgh User Group
+  date: '2019-05-28'
+  summary: Splunk Edinburgh User Group
+- title: SPLing Bee Battle Royale! (Interactive SPL competition)
+  category: event
+  featured: false
+  content: Splunk Edinburgh User Group
+  date: '2019-03-25'
+  summary: Splunk Edinburgh User Group
+- title: Collecting AWS Logs at Scale & SmartStore Intro
+  category: event
+  featured: false
+  content: Splunk Edinburgh User Group
+  date: '2019-01-23'
+  summary: Splunk Edinburgh User Group
+- title: Metrics/mstats, KV Store + Javascript, and .conf 2018 News
+  category: event
+  featured: false
+  content: Splunk Edinburgh User Group
+  date: '2018-11-22'
+  summary: Splunk Edinburgh User Group
+- title: 'Special Event: Splunk Discovery Roadshow & User Group Meetup'
+  category: event
+  featured: false
+  content: Splunk Edinburgh User Group
+  date: '2018-10-23'
+  summary: Splunk Edinburgh User Group
+- title: Custom Commands, KV Store & DevOps for Splunk Deployment
+  category: event
+  featured: false
+  content: Splunk Edinburgh User Group
+  date: '2018-09-19'
+  summary: Splunk Edinburgh User Group
+- title: Using DevOps Practices to Implement a Full Route-to-Live for SIEM Platforms
   category: speaking
-  external_link: https://www.slideshare.net/slideshow/modern-security-operations-common-rolescompetencies/239501625
   featured: false
-  content: Slide deck detailing the evolution of SOC roles and defender competencies.
+  date: '2018-06-02'
+  external_link: https://youtu.be/ogZ22ZmaqrU?si=aU9Fsi0FS_oOCgAq
+- title: Hunting Hard, Failing Fast, Maintaining Integrity
+  category: speaking
+  featured: false
+  date: '2018-05-31'
+  external_link: https://www.youtube.com/live/LOPmgnHVj_A?si=e2-DGiRHqm_QV4OB&t=11071
+- title: 'Human Vulnerability: Truths & Lessons'
+  category: speaking
+  featured: false
+  date: '2018-05-30'
+  external_link: https://www.youtube.com/live/-Rcfn1iFb1g?si=z2PekbCj4P_bWEGu&t=485
+- title: Splunk & Phantom for Automation/Orchestration & Docker for Labs
+  category: event
+  featured: false
+  content: Splunk Edinburgh User Group
+  date: '2018-05-22'
+  summary: Splunk Edinburgh User Group
+- title: TSTATS usage, Life of a Splunk Trainer & DevOps in Development
+  category: event
+  featured: false
+  content: Splunk Edinburgh User Group
+  date: '2018-03-13'
+  summary: Splunk Edinburgh User Group
+- title: 'The Missing Layers: Syslog Collection & HTTP Event Collection'
+  category: event
+  featured: false
+  content: Splunk Edinburgh User Group
+  date: '2018-01-11'
+  summary: Splunk Edinburgh User Group
+- title: Updates to Enterprise, ES, and ITSI from .conf
+  category: event
+  featured: false
+  content: Splunk Edinburgh User Group
+  date: '2017-10-16'
+  summary: Splunk Edinburgh User Group
+- title: Securing the Enterprise/Cloud with Splunk at the Centre
+  category: event
+  featured: false
+  content: Splunk Edinburgh User Group
+  date: '2017-08-22'
+  summary: Splunk Edinburgh User Group
+- title: Splunk at Scale, Splunking at Home & Intro to Enterprise Security
+  category: event
+  featured: false
+  content: Splunk Edinburgh User Group
+  date: '2017-06-27'
+  summary: Splunk Edinburgh User Group
+- title: Building Splunk Apps, Development Paths & User Behaviour Analytics
+  category: event
+  featured: false
+  content: Splunk Edinburgh User Group
+  date: '2017-04-04'
+  summary: Splunk Edinburgh User Group
+- title: Dashboarding Workshop & Universal vs. Heavy Forwarders
+  category: event
+  featured: false
+  content: Splunk Edinburgh User Group
+  date: '2017-02-24'
+  summary: Splunk Edinburgh User Group
+- title: Operational Insight with ITSI & Use Case Development
+  category: event
+  featured: false
+  content: Splunk Edinburgh User Group
+  date: '2016-11-23'
+  summary: Splunk Edinburgh User Group
+- title: Edinburgh User Group - Security & Best Practices
+  category: event
+  featured: false
+  content: Splunk Edinburgh User Group
+  date: '2016-09-28'
+  summary: Splunk Edinburgh User Group
 - title: Security Operations, MITRE ATT&CK, SOC Roles / Competencies
-  date: '2015-01-01'
-  summary: Slide deck mapping operations and roles to the MITRE ATT&CK framework.
   category: speaking
-  external_link: https://www.slideshare.net/slideshow/security-operations-mitre-attck-soc-roles-competencies/242222366
   featured: false
-  content: Slide deck mapping operations and roles to the MITRE ATT&CK framework.
+  content: SOC Strategy
+  summary: SOC Strategy
+- title: Modern Security Operations & Common Roles/Competencies
+  category: speaking
+  featured: false
+  content: Security Careers
+  summary: Security Careers
+- title: Becoming a Defender (Blue Teams FTW!)
+  category: speaking
+  featured: false
+  content: Blue Teaming
+  summary: Blue Teaming
+- title: Virtual Splunk User Group - Phantom Workbook Automation
+  category: speaking
+  featured: false
+  content: Automation / SOAR
+  summary: Automation / SOAR
+- title: SOC Fundamental Roles & Skills
+  category: speaking
+  featured: false
+  content: Education / Training
+  summary: Education / Training
+- title: Hunting Hard & Failing Fast (ScotSoft 2019)
+  category: speaking
+  featured: false
+  content: Threat Hunting
+  summary: Threat Hunting
+- title: Splunk Phantom, Endpoint Data Model & Security Essentials
+  category: speaking
+  featured: false
+  content: Tooling
+  summary: Tooling
+- title: Collecting AWS Logs & Introducing Splunk SmartStore
+  category: speaking
+  featured: false
+  content: Cloud Infrastructure
+  summary: Cloud Infrastructure
+- title: Metrics for Fun, KV Store + JS & News from .conf 2018
+  category: speaking
+  featured: false
+  content: Development
+  summary: Development
+- title: Splunk .conf18 Updates, Config Add-on, SplDevOps
+  category: speaking
+  featured: false
+  content: Release Analysis
+  summary: Release Analysis
+- title: 'SplDevOps: Making Splunk Development a Breeze'
+  category: speaking
+  featured: false
+  content: DevOps Integration
+  summary: DevOps Integration
+- title: Lessons on Human Vulnerability within InfoSec/Cyber
+  category: speaking
+  featured: false
+  content: Social Engineering
+  summary: Social Engineering
+- title: Big Data For Threat Detection & Response
+  category: speaking
+  featured: false
+  content: Analytics
+  summary: Analytics
+- title: OWASP - Analyst, Engineer or Consultant?
+  category: speaking
+  featured: false
+  content: AppSec Careers
+  summary: AppSec Careers
+- title: 'TSTAS: Life of a Splunk Trainer & DevOps in Splunk'
+  category: speaking
+  featured: false
+  content: Professional Development
+  summary: Professional Development
+- title: Splunk Dashboarding & Universal Vs. Heavy Forwarders
+  category: speaking
+  featured: false
+  content: Data Architecture
+  summary: Data Architecture
+- title: Supporting Splunk at Scale & Splunking at Home
+  category: speaking
+  featured: false
+  content: Architecture
+  summary: Architecture
+- title: Introduction to Enterprise Security (ES) Framework
+  category: speaking
+  featured: false
+  content: SIEM Strategy
+  summary: SIEM Strategy
+- title: 'Machine Data 101: Beyond the Basics (Adarma/Splunk)'
+  category: speaking
+  featured: false
+  content: Foundational Skills
+  summary: Foundational Skills
+- title: Building a Next-Generation Security Operations Center
+  category: speaking
+  featured: false
+  content: SOC Engineering
+  summary: SOC Engineering
+- title: Splunk Technical Overview for Analysts
+  category: speaking
+  featured: false
+  content: Training
+  summary: Training
+- title: Incident Response & Orchestration with Splunk
+  category: speaking
+  featured: false
+  content: IR Lifecycle
+  summary: IR Lifecycle
+- title: 'Legacy SIEM to Splunk: How to Conquer Migration'
+  category: speaking
+  featured: false
+  content: Strategic Migration
+  summary: Strategic Migration
+- title: Using Splunk for Threat Intelligence & ATT&CK Mapping
+  category: speaking
+  featured: false
+  content: Intel Operations
+  summary: Intel Operations
+- title: 'Cyber Scotland Connect: Community Building in InfoSec'
+  category: speaking
+  featured: false
+  content: Community
+  summary: Community
+- title: Effective Security Monitoring for Small Teams
+  category: speaking
+  featured: false
+  content: Resource Management
+  summary: Resource Management
+- title: 'Splunk SmartStore: Technical Deep Dive'
+  category: speaking
+  featured: false
+  content: Performance Tuning
+  summary: Performance Tuning
+- title: Advanced Log Analysis & Search Optimization
+  category: speaking
+  featured: false
+  content: Technical Deep Dive
+  summary: Technical Deep Dive

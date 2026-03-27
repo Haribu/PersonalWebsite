@@ -31,4 +31,4 @@ USER appuser
 EXPOSE 8080
 
 # The default command builds the site and serves it
-CMD ["sh", "-c", "python website/build_site.py && python -m http.server 8080 -d website/public"]
+CMD ["sh", "-c", "python execution/build_site.py && python -m http.server 8080 -d website/public"]

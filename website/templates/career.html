@@ -3,13 +3,13 @@
 {% block content %}
 <header class="page-hero" style="max-width: 100%;">
     <h1>Career & Experience</h1>
-    <h2 class="subtitle gradient-text">My Professional Journey & Qualifications.</h2>
+    <h2 class="subtitle gradient-text">Professional Journey, Qualifications, Education & Awards.</h2>
     
     <div style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 3rem; align-items: flex-start; margin-top: 1.5rem;">
         <div style="flex: 1 1 500px; max-width: 750px;">
             <p class="description" style="margin-bottom: 0;">
-                I currently serve as the <strong>Head of Cyber Defense at Tesco</strong>, leading the organization's unified Threat Intelligence, Detection Engineering, Investigation, and Response (TIDIR) function. 
-                I am focused on building a proactive, engineering-led defense capability that enables secure innovation and supports long-term business resilience. I also act as a Board & Investor Advisor and co-founder of Cyber Scotland Connect. Review my comprehensive employment history, certifications, and educational background below.
+                I currently serve as the <strong>Head of Cyber Defence at Tesco</strong>, leading the organisation's unified Threat Intelligence, Detection Engineering, Investigation, and Response (TIDIR) function. 
+                I am focused on building a proactive, engineering-led defence capability that enables secure innovation and supports long-term business resilience. I also act as a Board & Investor Advisor and co-founder of Cyber Scotland Connect. Review my comprehensive employment history, certifications, and educational background below.
             </p>
         </div>
         
@@ -22,15 +22,16 @@
                 <svg class="icon-inline" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                 PDF Version
             </a>
-            <a href="https://docs.google.com/document/d/YOUR_DOCUMENT_ID_HERE/edit" class="btn btn-outline-default" target="_blank" rel="noopener noreferrer" style="border-color: var(--accent-cyan); color: var(--accent-cyan);">
+            <a href="#" class="btn btn-outline-default" target="_blank" rel="noopener noreferrer" style="border-color: var(--accent-cyan); color: var(--accent-cyan);">
                 <svg class="icon-inline" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
-                Google Doc
+                Google Doc (Coming Soon)
             </a>
         </div>
     </div>
 </header>
 
     <h2 class="mt-0">Employment History</h2>
+    <p class="section-description" style="color: var(--text-secondary); margin-bottom: 2rem;">An overview of my professional roles, key responsibilities, and achievements across various organisations.</p>
     
     <div class="timeline">
         {% for item in career_timeline %}
@@ -59,7 +60,8 @@
 
     <div class="carousel-section">
         <h2 class="career-section-title">Honors & Awards</h2>
-        <div class="glass-grid">
+        <p class="section-description" style="color: var(--text-secondary); margin-bottom: 2rem;">Recognition for my contributions to the cybersecurity industry and community.</p>
+        <div class="glass-masonry">
             {% for award in career_awards %}
             <div class="glass-card card-purple">
                 <div class="glass-header" style="margin-bottom: 1rem;">
@@ -83,7 +85,8 @@
 
     <div class="carousel-section">
         <h2 class="career-section-title">Community</h2>
-        <div class="glass-grid">
+        <p class="section-description" style="color: var(--text-secondary); margin-bottom: 2rem;">Contribution to communities, sectors and organisations in a voluntary capacity.</p>
+        <div class="glass-masonry">
             {% for comm in career_community %}
             <div class="glass-card ">
                 <div class="glass-header" style="margin-bottom: 1rem;">
@@ -95,8 +98,11 @@
                 <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: auto;">
                     {% for item in comm.entries %}
                     <div>
-                        <strong style="display: block; color: var(--text-primary); font-size: 0.95rem; margin-bottom: 0.15rem;">{{ item.title }}</strong>
-                        <span style="display: block; color: var(--text-secondary); font-size: 0.85rem; line-height: 1.3;">{{ item.desc }}</span>
+                        <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;">
+                            <strong style="color: var(--text-primary); font-size: 0.95rem;">{{ item.title }}</strong>
+                            {% if item.date %}<span class="timeline-date" style="font-size: 0.8rem;">{{ item.date }}</span>{% endif %}
+                        </div>
+                        {% if item.desc %}<span style="display: block; color: var(--text-secondary); font-size: 0.85rem; line-height: 1.3; margin-top: 0.25rem;">{{ item.desc }}</span>{% endif %}
                     </div>
                     {% endfor %}
                 </div>
@@ -107,7 +113,8 @@
 
     <div class="carousel-section">
         <h2 class="career-section-title">Education</h2>
-        <div class="glass-grid">
+        <p class="section-description" style="color: var(--text-secondary); margin-bottom: 2rem;">Academic background and formal degrees in cybersecurity and related fields.</p>
+        <div class="glass-masonry">
             {% for edu in career_education %}
             <div class="glass-card card-purple">
                 <div class="glass-header" style="margin-bottom: 1rem;">
@@ -119,8 +126,11 @@
                 <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: auto;">
                     {% for item in edu.entries %}
                     <div>
-                        <strong style="display: block; color: var(--text-primary); font-size: 0.95rem; margin-bottom: 0.15rem;">{{ item.title }}</strong>
-                        <span style="display: block; color: var(--text-secondary); font-size: 0.85rem; line-height: 1.3;">{{ item.desc }}</span>
+                        <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;">
+                            <strong style="color: var(--text-primary); font-size: 0.95rem;">{{ item.title }}</strong>
+                            {% if item.date %}<span class="timeline-date" style="font-size: 0.8rem;">{{ item.date }}</span>{% endif %}
+                        </div>
+                        {% if item.desc %}<span style="display: block; color: var(--text-secondary); font-size: 0.85rem; line-height: 1.3; margin-top: 0.25rem;">{{ item.desc }}</span>{% endif %}
                     </div>
                     {% endfor %}
                 </div>
@@ -131,7 +141,8 @@
 
     <div class="carousel-section">
         <h2 class="career-section-title">Certifications</h2>
-        <div class="glass-grid">
+        <p class="section-description" style="color: var(--text-secondary); margin-bottom: 2rem;">Professional certifications demonstrating specialized knowledge and commitment to continuous learning.</p>
+        <div class="glass-masonry">
             {% for cert in career_certifications %}
             <div class="glass-card ">
                 <div class="glass-header" style="margin-bottom: 0.5rem;">

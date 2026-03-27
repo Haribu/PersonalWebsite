@@ -58,6 +58,40 @@ Both the Career page and Showcase highlights are powered purely by structured YA
 - Edit `website/content/career.yaml`
 - Edit `website/content/showcase.yaml`
 
+#### Career Template (Timeline)
+Copy and paste this into the `timeline:` list:
+```yaml
+- title: "Your Job Title"
+  company: "Company Name"
+  logo: "logo_filename.svg" # Ensure file exists in website/assets/
+  date: "Month YYYY – Month YYYY"
+  bullets:
+    - "Key achievement or responsibility 1"
+    - "Key achievement or responsibility 2"
+```
+
+#### Career Template (Volunteer/Education)
+Both follow a similar nested structure:
+```yaml
+- section: "Organisation Name" # or 'org:' for Education
+  icon: "heart" # or 'book' for Education
+  entries:
+    - title: "Role or Degree Name"
+      desc: "Brief description of impact or grades"
+      date: "YYYY - YYYY"
+```
+
+#### Showcase Template
+Copy and paste this into `showcase.yaml`. The `category` must be exactly one of: `speaking`, `writing`, or `event`.
+```yaml
+- title: "Title of the Contribution"
+  category: "speaking" # speaking | writing | event
+  featured: false      # true to pin to top features
+  date: "YYYY-MM-DD"   # ISO format for sorting
+  external_link: "https://example.com" # Optional
+  summary: "Short one-sentence description" # Optional
+```
+
 ### 2. Writing a New Blog Post (Local CLI)
 1. Open your terminal in the `website/` directory.
 2. Run the `new_post.py` script with your title and an optional summary:
