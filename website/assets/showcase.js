@@ -1,14 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const searchInput = document.getElementById('showcase-search');
     const filterTabs = document.querySelectorAll('.filter-tab');
-    const showcaseCards = document.querySelectorAll('.glass-card');
     const yearGroups = document.querySelectorAll('.year-group');
     const showcaseContent = document.getElementById('showcase-content');
     const noResults = document.getElementById('no-results');
 
     let activeFilter = 'all';
-    let searchQuery = '';
-    let debounceTimer;
 
     // Filter Tab Click Handling
     filterTabs.forEach(tab => {
@@ -20,15 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
             activeFilter = tab.getAttribute('data-filter');
             applyFilters();
         });
-    });
-
-    // Search Input Handling with Debounce
-    searchInput.addEventListener('input', (e) => {
-        clearTimeout(debounceTimer);
-        debounceTimer = setTimeout(() => {
-            searchQuery = e.target.value.toLowerCase().trim();
-            applyFilters();
-        }, 200);
     });
 
     function applyFilters() {
@@ -46,17 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             cards.forEach(card => {
                 const category = card.getAttribute('data-category');
-                const title = card.getAttribute('data-title');
-                const summary = card.getAttribute('data-summary');
-                const content = card.getAttribute('data-content');
-
                 const matchesFilter = activeFilter === 'all' || category === activeFilter;
-                const matchesSearch = searchQuery === '' || 
-                                    title.includes(searchQuery) || 
-                                    summary.includes(searchQuery) || 
-                                    content.includes(searchQuery);
 
-                if (matchesFilter && matchesSearch) {
+                if (matchesFilter) {
                     card.classList.remove('hidden');
                     visibleInGroup++;
                     visibleCount++;

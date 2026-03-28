@@ -638,6 +638,66 @@ textarea {
   opacity: 1;
 }
 
+/* Career Section Navigation */
+.career-nav-container {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-top: 3rem;
+  padding: 1rem 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+}
+
+.career-nav-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.career-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.career-nav-link {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  border-radius: 30px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.career-nav-link:hover {
+  color: var(--text-primary);
+  background: rgba(0, 229, 255, 0.1);
+  border-color: var(--accent-cyan);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 229, 255, 0.15);
+}
+
+.career-nav-link:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .career-nav-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}
+
 .portfolio-grid {
   display: flex;
   flex-wrap: wrap;
@@ -675,6 +735,10 @@ textarea {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   user-select: none;
   object-fit: contain;
+}
+
+.portfolio-grid img.logo-tall {
+  max-height: 44px;
 }
 
 .portfolio-grid img:hover {
@@ -1367,7 +1431,7 @@ main.content > section:last-child,
   .showcase-controls {
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: nowrap; /* Prevent wrapping even if tight */
   }
 }
@@ -1376,6 +1440,7 @@ main.content > section:last-child,
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .filter-tab {
@@ -1422,63 +1487,23 @@ main.content > section:last-child,
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
 }
 
+.filter-count {
+  font-size: 0.8rem;
+  opacity: 0.5;
+  margin-left: 0.4rem;
+  font-weight: 500;
+  transition: opacity 0.3s ease;
+}
+
+.filter-tab.active .filter-count,
+.filter-tab:hover .filter-count {
+  opacity: 0.8;
+}
+
 /* Dynamic Active Tab Colors (via JS or specific classes) */
 .filter-tab.active[data-filter="speaking"] { background: var(--accent-speaking); border-color: var(--accent-speaking); box-shadow: 0 0 15px rgba(255, 213, 79, 0.4); }
 .filter-tab.active[data-filter="writing"] { background: var(--accent-writing); border-color: var(--accent-writing); box-shadow: 0 0 15px rgba(0, 230, 118, 0.4); }
 .filter-tab.active[data-filter="event"] { background: var(--accent-event); border-color: var(--accent-event); box-shadow: 0 0 15px rgba(240, 98, 146, 0.4); }
-
-.search-container {
-  position: relative;
-  flex-grow: 0;
-  width: 200px; /* More subtle initial width */
-  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.search-container {
-  position: relative;
-  flex-grow: 0;
-  width: 220px; /* Subtle initial width */
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.search-container:focus-within {
-  width: 300px; /* Reduced from 380px to prevent row wrap */
-  flex-grow: 0;
-}
-
-.search-input {
-  width: 100% !important;
-  background: rgba(255, 255, 255, 0.03) !important;
-  border: 1px solid var(--border-subtle) !important;
-  border-radius: 8px !important;
-  padding-left: 3.8rem !important; /* Increased significantly and forced */
-  padding-right: 1rem !important;
-  padding-top: 0.75rem !important;
-  padding-bottom: 0.75rem !important;
-  color: var(--text-primary) !important;
-  font-size: 0.95rem !important;
-  transition: all 0.3s ease !important;
-}
-
-.search-input::placeholder {
-  padding-left: 0 !important; /* Usually inherits from parent but clarifying */
-}
-
-.search-input:focus {
-  outline: none;
-  border-color: var(--accent-purple);
-  background: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 0 4px rgba(179, 136, 255, 0.1);
-}
-
-.search-icon {
-  position: absolute;
-  left: 0.85rem;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--text-secondary);
-  pointer-events: none;
-}
 
 /* Year Dividers */
 .year-divider {
@@ -1604,7 +1629,7 @@ main.content > section:last-child,
   justify-content: center;
   color: var(--accent-cyan);
   cursor: pointer;
-  z-index: 1000;
+  z-index: 1100;
   opacity: 0;
   visibility: hidden;
   transform: translateY(10px);

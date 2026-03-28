@@ -109,7 +109,7 @@ def build_blog():
     # Sort posts by date descending
     posts.sort(key=lambda x: x['date'], reverse=True)
     blog_posts = [p for p in posts if p.get('category') not in ['speaking', 'writing', 'event']]
-    blog_index_html = blog_list_template.render(title="Blog", posts=blog_posts, base_url=BASE_URL, site_url=SITE_URL, current_url="/blog.html", og_type="website")
+    blog_index_html = blog_list_template.render(title="Transmission Log", posts=blog_posts, base_url=BASE_URL, site_url=SITE_URL, current_url="/blog.html", og_type="website")
     with open(os.path.join(PUBLIC_DIR, 'blog.html'), 'w', encoding='utf-8') as f:
         f.write(blog_index_html)
         
@@ -125,7 +125,7 @@ def build_pages(posts=[]):
         try:
             template = env.get_template(page)
             current_url = "/" if page == "index.html" else f"/{page}"
-            title_map = {"index.html": "Home", "advisory.html": "Advisory", "career.html": "Career", "contact.html": "Contact", "showcase.html": "Showcase"}
+            title_map = {"index.html": None, "advisory.html": "Strategic Advisory", "career.html": "Career & Experience", "contact.html": "Contact", "showcase.html": "Showcase & Contributions"}
             page_title = title_map.get(page)
             if page == 'index.html':
                 final_html = template.render(base_url=BASE_URL, site_url=SITE_URL, current_url=current_url, recent_posts=posts[:2], og_type="website")
@@ -170,14 +170,19 @@ def build_pages(posts=[]):
                 
                 grouped_showcase = [{"year": year, "posts": showcase_by_year[year]} for year in sorted_years]
                 
-                # For JS filtering, we also want the flat list of all non-featured posts
-                all_showcase_posts = [p for p in showcase_posts if not p.get('featured')]
-                
+                # Calculate counts for each category
+                counts = {
+                    'all': len(showcase_posts),
+                    'speaking': len([p for p in showcase_posts if p.get('category') == 'speaking']),
+                    'writing': len([p for p in showcase_posts if p.get('category') == 'writing']),
+                    'event': len([p for p in showcase_posts if p.get('category') == 'event'])
+                }
+
                 final_html = template.render(
                     base_url=BASE_URL, site_url=SITE_URL, current_url=current_url, title=page_title, 
                     featured_posts=featured_posts, 
                     grouped_showcase=grouped_showcase,
-                    all_showcase_posts=all_showcase_posts,
+                    counts=counts,
                     og_type="website")
             elif page == 'career.html':
                 career_yaml_path = os.path.join(CONTENT_DIR, 'career.yaml')

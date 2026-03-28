@@ -7,7 +7,7 @@
         <h1>Speaking & Contributions</h1>
         <h2 class="subtitle gradient-text">Public Talks & Industry Contributions.</h2>
         <p class="description">
-            As a recognized voice in cybersecurity, I regularly share strategic insights through keynotes, guest articles, and community leadership to advance industry practices and foster collaborative defense strategies.
+            Beyond my operational roles, I believe in contributing back to the profession. Whether it's through keynotes on TIDIR architecture or building local cybersecurity communities in Scotland, my goal is to share battle-tested insights that help us all defend better.
         </p>
     </header>
 
@@ -45,21 +45,17 @@
     <div class="showcase-controls">
         <div class="filter-tabs" id="filter-tabs">
             <button class="filter-tab active" data-filter="all">
-                <span class="tab-dot"></span> All
-            </button>
-            <button class="filter-tab" data-filter="speaking">
-                <span class="tab-dot dot-speaking"></span> Speaking
-            </button>
-            <button class="filter-tab" data-filter="writing">
-                <span class="tab-dot dot-writing"></span> Publications
+                <span class="tab-dot"></span> All <span class="filter-count">({{ counts.all }})</span>
             </button>
             <button class="filter-tab" data-filter="event">
-                <span class="tab-dot dot-event"></span> Events
+                <span class="tab-dot dot-event"></span> Events <span class="filter-count">({{ counts.event }})</span>
             </button>
-        </div>
-        <div class="search-container">
-            <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-            <input type="text" id="showcase-search" class="search-input" placeholder="Search by keyword...">
+            <button class="filter-tab" data-filter="speaking">
+                <span class="tab-dot dot-speaking"></span> Speaking <span class="filter-count">({{ counts.speaking }})</span>
+            </button>
+            <button class="filter-tab" data-filter="writing">
+                <span class="tab-dot dot-writing"></span> Publications <span class="filter-count">({{ counts.writing }})</span>
+            </button>
         </div>
     </div>
 
@@ -121,7 +117,7 @@
 
         <div id="no-results" class="no-results hidden">
             <h3 style="color: var(--text-primary); margin-bottom: 1rem;">No contributions found</h3>
-            <p>Try adjusting your filters or search keywords to find what you're looking for.</p>
+            <p>Try adjusting your category filters to find what you're looking for.</p>
         </div>
     </div>
 
