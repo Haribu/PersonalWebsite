@@ -94,6 +94,8 @@ awards:
   entries:
   - title: Cyber Evangelist of the Year
     year: '2018'
+  - title: Best New Cyber Talent
+    year: '2016'
 - org: Security Excellence Awards
   icon: circle-check
   entries:
@@ -106,11 +108,6 @@ awards:
     year: '2017'
   - title: Outstanding People Award
     year: '2015'
-- org: Scottish Government
-  icon: circle-check
-  entries:
-  - title: Best New Cyber Talent at the Scottish Cyber Awards
-    year: '2016'
 - org: Edinburgh Napier University
   icon: circle-check
   entries:
