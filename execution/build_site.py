@@ -186,12 +186,60 @@ def build_pages(posts=[]):
                     with open(career_yaml_path, 'r', encoding='utf-8') as f:
                         career_data = yaml.safe_load(f) or {}
                 # Extract out for direct loop access in template
+                
+                # --- Helper: parse a start date from date strings for sorting ---
+                MONTH_MAP = {
+                    'jan': 1, 'feb': 2, 'mar': 3, 'apr': 4, 'may': 5, 'jun': 6,
+                    'jul': 7, 'aug': 8, 'sep': 9, 'oct': 10, 'nov': 11, 'dec': 12
+                }
+                
+                def parse_start_date(date_str):
+                    """Extract a sortable start date from strings like 'Jan 2018 - Present', '2016-2021', '2026'."""
+                    if not date_str:
+                        return datetime(1900, 1, 1)
+                    date_str = str(date_str).strip()
+                    
+                    # Handle compound ranges: take only the start portion
+                    start_part = date_str.split(' - ')[0].split(' – ')[0].strip()
+                    
+                    # Try "Mon YYYY" format (e.g., "Jan 2018")
+                    parts = start_part.split()
+                    if len(parts) == 2:
+                        month_str = parts[0].lower().rstrip('.')
+                        if month_str in MONTH_MAP and parts[1].isdigit():
+                            return datetime(int(parts[1]), MONTH_MAP[month_str], 1)
+                    
+                    # Try plain year (e.g., "2016" or from "2016-2021")
+                    if start_part[:4].isdigit():
+                        return datetime(int(start_part[:4]), 1, 1)
+                    
+                    return datetime(1900, 1, 1)
+                
+                def sort_section_chronologically(sections):
+                    """Sort sections and their entries by start date, newest first."""
+                    for section in sections:
+                        entries = section.get('entries', [])
+                        entries.sort(key=lambda e: parse_start_date(e.get('date', '')), reverse=True)
+                    # Sort sections by the most recent entry date
+                    def section_sort_key(sec):
+                        entries = sec.get('entries', [])
+                        if not entries:
+                            return datetime(1900, 1, 1)
+                        return max(parse_start_date(e.get('date', '')) for e in entries)
+                    sections.sort(key=section_sort_key, reverse=True)
+                    return sections
+                
+                community_data = career_data.get('community', [])
+                education_data = career_data.get('education', [])
+                sort_section_chronologically(community_data)
+                sort_section_chronologically(education_data)
+                
                 final_html = template.render(
                     base_url=BASE_URL, site_url=SITE_URL, current_url=current_url, title=page_title, 
                     career_timeline=career_data.get('timeline', []),
                     career_awards=career_data.get('awards', []),
-                    career_community=career_data.get('community', []),
-                    career_education=career_data.get('education', []),
+                    career_community=community_data,
+                    career_education=education_data,
                     career_certifications=career_data.get('certifications', []),
                     og_type="website")
             else:

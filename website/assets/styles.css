@@ -1588,14 +1588,15 @@ main.content > section:last-child,
 }
 
 /* Floating Back to Top Button */
-.back-to-top {
+.back-to-top-btn {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  width: 3.5rem;
-  height: 3.5rem;
-  background: var(--glass-bg);
-  backdrop-filter: blur(10px);
+  width: 3rem;
+  height: 3rem;
+  background: var(--bg-surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border-subtle);
   border-radius: 50%;
   display: flex;
@@ -1606,19 +1607,27 @@ main.content > section:last-child,
   z-index: 1000;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.3s ease;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease, 
+              border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
-.back-to-top.visible {
+.back-to-top-btn.visible {
   opacity: 1;
   visibility: visible;
+  transform: translateY(0);
 }
 
-.back-to-top:hover {
-  transform: translateY(-5px);
+.back-to-top-btn:hover {
+  transform: translateY(-3px);
   border-color: var(--accent-cyan);
   background: rgba(0, 229, 255, 0.1);
   box-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
+}
+
+.back-to-top-btn:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 2px;
 }
 

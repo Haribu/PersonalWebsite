@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const yearGroups = document.querySelectorAll('.year-group');
     const showcaseContent = document.getElementById('showcase-content');
     const noResults = document.getElementById('no-results');
-    const backToTopBtn = document.getElementById('back-to-top');
 
     let activeFilter = 'all';
     let searchQuery = '';
@@ -81,20 +80,4 @@ document.addEventListener('DOMContentLoaded', () => {
             noResults.classList.add('hidden');
         }
     }
-
-    // Back to Top Visibility & Scroll
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 400) {
-            backToTopBtn.classList.add('visible');
-        } else {
-            backToTopBtn.classList.remove('visible');
-        }
-    });
-
-    backToTopBtn.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
 });
