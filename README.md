@@ -6,8 +6,8 @@ This repository contains the source code for [Harry McLaren's](https://harrymcla
 
 As a Head of Cyber Defence and Strategic Advisor, the technical foundation of this site mirrors professional priorities: security, speed, accessibility, and modern aesthetics.
 
-- **Zero-Dependency SSG**: Built entirely via a custom, lightweight Python Static Site Generator (`execution/build_site.py`), ensuring blisteringly fast build times without the bloat of frontend frameworks.
-- **Security-First Pipeline**: Enforces a strict Content Security Policy (CSP), with GitHub Actions automatically scanning CI/CD pipelines via TruffleHog (Secrets) and Bandit (Python SAST).
+- **Security-First Architecture**: Enforces a strict, dynamic Content Security Policy (CSP) with automated SHA-256 script hashing. The production environment is built on a **Hardened Unprivileged Nginx** foundation, enforcing non-root execution (UID 101) to minimize attack surface.
+- **Automated Verification**: GitHub Actions automatically audits every build via a custom cryptographic verifier (`verify_build.py`), TruffleHog (Secrets), and Bandit (Python SAST).
 - **Accessibility & UX Foundation**: Natively supports Dark/Light mode segmentation, an integrated Dyslexic-Friendly Font switch, and dynamic global text scaling (90% - 140%), fully persisted via local storage. Everything is keyboard and screen-reader navigable.
 - **Technical SEO Optimized**: Automatically builds `sitemap.xml` and `robots.txt` on compilation. Dynamically injects deeply structured `JSON-LD` schemas (Person & BlogPosting) and OpenGraph/Twitter Cards for perfect social media rendering. 
 

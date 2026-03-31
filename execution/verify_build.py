@@ -1,8 +1,10 @@
-import os
-import re
+import sys
 import hashlib
 import base64
-import sys
+
+# Compiled Regex for HTML parsing (Synced with build_site.py)
+SCRIPT_REGEX = re.compile(r'<script\b(?![^>]*\bsrc=)[^>]*>(.*?)</script>', re.IGNORECASE | re.DOTALL)
+CSP_META_REGEX = re.compile(r'<meta[^>]+http-equiv=["\']Content-Security-Policy["\'][^>]+content=["\'](.*?)["\']', re.IGNORECASE)
 
 # Define paths
 EXECUTION_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -24,9 +26,7 @@ def verify_file(filepath):
         html = f.read()
 
     # Extract Content-Security-Policy meta tag
-    csp_match = re.search(r'<meta[^>]+http-equiv=["\']Content-Security-Policy["\'][^>]+content=["\'](.*?)["\']', html, re.IGNORECASE)
-    if not csp_match:
-        csp_match = re.search(r'<meta[^>]+content=["\'](.*?)["\'][^>]+http-equiv=["\']Content-Security-Policy["\']', html, re.IGNORECASE)
+    csp_match = CSP_META_REGEX.search(html)
 
     # If no CSP is strictly enforced, we skip (Though ideally every page has one)
     if not csp_match:
@@ -41,9 +41,8 @@ def verify_file(filepath):
 
     script_src = script_src_match.group(1)
 
-    # Find all inline scripts: <script>...</script> but NOT <script src="...">...</script>
-    # Uses DOTALL to capture multi-line content
-    inline_scripts = re.findall(r'<script\b(?![^>]*\bsrc=)[^>]*>(.*?)</script>', html, re.IGNORECASE | re.DOTALL)
+    # Find all inline scripts using shared regex pattern
+    inline_scripts = SCRIPT_REGEX.findall(html)
 
     passes = True
     for idx, script_content in enumerate(inline_scripts):

@@ -12,6 +12,8 @@ import base64
 # Compiled Regex for HTML parsing
 IMG_REGEX = re.compile(r'<img[^>]+src="([^">]+)"')
 TAG_REGEX = re.compile(r'<[^>]+>')
+SCRIPT_REGEX = re.compile(r'<script\b(?![^>]*\bsrc=)[^>]*>(.*?)</script>', re.IGNORECASE | re.DOTALL)
+CSP_META_REGEX = re.compile(r'<meta[^>]+http-equiv=["\']Content-Security-Policy["\'][^>]+content=["\'](.*?)["\']', re.IGNORECASE)
 
 # Custom Domain configuration (served from root /)
 BASE_URL = ''
@@ -23,8 +25,8 @@ CSP_BASE = "default-src 'self'; script-src 'self' {hashes}; style-src 'self' 'un
 
 def calculate_csp_hashes(html_content):
     """Find all inline scripts and return their SHA-256 hashes formatted for CSP."""
-    # Find all inline scripts (excluding elements with src attribute)
-    inline_scripts = re.findall(r'<script\b(?![^>]*\bsrc=)[^>]*>(.*?)</script>', html_content, re.IGNORECASE | re.DOTALL)
+    # Find all inline scripts (excluding elements with src attribute) using shared regex
+    inline_scripts = SCRIPT_REGEX.findall(html_content)
     hashes = []
     for script in inline_scripts:
         sha256_hash = hashlib.sha256(script.encode('utf-8')).digest()
@@ -51,7 +53,6 @@ CONTENT_DIR = os.path.join(WEBSITE_DIR, 'content')
 TEMPLATE_DIR = os.path.join(WEBSITE_DIR, 'templates')
 PUBLIC_DIR = os.path.join(WEBSITE_DIR, 'public')
 ASSETS_DIR = os.path.join(WEBSITE_DIR, 'assets')
-SITE_DIR = WEBSITE_DIR # For backward compatibility in the script
 
 def setup_public_dir():
     """Ensure public directory exists and copy assets over."""
@@ -64,7 +65,7 @@ def setup_public_dir():
     shutil.copytree(ASSETS_DIR, public_assets)
 
     # Copy .well-known directory for security.txt, etc.
-    well_known_src = os.path.join(SITE_DIR, '.well-known')
+    well_known_src = os.path.join(WEBSITE_DIR, '.well-known')
     well_known_dest = os.path.join(PUBLIC_DIR, '.well-known')
     if os.path.exists(well_known_src):
         if os.path.exists(well_known_dest):
