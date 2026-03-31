@@ -709,13 +709,19 @@ a:hover {
   .blog-grid { grid-template-columns: 1fr; }
 }
 
-.content p {
+.content p, .post-content p {
   color: var(--text-primary);
 }
 
 /* Markdown Content Styling */
-.content img { max-width: 100%; height: auto; border-radius: 8px; }
-.content pre {
+.content img, .post-content img { 
+  max-width: 100%; 
+  height: auto; 
+  border-radius: 8px; 
+  display: block; 
+  margin: 2rem auto; 
+}
+.content pre, .post-content pre {
   background-color: var(--bg-base);
   border: 1px solid var(--border-subtle);
   padding: 1.5rem;
@@ -725,7 +731,7 @@ a:hover {
   font-size: 0.9rem;
   margin-bottom: 2rem;
 }
-.content code {
+.content code, .post-content code {
   font-family: var(--font-code);
   background-color: var(--bg-surface);
   padding: 0.2rem 0.4rem;
@@ -733,12 +739,12 @@ a:hover {
   font-size: 0.9em;
   color: var(--accent-cyan);
 }
-.content pre code {
+.content pre code, .post-content pre code {
   color: var(--text-primary);
   background-color: transparent;
   padding: 0;
 }
-.content blockquote {
+.content blockquote, .post-content blockquote {
   border-left: 4px solid var(--accent-purple);
   padding-left: 1.5rem;
   margin-left: 0;
