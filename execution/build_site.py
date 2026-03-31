@@ -6,6 +6,8 @@ import yaml
 from jinja2 import Environment, FileSystemLoader
 import shutil
 from datetime import datetime
+import hashlib
+import base64
 
 # Compiled Regex for HTML parsing
 IMG_REGEX = re.compile(r'<img[^>]+src="([^">]+)"')
@@ -15,6 +17,30 @@ TAG_REGEX = re.compile(r'<[^>]+>')
 BASE_URL = ''
 DOMAIN = 'https://harrymclaren.co.uk'
 SITE_URL = f"{DOMAIN}{BASE_URL}"
+
+# CSP Configuration
+CSP_BASE = "default-src 'self'; script-src 'self' {hashes}; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; frame-src 'self' https://docs.google.com; upgrade-insecure-requests;"
+
+def calculate_csp_hashes(html_content):
+    """Find all inline scripts and return their SHA-256 hashes formatted for CSP."""
+    # Find all inline scripts (excluding elements with src attribute)
+    inline_scripts = re.findall(r'<script\b(?![^>]*\bsrc=)[^>]*>(.*?)</script>', html_content, re.IGNORECASE | re.DOTALL)
+    hashes = []
+    for script in inline_scripts:
+        sha256_hash = hashlib.sha256(script.encode('utf-8')).digest()
+        base64_hash = base64.b64encode(sha256_hash).decode('utf-8')
+        hashes.append(f"'sha256-{base64_hash}'")
+    return " ".join(hashes)
+
+def render_with_csp(template, **context):
+    """Render a template once, then find and inject script hashes into a placeholder."""
+    # Single Pass: Render with a stable placeholder
+    rendered = template.render(**context, csp_policy="__CSP_POLICY_PLACEHOLDER__")
+    hashes = calculate_csp_hashes(rendered)
+    
+    # Inject calculated hashes into the placeholder
+    final_policy = CSP_BASE.format(hashes=hashes)
+    return rendered.replace("__CSP_POLICY_PLACEHOLDER__", final_policy)
 
 # Define paths
 EXECUTION_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -98,13 +124,13 @@ def build_blog():
                 'thumbnail': thumbnail,
                 'read_time': read_time,
                 'url': external_link if external_link else f'{BASE_URL}/blog/{out_filename}',
-                'current_url': external_link if external_link else f'/blog/{out_filename}',
+                'current_url': f'/blog/{out_filename}',
                 'content': html_content.replace('{{ base_url }}', BASE_URL)
             }
             posts.append(post_meta)
             
-            # Render individual post
-            final_html = post_template.render(**post_meta, base_url=BASE_URL, site_url=SITE_URL, og_type="article")
+            # Render individual post with dynamic CSP
+            final_html = render_with_csp(post_template, **post_meta, base_url=BASE_URL, site_url=SITE_URL, og_type="article")
             
             # Save output
             output_dir = os.path.join(PUBLIC_DIR, 'blog')
@@ -115,10 +141,9 @@ def build_blog():
                 f.write(final_html)
 
     # Output the blog index page
-    # Sort posts by date descending
     posts.sort(key=lambda x: x['date'], reverse=True)
     blog_posts = [p for p in posts if p.get('category') not in ['speaking', 'writing', 'event']]
-    blog_index_html = blog_list_template.render(title="Transmission Log", posts=blog_posts, base_url=BASE_URL, site_url=SITE_URL, current_url="/blog.html", og_type="website")
+    blog_index_html = render_with_csp(blog_list_template, title="Transmission Log", posts=blog_posts, base_url=BASE_URL, site_url=SITE_URL, current_url="/blog.html", og_type="website")
     with open(os.path.join(PUBLIC_DIR, 'blog.html'), 'w', encoding='utf-8') as f:
         f.write(blog_index_html)
         
@@ -236,47 +261,50 @@ def _build_career_data():
 def build_pages(posts=[]):
     """Build root-level pages (Home, About, Contact)."""
     env = Environment(loader=FileSystemLoader(TEMPLATE_DIR), autoescape=True)
-    
     pages = ['index.html', 'advisory.html', 'career.html', 'contact.html', 'showcase.html']
     
     for page in pages:
         try:
             template = env.get_template(page)
             current_url = "/" if page == "index.html" else f"/{page}"
-            title_map = {"index.html": None, "advisory.html": "Strategic Advisory", "career.html": "Career & Experience", "contact.html": "Contact", "showcase.html": "Showcase & Contributions"}
+            title_map = {
+                "index.html": None, 
+                "advisory.html": "Strategic Advisory", 
+                "career.html": "Career & Experience", 
+                "contact.html": "Contact", 
+                "showcase.html": "Showcase & Contributions"
+            }
             page_title = title_map.get(page)
             
+            ctx = {
+                'base_url': BASE_URL,
+                'site_url': SITE_URL,
+                'current_url': current_url,
+                'title': page_title,
+                'og_type': "website"
+            }
+
             if page == 'index.html':
-                final_html = template.render(
-                    base_url=BASE_URL, site_url=SITE_URL, current_url=current_url, 
-                    recent_posts=posts[:2], og_type="website"
-                )
+                ctx['recent_posts'] = posts[:2]
             elif page == 'showcase.html':
                 featured_posts, grouped_showcase, counts = _build_showcase_data()
-                final_html = template.render(
-                    base_url=BASE_URL, site_url=SITE_URL, current_url=current_url, title=page_title, 
-                    featured_posts=featured_posts, 
-                    grouped_showcase=grouped_showcase,
-                    counts=counts,
-                    og_type="website"
-                )
+                ctx.update({
+                    'featured_posts': featured_posts,
+                    'grouped_showcase': grouped_showcase,
+                    'counts': counts
+                })
             elif page == 'career.html':
                 career_data, community_data, education_data = _build_career_data()
-                final_html = template.render(
-                    base_url=BASE_URL, site_url=SITE_URL, current_url=current_url, title=page_title, 
-                    career_timeline=career_data.get('timeline', []),
-                    career_awards=career_data.get('awards', []),
-                    career_community=community_data,
-                    career_education=education_data,
-                    career_certifications=career_data.get('certifications', []),
-                    og_type="website"
-                )
-            else:
-                final_html = template.render(
-                    base_url=BASE_URL, site_url=SITE_URL, current_url=current_url, 
-                    title=page_title, og_type="website"
-                )
-                
+                ctx.update({
+                    'career_timeline': career_data.get('timeline', []),
+                    'career_awards': career_data.get('awards', []),
+                    'career_community': community_data,
+                    'career_education': education_data,
+                    'career_certifications': career_data.get('certifications', [])
+                })
+
+            final_html = render_with_csp(template, **ctx)
+            
             with open(os.path.join(PUBLIC_DIR, page), 'w', encoding='utf-8') as f:
                 f.write(final_html)
         except Exception as e:

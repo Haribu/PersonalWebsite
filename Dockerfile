@@ -38,10 +38,10 @@ EXPOSE 8080
 CMD ["sh", "-c", "python execution/build_site.py && python execution/verify_build.py && python -m http.server 8080 -d website/public"]
 
 # Stage 3: Production (Optimized Nginx deployment)
-FROM nginx:alpine AS prod
+FROM nginxinc/nginx-unprivileged:stable-alpine AS prod
 
-# Expose standard HTTP port
-EXPOSE 80
+# Expose non-root HTTP port (8080)
+EXPOSE 8080
 
 # Serve static files built in the builder stage
 COPY --from=builder /app/website/public /usr/share/nginx/html

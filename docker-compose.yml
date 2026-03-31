@@ -11,4 +11,4 @@ services:
       - ./execution:/app/execution
     # The default command rebuilds the site and starts the server
     command: >
-      sh -c "python execution/build_site.py && python -m http.server 8080 -d website/public"
+      sh -c "python execution/build_site.py && python execution/verify_build.py && python -m http.server 8080 -d website/public"
