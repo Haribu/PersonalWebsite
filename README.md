@@ -32,9 +32,10 @@ For more details on interacting with the architecture as an agent, please refere
 
 ## 🌐 Directory Structure
 
+* `.agents/` - Automated workflows (e.g., local and remote deployments) to orchestrate agent operations.
 * `.github/` - GitHub Actions workflows for continuous integration, security scanning, and deployment straight to GitHub Pages.
 * `directives/` - Markdown SOPs defining specific agent logic.
-* `execution/` - Core Python generation scripts (`build_site.py`).
+* `execution/` - Core Python engine scripts (`build_site.py` for SSG compilation, `verify_build.py` for CSP cryptographic auditing).
 * `skills/` - Extensible Agent personas guiding specialized execution (PM, UX, Optimization, etc.).
 * `website/` - The core frontend interface.
   * `assets/` - CSS variable-driven design systems (glassmorphism UI) and JS UI hydration logic.

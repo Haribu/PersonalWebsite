@@ -13,6 +13,7 @@ COPY website/ website/
 
 # Build the site statically
 RUN python execution/build_site.py
+RUN python execution/verify_build.py
 
 # Stage 2: Development / Test (Matches legacy behavior for docker-compose)
 FROM python:3.12-slim AS dev
@@ -34,7 +35,7 @@ RUN chown -R appuser:appgroup /app
 USER appuser
 EXPOSE 8080
 
-CMD ["sh", "-c", "python execution/build_site.py && python -m http.server 8080 -d website/public"]
+CMD ["sh", "-c", "python execution/build_site.py && python execution/verify_build.py && python -m http.server 8080 -d website/public"]
 
 # Stage 3: Production (Optimized Nginx deployment)
 FROM nginx:alpine AS prod
