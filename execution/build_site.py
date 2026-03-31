@@ -1,10 +1,15 @@
 import os
+import re
 import markdown
 import frontmatter
 import yaml
 from jinja2 import Environment, FileSystemLoader
 import shutil
 from datetime import datetime
+
+# Compiled Regex for HTML parsing
+IMG_REGEX = re.compile(r'<img[^>]+src="([^">]+)"')
+TAG_REGEX = re.compile(r'<[^>]+>')
 
 # GitHub Pages serves from a subpath (/PersonalWebsite). Local uses root (/).
 BASE_URL = '/PersonalWebsite' if os.environ.get('GITHUB_ACTIONS') else ''
@@ -69,12 +74,11 @@ def build_blog():
             
             out_filename = filename.replace('.md', '.html')
             
-            import re
-            img_match = re.search(r'<img[^>]+src="([^">]+)"', html_content)
+            img_match = IMG_REGEX.search(html_content)
             thumbnail = img_match.group(1).replace('{{ base_url }}', BASE_URL) if img_match else ''
 
             # Approximate reading time: 200 words per minute
-            word_count = len(re.sub(r'<[^>]+>', '', html_content).split())
+            word_count = len(TAG_REGEX.sub('', html_content).split())
             read_time = max(1, word_count // 200)
 
             # Store post metadata for the index page

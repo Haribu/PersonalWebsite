@@ -41,7 +41,7 @@
     </div>
 </header>
 
-    <h2 id="experience" class="mt-0 gradient-text">Employment History</h2>
+    <h2 id="experience" class="mt-0 gradient-text">Roles & Experience</h2>
     <p class="section-description" style="color: var(--text-secondary); margin-bottom: 2rem;">An overview of my professional roles, key responsibilities, and achievements across various organisations.</p>
     
     <div class="timeline">
@@ -50,7 +50,7 @@
             <div class="card card-timeline">
                 <div class="timeline-header">
                     <h3 class="timeline-title">
-                        {% if item.logo %}<img src="{{ base_url }}/assets/{{ item.logo }}" alt="{{ item.company }} Logo" class="company-logo">{% endif %}
+                        {% if item.logo %}<img src="{{ base_url }}/assets/{{ item.logo }}" alt="{{ item.company }}" class="company-logo" loading="lazy" decoding="async">{% endif %}
                         {{ item.title }}
                     </h3>
                     {% if item.date %}<span class="timeline-date">{{ item.date }}</span>{% endif %}
@@ -95,7 +95,7 @@
     </div>
 
     <div id="community" class="carousel-section">
-        <h2 class="career-section-title gradient-text">Community</h2>
+        <h2 class="career-section-title gradient-text">Community & Charity</h2>
         <p class="section-description" style="color: var(--text-secondary); margin-bottom: 2rem;">Contribution to communities, sectors and organisations in a voluntary capacity.</p>
         <div class="glass-masonry">
             {% for comm in career_community %}

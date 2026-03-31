@@ -14,7 +14,7 @@
         <a href="{{ featured.url }}" class="featured-post-card">
             {% if featured.thumbnail %}
             <div class="featured-image-container">
-                <img src="{{ featured.thumbnail }}" class="featured-image-img" alt="Featured Post Thumbnail">
+                <img src="{{ featured.thumbnail }}" class="featured-image-img" alt="" loading="lazy" decoding="async">
             </div>
             {% endif %}
             <div class="featured-content">
@@ -39,7 +39,7 @@
             <a href="{{ post.url }}" class="blog-card">
                 {% if post.thumbnail %}
                 <div class="blog-card-image-container">
-                    <img src="{{ post.thumbnail }}" class="blog-card-image-img" alt="Post Thumbnail">
+                    <img src="{{ post.thumbnail }}" class="blog-card-image-img" alt="" loading="lazy" decoding="async">
                 </div>
                 {% endif %}
                 <div class="blog-card-content">

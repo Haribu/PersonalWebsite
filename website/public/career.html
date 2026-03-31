@@ -28,6 +28,16 @@
     <meta property="og:image" content="https://harrymclaren.github.io/assets/favicon.png">
     
 
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Career &amp; Experience | Harry McLaren, Head of Cyber Defence & Strategic Advisor">
+    <meta name="twitter:description" content="Harry McLaren - Head of Cyber Defence, Writer, and Community Leader.">
+    
+    <meta name="twitter:image" content="https://harrymclaren.github.io/assets/favicon.png">
+    
+    
+    <!-- Schema.org JSON-LD -->
+    
     <!-- Google Analytics (Placeholder) -->
     <!-- When enabling, ensure CSP script-src includes https://www.googletagmanager.com -->
     <!-- 
@@ -40,23 +50,44 @@
     </script>
     -->
     
+    <!-- Prevent FOUC (Flash of Unstyled Content) by applying settings synchronously -->
+    <script>
+        (function() {
+            try {
+                if (localStorage.getItem('theme') === 'light') {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                }
+                if (localStorage.getItem('fontPreference') === 'dyslexic') {
+                    document.documentElement.setAttribute('data-font', 'dyslexic');
+                }
+                var storedSize = localStorage.getItem('textSize');
+                if (storedSize) {
+                    document.documentElement.setAttribute('data-text-size', storedSize);
+                }
+            } catch (e) {}
+        })();
+    </script>
+    
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/assets/favicon.png">
     
     <!-- Typography (Deferred to prevent render blocking) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Inter:wght@400;500;600&family=Fira+Code&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Inter:wght@400;500;600&family=Fira+Code&display=swap">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Inter:wght@400;500;600&family=Fira+Code&family=Lexend:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Inter:wght@400;500;600&family=Fira+Code&family=Lexend:wght@400;500;600;700&display=swap">
     <noscript>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Inter:wght@400;500;600&family=Fira+Code&display=swap">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Inter:wght@400;500;600&family=Fira+Code&family=Lexend:wght@400;500;600;700&display=swap">
     </noscript>
     
     <!-- CSS -->
     <link rel="preload" as="style" href="/assets/styles.css">
     <link rel="stylesheet" href="/assets/styles.css">
+    
+    
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <div class="container">
         <header class="site-header">
             <div class="header-inner">
@@ -66,19 +97,57 @@
                 </a>
                 
                 <nav class="main-nav" id="nav-drawer" aria-label="Main navigation">
-                    <a href="/" class="">Home</a>
-                    <a href="/career.html" class="">Career</a>
-                    <a href="/showcase.html" class="">Showcase</a>
-                    <a href="/advisory.html" class="">Advisory</a>
-                    <a href="/blog.html" class="">Blog</a>
-                    <a href="/contact.html" class="">Contact</a>
+                    <a href="/" >Home</a>
+                    <a href="/career.html" >Career</a>
+                    <a href="/showcase.html" >Showcase</a>
+                    <a href="/advisory.html" >Advisory</a>
+                    <a href="/blog.html" >Blog</a>
+                    <a href="/contact.html" >Contact</a>
                 </nav>
 
                 <div class="header-actions">
-                    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Dark/Light Mode">
-                        <svg id="moon-icon" class="theme-icon-hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-                        <svg id="sun-icon" class="theme-icon-visible" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-                    </button>
+                    <div class="appearance-menu-container">
+                        <button id="appearance-toggle" class="appearance-toggle-btn" aria-label="Appearance Settings" aria-expanded="false" aria-controls="appearance-dropdown">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13.5" cy="6.5" r=".5"></circle><circle cx="17.5" cy="10.5" r=".5"></circle><circle cx="8.5" cy="7.5" r=".5"></circle><circle cx="6.5" cy="12.5" r=".5"></circle><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"></path></svg>
+                        </button>
+                        
+                        <div id="appearance-dropdown" class="appearance-dropdown hidden" aria-hidden="true">
+                            <div class="dropdown-header">
+                                <span class="dropdown-title">Appearance</span>
+                            </div>
+                            
+                            <!-- Theme Toggle -->
+                            <div class="dropdown-section">
+                                <label>Theme</label>
+                                <div class="segmented-control">
+                                    <button id="theme-light-btn" class="segment-btn" aria-label="Light Mode" title="Light Mode">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                                    </button>
+                                    <button id="theme-dark-btn" class="segment-btn" aria-label="Dark Mode" title="Dark Mode">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Font Style -->
+                            <div class="dropdown-section">
+                                <label>Dyslexic Font</label>
+                                <button id="font-toggle" class="dropdown-toggle-btn" aria-pressed="false" aria-label="Toggle Dyslexic Font">
+                                    <span class="toggle-switch"></span>
+                                </button>
+                            </div>
+                            
+                            <!-- Text Size -->
+                            <div class="dropdown-section">
+                                <label>Text Size</label>
+                                <div class="stepper-control">
+                                    <button id="text-decrease" class="stepper-btn" aria-label="Decrease Text Size">A-</button>
+                                    <span id="text-size-display" class="stepper-value">100%</span>
+                                    <button id="text-increase" class="stepper-btn" aria-label="Increase Text Size">A+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <button id="nav-toggle" class="nav-toggle-btn" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-drawer">
                         <!-- Hamburger icon -->
                         <svg class="hamburger-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -96,7 +165,7 @@
             </div>
         </header>
 
-        <main class="content">
+        <main id="main-content" class="content">
             
 <header class="page-hero" style="max-width: 100%;">
     <h1>Career & Experience</h1>
@@ -138,7 +207,7 @@
     </div>
 </header>
 
-    <h2 id="experience" class="mt-0 gradient-text">Employment History</h2>
+    <h2 id="experience" class="mt-0 gradient-text">Roles & Experience</h2>
     <p class="section-description" style="color: var(--text-secondary); margin-bottom: 2rem;">An overview of my professional roles, key responsibilities, and achievements across various organisations.</p>
     
     <div class="timeline">
@@ -147,7 +216,7 @@
             <div class="card card-timeline">
                 <div class="timeline-header">
                     <h3 class="timeline-title">
-                        <img src="/assets/logo_tesco.svg" alt="Tesco Logo" class="company-logo">
+                        <img src="/assets/logo_tesco.svg" alt="Tesco" class="company-logo" loading="lazy" decoding="async">
                         Head of Cyber Defence
                     </h3>
                     <span class="timeline-date">Aug 2025 – Present</span>
@@ -168,7 +237,7 @@
             <div class="card card-timeline">
                 <div class="timeline-header">
                     <h3 class="timeline-title">
-                        <img src="/assets/logo_tesco.svg" alt="Tesco Logo" class="company-logo">
+                        <img src="/assets/logo_tesco.svg" alt="Tesco" class="company-logo" loading="lazy" decoding="async">
                         Head of Cybersecurity Engineering
                     </h3>
                     <span class="timeline-date">Feb 2024 – Aug 2025</span>
@@ -189,7 +258,7 @@
             <div class="card card-timeline">
                 <div class="timeline-header">
                     <h3 class="timeline-title">
-                        <img src="/assets/logo_senseon.svg" alt="SenseOn Logo" class="company-logo">
+                        <img src="/assets/logo_senseon.svg" alt="SenseOn" class="company-logo" loading="lazy" decoding="async">
                         Director, Product Management
                     </h3>
                     <span class="timeline-date">Mar 2023 – Jan 2024</span>
@@ -231,7 +300,7 @@
             <div class="card card-timeline">
                 <div class="timeline-header">
                     <h3 class="timeline-title">
-                        <img src="/assets/logo_senseon.svg" alt="SenseOn Logo" class="company-logo">
+                        <img src="/assets/logo_senseon.svg" alt="SenseOn" class="company-logo" loading="lazy" decoding="async">
                         Senior Product Manager
                     </h3>
                     <span class="timeline-date">Jan 2022 – Feb 2023</span>
@@ -252,7 +321,7 @@
             <div class="card card-timeline">
                 <div class="timeline-header">
                     <h3 class="timeline-title">
-                        <img src="/assets/logo_adarma.svg" alt="Adarma Security Logo" class="company-logo">
+                        <img src="/assets/logo_adarma.svg" alt="Adarma Security" class="company-logo" loading="lazy" decoding="async">
                         Product Lead, Detection &amp; Response
                     </h3>
                     <span class="timeline-date">Nov 2019 – Jan 2022</span>
@@ -273,7 +342,7 @@
             <div class="card card-timeline">
                 <div class="timeline-header">
                     <h3 class="timeline-title">
-                        <img src="/assets/logo_adarma.svg" alt="Adarma Security Logo" class="company-logo">
+                        <img src="/assets/logo_adarma.svg" alt="Adarma Security" class="company-logo" loading="lazy" decoding="async">
                         Managing Consultant
                     </h3>
                     <span class="timeline-date">Jan 2018 – Nov 2019</span>
@@ -294,7 +363,7 @@
             <div class="card card-timeline">
                 <div class="timeline-header">
                     <h3 class="timeline-title">
-                        <img src="/assets/logo_adarma.svg" alt="Adarma Security Logo" class="company-logo">
+                        <img src="/assets/logo_adarma.svg" alt="Adarma Security" class="company-logo" loading="lazy" decoding="async">
                         Senior Security Consultant
                     </h3>
                     <span class="timeline-date">Jan 2017 – Dec 2017</span>
@@ -315,7 +384,7 @@
             <div class="card card-timeline">
                 <div class="timeline-header">
                     <h3 class="timeline-title">
-                        <img src="/assets/logo_adarma.svg" alt="Adarma Security Logo" class="company-logo">
+                        <img src="/assets/logo_adarma.svg" alt="Adarma Security" class="company-logo" loading="lazy" decoding="async">
                         Security Consultant
                     </h3>
                     <span class="timeline-date">Sep 2014 – Dec 2016</span>
@@ -336,7 +405,7 @@
             <div class="card card-timeline">
                 <div class="timeline-header">
                     <h3 class="timeline-title">
-                        <img src="/assets/logo_adarma.svg" alt="Adarma Security Logo" class="company-logo">
+                        <img src="/assets/logo_adarma.svg" alt="Adarma Security" class="company-logo" loading="lazy" decoding="async">
                         Senior Security Analyst
                     </h3>
                     <span class="timeline-date">May 2013 – Aug 2014</span>
@@ -540,7 +609,7 @@
     </div>
 
     <div id="community" class="carousel-section">
-        <h2 class="career-section-title gradient-text">Community</h2>
+        <h2 class="career-section-title gradient-text">Community & Charity</h2>
         <p class="section-description" style="color: var(--text-secondary); margin-bottom: 2rem;">Contribution to communities, sectors and organisations in a voluntary capacity.</p>
         <div class="glass-masonry">
             
