@@ -11,9 +11,9 @@ from datetime import datetime
 IMG_REGEX = re.compile(r'<img[^>]+src="([^">]+)"')
 TAG_REGEX = re.compile(r'<[^>]+>')
 
-# GitHub Pages serves from a subpath (/PersonalWebsite). Local uses root (/).
-BASE_URL = '/PersonalWebsite' if os.environ.get('GITHUB_ACTIONS') else ''
-DOMAIN = 'https://harrymclaren.github.io'
+# Custom Domain configuration (served from root /)
+BASE_URL = ''
+DOMAIN = 'https://harrymclaren.co.uk'
 SITE_URL = f"{DOMAIN}{BASE_URL}"
 
 # Define paths
@@ -44,6 +44,11 @@ def setup_public_dir():
         if os.path.exists(well_known_dest):
             shutil.rmtree(well_known_dest)
         shutil.copytree(well_known_src, well_known_dest)
+
+    # Generate CNAME file for GitHub Pages Custom Domain binding
+    cname_path = os.path.join(PUBLIC_DIR, 'CNAME')
+    with open(cname_path, 'w', encoding='utf-8') as f:
+        f.write('harrymclaren.co.uk\n')
 
 def build_blog():
     """Convert .md files in content/blog to .html files in public/blog."""
