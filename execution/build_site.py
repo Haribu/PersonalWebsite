@@ -115,6 +115,115 @@ def build_blog():
         
     return posts
 
+# --- Helper Functions ---
+MONTH_MAP = {
+    'jan': 1, 'feb': 2, 'mar': 3, 'apr': 4, 'may': 5, 'jun': 6,
+    'jul': 7, 'aug': 8, 'sep': 9, 'oct': 10, 'nov': 11, 'dec': 12
+}
+
+def parse_start_date(date_str):
+    """Extract a sortable start date from strings like 'Jan 2018 - Present', '2016-2021', '2026'."""
+    if not date_str:
+        return datetime(1900, 1, 1)
+    date_str = str(date_str).strip()
+    
+    # Handle compound ranges: take only the start portion
+    start_part = date_str.split(' - ')[0].split(' – ')[0].strip()
+    
+    # Try "Mon YYYY" format (e.g., "Jan 2018")
+    parts = start_part.split()
+    if len(parts) == 2:
+        month_str = parts[0].lower().rstrip('.')
+        if month_str in MONTH_MAP and parts[1].isdigit():
+            return datetime(int(parts[1]), MONTH_MAP[month_str], 1)
+    
+    # Try plain year (e.g., "2016" or from "2016-2021")
+    if start_part[:4].isdigit():
+        return datetime(int(start_part[:4]), 1, 1)
+    
+    return datetime(1900, 1, 1)
+
+def sort_section_chronologically(sections):
+    """Sort sections and their entries by start date, newest first."""
+    for section in sections:
+        entries = section.get('entries', [])
+        entries.sort(key=lambda e: parse_start_date(e.get('date', '')), reverse=True)
+    # Sort sections by the most recent entry date
+    def section_sort_key(sec):
+        entries = sec.get('entries', [])
+        if not entries:
+            return datetime(1900, 1, 1)
+        return max(parse_start_date(e.get('date', '')) for e in entries)
+    sections.sort(key=section_sort_key, reverse=True)
+    return sections
+
+def _build_showcase_data():
+    """Load and process showcase.yaml data for the showcase page."""
+    showcase_yaml_path = os.path.join(CONTENT_DIR, 'showcase.yaml')
+    showcase_posts = []
+    if os.path.exists(showcase_yaml_path):
+        with open(showcase_yaml_path, 'r', encoding='utf-8') as f:
+            showcase_posts = yaml.safe_load(f) or []
+    
+    # Initialize markdown converter once
+    md = markdown.Markdown(extensions=['fenced_code', 'tables', 'codehilite'])
+    for p in showcase_posts:
+        if p.get('content'):
+            p['content'] = md.convert(p['content']).replace('{{ base_url }}', BASE_URL)
+            md.reset()
+    
+    # Group by year for initial render balance
+    from collections import defaultdict
+    showcase_by_year = defaultdict(list)
+    featured_posts = []
+    
+    # Sort posts by date descending first
+    showcase_posts.sort(key=lambda x: x.get('date', ''), reverse=True)
+    
+    for p in showcase_posts:
+        if p.get('featured'):
+            featured_posts.append(p)
+        else:
+            date_str = p.get('date', '')
+            if date_str and len(date_str) >= 4 and date_str[:4].isdigit():
+                year = date_str[:4]
+            else:
+                year = "Archive"
+            showcase_by_year[year].append(p)
+    
+    # Convert to sorted list of years (descending, but Archive at the end)
+    years_only = [y for y in showcase_by_year.keys() if y.isdigit()]
+    sorted_years = sorted(years_only, reverse=True)
+    if "Archive" in showcase_by_year:
+        sorted_years.append("Archive")
+    
+    grouped_showcase = [{"year": year, "posts": showcase_by_year[year]} for year in sorted_years]
+    
+    # Calculate counts for each category
+    counts = {
+        'all': len(showcase_posts),
+        'speaking': sum(1 for p in showcase_posts if p.get('category') == 'speaking'),
+        'writing': sum(1 for p in showcase_posts if p.get('category') == 'writing'),
+        'event': sum(1 for p in showcase_posts if p.get('category') == 'event')
+    }
+    
+    return featured_posts, grouped_showcase, counts
+
+def _build_career_data():
+    """Load and process career.yaml data for the career page."""
+    career_yaml_path = os.path.join(CONTENT_DIR, 'career.yaml')
+    career_data = {}
+    if os.path.exists(career_yaml_path):
+        with open(career_yaml_path, 'r', encoding='utf-8') as f:
+            career_data = yaml.safe_load(f) or {}
+
+    community_data = career_data.get('community', [])
+    education_data = career_data.get('education', [])
+    sort_section_chronologically(community_data)
+    sort_section_chronologically(education_data)
+    
+    return career_data, community_data, education_data
+
 def build_pages(posts=[]):
     """Build root-level pages (Home, About, Contact)."""
     env = Environment(loader=FileSystemLoader(TEMPLATE_DIR), autoescape=True)
@@ -127,118 +236,23 @@ def build_pages(posts=[]):
             current_url = "/" if page == "index.html" else f"/{page}"
             title_map = {"index.html": None, "advisory.html": "Strategic Advisory", "career.html": "Career & Experience", "contact.html": "Contact", "showcase.html": "Showcase & Contributions"}
             page_title = title_map.get(page)
+            
             if page == 'index.html':
-                final_html = template.render(base_url=BASE_URL, site_url=SITE_URL, current_url=current_url, recent_posts=posts[:2], og_type="website")
+                final_html = template.render(
+                    base_url=BASE_URL, site_url=SITE_URL, current_url=current_url, 
+                    recent_posts=posts[:2], og_type="website"
+                )
             elif page == 'showcase.html':
-                showcase_yaml_path = os.path.join(CONTENT_DIR, 'showcase.yaml')
-                showcase_posts = []
-                if os.path.exists(showcase_yaml_path):
-                    with open(showcase_yaml_path, 'r', encoding='utf-8') as f:
-                        showcase_posts = yaml.safe_load(f) or []
-                
-                # Initialize markdown converter once
-                md = markdown.Markdown(extensions=['fenced_code', 'tables', 'codehilite'])
-                for p in showcase_posts:
-                    if p.get('content'):
-                        p['content'] = md.convert(p['content']).replace('{{ base_url }}', BASE_URL)
-                        md.reset()
-                
-                # Group by year for initial render balance
-                from collections import defaultdict
-                showcase_by_year = defaultdict(list)
-                featured_posts = []
-                
-                # Sort posts by date descending first
-                showcase_posts.sort(key=lambda x: x.get('date', ''), reverse=True)
-                
-                for p in showcase_posts:
-                    if p.get('featured'):
-                        featured_posts.append(p)
-                    else:
-                        date_str = p.get('date', '')
-                        if date_str and len(date_str) >= 4 and date_str[:4].isdigit():
-                            year = date_str[:4]
-                        else:
-                            year = "Archive"
-                        showcase_by_year[year].append(p)
-                
-                # Convert to sorted list of years (descending, but Archive at the end)
-                years_only = [y for y in showcase_by_year.keys() if y.isdigit()]
-                sorted_years = sorted(years_only, reverse=True)
-                if "Archive" in showcase_by_year:
-                    sorted_years.append("Archive")
-                
-                grouped_showcase = [{"year": year, "posts": showcase_by_year[year]} for year in sorted_years]
-                
-                # Calculate counts for each category
-                counts = {
-                    'all': len(showcase_posts),
-                    'speaking': len([p for p in showcase_posts if p.get('category') == 'speaking']),
-                    'writing': len([p for p in showcase_posts if p.get('category') == 'writing']),
-                    'event': len([p for p in showcase_posts if p.get('category') == 'event'])
-                }
-
+                featured_posts, grouped_showcase, counts = _build_showcase_data()
                 final_html = template.render(
                     base_url=BASE_URL, site_url=SITE_URL, current_url=current_url, title=page_title, 
                     featured_posts=featured_posts, 
                     grouped_showcase=grouped_showcase,
                     counts=counts,
-                    og_type="website")
+                    og_type="website"
+                )
             elif page == 'career.html':
-                career_yaml_path = os.path.join(CONTENT_DIR, 'career.yaml')
-                career_data = {}
-                if os.path.exists(career_yaml_path):
-                    with open(career_yaml_path, 'r', encoding='utf-8') as f:
-                        career_data = yaml.safe_load(f) or {}
-                # Extract out for direct loop access in template
-                
-                # --- Helper: parse a start date from date strings for sorting ---
-                MONTH_MAP = {
-                    'jan': 1, 'feb': 2, 'mar': 3, 'apr': 4, 'may': 5, 'jun': 6,
-                    'jul': 7, 'aug': 8, 'sep': 9, 'oct': 10, 'nov': 11, 'dec': 12
-                }
-                
-                def parse_start_date(date_str):
-                    """Extract a sortable start date from strings like 'Jan 2018 - Present', '2016-2021', '2026'."""
-                    if not date_str:
-                        return datetime(1900, 1, 1)
-                    date_str = str(date_str).strip()
-                    
-                    # Handle compound ranges: take only the start portion
-                    start_part = date_str.split(' - ')[0].split(' – ')[0].strip()
-                    
-                    # Try "Mon YYYY" format (e.g., "Jan 2018")
-                    parts = start_part.split()
-                    if len(parts) == 2:
-                        month_str = parts[0].lower().rstrip('.')
-                        if month_str in MONTH_MAP and parts[1].isdigit():
-                            return datetime(int(parts[1]), MONTH_MAP[month_str], 1)
-                    
-                    # Try plain year (e.g., "2016" or from "2016-2021")
-                    if start_part[:4].isdigit():
-                        return datetime(int(start_part[:4]), 1, 1)
-                    
-                    return datetime(1900, 1, 1)
-                
-                def sort_section_chronologically(sections):
-                    """Sort sections and their entries by start date, newest first."""
-                    for section in sections:
-                        entries = section.get('entries', [])
-                        entries.sort(key=lambda e: parse_start_date(e.get('date', '')), reverse=True)
-                    # Sort sections by the most recent entry date
-                    def section_sort_key(sec):
-                        entries = sec.get('entries', [])
-                        if not entries:
-                            return datetime(1900, 1, 1)
-                        return max(parse_start_date(e.get('date', '')) for e in entries)
-                    sections.sort(key=section_sort_key, reverse=True)
-                    return sections
-                
-                community_data = career_data.get('community', [])
-                education_data = career_data.get('education', [])
-                sort_section_chronologically(community_data)
-                sort_section_chronologically(education_data)
-                
+                career_data, community_data, education_data = _build_career_data()
                 final_html = template.render(
                     base_url=BASE_URL, site_url=SITE_URL, current_url=current_url, title=page_title, 
                     career_timeline=career_data.get('timeline', []),
@@ -246,9 +260,14 @@ def build_pages(posts=[]):
                     career_community=community_data,
                     career_education=education_data,
                     career_certifications=career_data.get('certifications', []),
-                    og_type="website")
+                    og_type="website"
+                )
             else:
-                final_html = template.render(base_url=BASE_URL, site_url=SITE_URL, current_url=current_url, title=page_title, og_type="website")
+                final_html = template.render(
+                    base_url=BASE_URL, site_url=SITE_URL, current_url=current_url, 
+                    title=page_title, og_type="website"
+                )
+                
             with open(os.path.join(PUBLIC_DIR, page), 'w', encoding='utf-8') as f:
                 f.write(final_html)
         except Exception as e:
@@ -257,6 +276,7 @@ def build_pages(posts=[]):
             print(f"Skipping {page}, error: {e}")
 
     return [p for p in pages if os.path.exists(os.path.join(PUBLIC_DIR, p))]
+
 
 def build_sitemap_and_robots(posts, pages):
     """Generate sitemap.xml and robots.txt based on generated posts and pages."""

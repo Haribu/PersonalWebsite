@@ -1,6 +1,8 @@
 services:
   website:
-    build: .
+    build: 
+      context: .
+      target: dev
     ports:
       - "8080:8080"
     # To enable live reloading of content when drafting posts, we mount the local blog content directory
