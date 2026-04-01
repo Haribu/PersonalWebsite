@@ -18,7 +18,7 @@ As a Head of Cyber Defence and Strategic Advisor, the technical foundation of th
 This repository is engineered to be collaboratively operated by AI agents (like Claude or Gemini). To bridge the gap between probabilistic Large Language Models and deterministic code infrastructure, the AI operations are split into three layers:
 
 1. **Layer 1: Directive (Intent)**
-   - Living Standard Operating Procedures (SOPs) residing in the `directives/` directory.
+   - Living Standard Operating Procedures (SOPs) residing in the `.agents/workflows/` directory.
    - Natural language instructions that dictate agent boundaries, inputs, tools, and edge cases.
 2. **Layer 2: Orchestration (Decision Making)**
    - The AI Agent environment context. The AI reads directives intelligently, routes functionality through specialized `skills/` (like the `UX_Skill` or `PM_Skill`), and plans implementations autonomously.
@@ -32,9 +32,8 @@ For more details on interacting with the architecture as an agent, please refere
 
 ## 🌐 Directory Structure
 
-* `.agents/` - Automated workflows (e.g., local and remote deployments) to orchestrate agent operations.
+* `.agents/` - Automated workflows and living SOPs (Layer 1 Directives) to orchestrate agent operations.
 * `.github/` - GitHub Actions workflows for continuous integration, security scanning, and deployment straight to GitHub Pages.
-* `directives/` - Markdown SOPs defining specific agent logic.
 * `execution/` - Core Python engine scripts (`build_site.py` for SSG compilation, `verify_build.py` for CSP cryptographic auditing).
 * `skills/` - Extensible Agent personas guiding specialized execution (PM, UX, Optimization, etc.).
 * `website/` - The core frontend interface.

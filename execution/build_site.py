@@ -345,6 +345,16 @@ def build_sitemap_and_robots(posts, pages):
 
 if __name__ == "__main__":
     print("Building static site for Harry McLaren...")
+    
+    # Pre-build Linting
+    import lint_content
+    try:
+        lint_content.main()
+    except SystemExit as e:
+        if e.code != 0:
+            print("[FATAL] Content linting failed! Aborting build process.")
+            sys.exit(1)
+    
     setup_public_dir()
     posts = build_blog()
     pages = build_pages(posts)
