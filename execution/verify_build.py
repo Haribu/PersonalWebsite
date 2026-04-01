@@ -1,6 +1,8 @@
 import sys
 import hashlib
 import base64
+import os
+import re
 
 # Compiled Regex for HTML parsing (Synced with build_site.py)
 SCRIPT_REGEX = re.compile(r'<script\b(?![^>]*\bsrc=)[^>]*>(.*?)</script>', re.IGNORECASE | re.DOTALL)
