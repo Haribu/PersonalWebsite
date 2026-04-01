@@ -3,72 +3,96 @@ timeline:
   company: Tesco
   logo: logo_tesco.svg
   date: Aug 2025 – Present
+  icon: shield
+  accent: cyan
   bullets:
   - Direct responsibility for the unified defensive function across Prevention, Intelligence, Detection, and Incident Response. I oversee the full "intelligence-to-action" lifecycle, with a pragmatic focus on reducing Mean Time to Contain (MTTC) and translating technical risk into executive-level reporting.
 - title: Head of Cybersecurity Engineering
   company: Tesco
   logo: logo_tesco.svg
   date: Feb 2024 – Aug 2025
+  icon: settings
+  accent: cyan
   bullets:
   - Architected the design and efficacy of the global security technology stack, including SOAR and advanced monitoring platforms. Led technical roadmaps and engineering recruitment while providing hands-on crisis expertise during major security incidents.
 - title: Director, Product Management
   company: SenseOn
   logo: logo_senseon.svg
   date: Mar 2023 – Jan 2024
+  icon: layout
+  accent: purple
   bullets:
   - Led strategic initiatives for MITRE ATT&CK coverage. Managed the Security Engineering squad and SIRT. Developed outcome-driven OKRs and established product risk management.
 - title: Advisor (Freelance)
   company: Building Cyber Collective
   logo: ''
   date: Jan 2023 – Jun 2023
+  icon: zap
+  accent: cyan
   bullets:
   - Strategic advisor to cybersecurity founders on XDR, EDR, and SIEM product-market fit.
 - title: Senior Product Manager
   company: SenseOn
   logo: logo_senseon.svg
   date: Jan 2022 – Feb 2023
+  icon: layers
+  accent: purple
   bullets:
   - Defined strategy for multi-cloud detection (AWS/Azure/GCP). Coached detection engineers and collaborated on GTM messaging and competitive analysis.
 - title: Product Lead, Detection & Response
   company: Adarma Security
   logo: logo_adarma.svg
   date: Nov 2019 – Jan 2022
+  icon: activity
+  accent: cyan
   bullets:
   - Directed product vision for 70% of company revenue. Designed SOC Transformation programmes and provided direct line management for software engineers.
 - title: Managing Consultant
   company: Adarma Security
   logo: logo_adarma.svg
   date: Jan 2018 – Nov 2019
+  icon: briefcase
+  accent: cyan
   bullets:
   - Led Splunk enterprise deployments using CI/CD. Developed board-level business cases and mentored senior consultants. AWS Security certified.
 - title: Senior Security Consultant
   company: Adarma Security
   logo: logo_adarma.svg
   date: Jan 2017 – Dec 2017
+  icon: award
+  accent: cyan
   bullets:
   - Appointed Splunk Enablement Lead. Recognised in "Tech 100 for Scotland." Focused on TCO/ROI models and organisational governance.
 - title: Security Consultant
   company: Adarma Security
   logo: logo_adarma.svg
   date: Sep 2014 – Dec 2016
+  icon: search
+  accent: cyan
   bullets:
   - Hands-on SIEM engineering, SOC design, and ISO 27001 assessments for enterprise clients. Recognised as "Best New Cyber Talent" at the 2016 Scottish Cyber Awards for contributions to the field.
 - title: Senior Security Analyst
   company: Adarma Security
   logo: logo_adarma.svg
   date: May 2013 – Aug 2014
+  icon: database
+  accent: cyan
   bullets:
   - SOC analyst for a global bank. Built MI reporting packs and improved SLA accuracy for security alert triage.
 - title: Desktop Support Analyst
   company: BlackRock
   logo: ''
   date: May 2011 – Dec 2012
+  icon: monitor
+  accent: cyan
   bullets:
   - Improved ticket resolution (SLA breaches down from 15% to 1.5%). Led Windows 7 rollout for 500+ users.
 - title: Senior Technician
   company: Hoylake Computer Center
   logo: ''
   date: Jul 2006 – Jul 2010
+  icon: cpu
+  accent: cyan
   bullets:
   - Managed store relocation. Handled hardware diagnostics, repairs, and SOHO network installations.
 awards:
