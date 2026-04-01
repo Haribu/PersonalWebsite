@@ -8,6 +8,7 @@ import shutil
 from datetime import datetime
 import hashlib
 import base64
+import minify_html
 
 # Compiled Regex for HTML parsing
 IMG_REGEX = re.compile(r'<img[^>]+src="([^">]+)"')
@@ -21,28 +22,55 @@ DOMAIN = 'https://harrymclaren.co.uk'
 SITE_URL = f"{DOMAIN}{BASE_URL}"
 
 # CSP Configuration
-CSP_BASE = "default-src 'self'; script-src 'self' https://unpkg.com {hashes}; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; frame-src 'self' https://docs.google.com; upgrade-insecure-requests;"
+CSP_BASE = (
+    "default-src 'self'; "
+    "script-src 'self' {hashes}; "
+    "style-src 'self' 'unsafe-inline'; "
+    "img-src 'self' data:; "
+    "font-src 'self' data:; "
+    "connect-src 'self'; "
+    "frame-ancestors 'none'; "
+    "form-action 'self';"
+)
 
 def calculate_csp_hashes(html_content):
     """Find all inline scripts and return their SHA-256 hashes formatted for CSP."""
     # Find all inline scripts (excluding elements with src attribute) using shared regex
     inline_scripts = SCRIPT_REGEX.findall(html_content)
-    hashes = []
-    for script in inline_scripts:
-        sha256_hash = hashlib.sha256(script.encode('utf-8')).digest()
-        base64_hash = base64.b64encode(sha256_hash).decode('utf-8')
-        hashes.append(f"'sha256-{base64_hash}'")
-    return " ".join(hashes)
+    # Optimized list comprehension for hash generation
+    return " ".join(
+        f"'sha256-{base64.b64encode(hashlib.sha256(script.encode('utf-8')).digest()).decode('utf-8')}'"
+        for script in inline_scripts
+    )
 
 def render_with_csp(template, **context):
     """Render a template once, then find and inject script hashes into a placeholder."""
     # Single Pass: Render with a stable placeholder
-    rendered = template.render(**context, csp_policy="__CSP_POLICY_PLACEHOLDER__")
-    hashes = calculate_csp_hashes(rendered)
+    rendered = template.render(**context, csp_policy="{{ csp_policy }}")
+    
+    # Minify FIRST before hashing inline scripts to prevent mismatches
+    try:
+        html_out = minify_html.minify(rendered, minify_css=True, minify_js=True)
+    except Exception as e:
+        print(f"Warning: HTML minification failed: {e}")
+        html_out = rendered
+        
+    # Calculate hashes from the minified HTML
+    hashes = calculate_csp_hashes(html_out)
     
     # Inject calculated hashes into the placeholder
     final_policy = CSP_BASE.format(hashes=hashes)
-    return rendered.replace("__CSP_POLICY_PLACEHOLDER__", final_policy)
+    
+    # Critical Fix: Ensure the placeholder replacement preserves quotes
+    # The template now uses " {{ csp_policy }} " to encourage minify-html to keep quotes.
+    # We replace the placeholder and the surrounding spaces if they exist.
+    if " {{ csp_policy }} " in html_out:
+        return html_out.replace(" {{ csp_policy }} ", final_policy)
+    # Fallback if quotes were stripped and spaces collapsed
+    if "content={{ csp_policy }}" in html_out:
+         return html_out.replace("content={{ csp_policy }}", f'content="{final_policy}"')
+         
+    return html_out.replace("{{ csp_policy }}", final_policy)
 
 # Define paths
 EXECUTION_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -71,6 +99,39 @@ def setup_public_dir():
         if os.path.exists(well_known_dest):
             shutil.rmtree(well_known_dest)
         shutil.copytree(well_known_src, well_known_dest)
+
+    # Minify CSS and JS Assets + Compress Images
+    from PIL import Image
+    for root, dirs, files in os.walk(public_assets):
+        for file in files:
+            file_path = os.path.join(root, file)
+            if file.endswith('.css'):
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    css_content = f.read()
+                try:
+                    minified = minify_html.minify(f"<style>{css_content}</style>", minify_css=True)
+                    minified_css = minified[7:-8] # strip <style> and </style>
+                    with open(file_path, 'w', encoding='utf-8') as f:
+                        f.write(minified_css)
+                except Exception as e:
+                    print(f"Failed to minify CSS {file}: {e}")
+            elif file.endswith('.js'):
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    js_content = f.read()
+                try:
+                    minified = minify_html.minify(f"<script>{js_content}</script>", minify_js=True)
+                    minified_js = minified[8:-9] # strip <script> and </script>
+                    with open(file_path, 'w', encoding='utf-8') as f:
+                        f.write(minified_js)
+                except Exception as e:
+                    print(f"Failed to minify JS {file}: {e}")
+            elif file.lower().endswith(('.png', '.jpg', '.jpeg')):
+                try:
+                    with Image.open(file_path) as img:
+                        # Optimize images in-place
+                        img.save(file_path, optimize=True, quality=85)
+                except Exception as e:
+                    print(f"Failed to compress image {file}: {e}")
 
     # Generate CNAME file for GitHub Pages Custom Domain binding
     cname_path = os.path.join(PUBLIC_DIR, 'CNAME')
@@ -143,7 +204,9 @@ def build_blog():
 
     # Output the blog index page
     posts.sort(key=lambda x: x['date'], reverse=True)
-    blog_posts = [p for p in posts if p.get('category') not in ['speaking', 'writing', 'event']]
+    # Use Set lookup O(1) instead of List lookup O(N)
+    excluded_categories = {'speaking', 'writing', 'event'}
+    blog_posts = [p for p in posts if p.get('category') not in excluded_categories]
     blog_index_html = render_with_csp(blog_list_template, title="Transmission Log", posts=blog_posts, base_url=BASE_URL, site_url=SITE_URL, current_url="/blog.html", og_type="website")
     with open(os.path.join(PUBLIC_DIR, 'blog.html'), 'w', encoding='utf-8') as f:
         f.write(blog_index_html)

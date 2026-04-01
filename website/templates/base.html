@@ -6,7 +6,7 @@
     <title>{% if title %}{{ title }} | Harry McLaren{% else %}Harry McLaren | Head of Cyber Defence & Strategic Advisor{% endif %}</title>
     
     <!-- Security Best Practices -->
-    <meta http-equiv="Content-Security-Policy" content="__CSP_POLICY_PLACEHOLDER__">
+    <meta http-equiv="Content-Security-Policy" content=" {{ csp_policy }} ">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta name="description" content="{% if summary %}{{ summary }}{% else %}Harry McLaren - Head of Cyber Defence, Writer, and Community Leader.{% endif %}">
@@ -93,15 +93,6 @@
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{ base_url }}/assets/favicon.png">
-    
-    <!-- Typography (Deferred to prevent render blocking) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Inter:wght@400;500;600&family=Fira+Code&family=Lexend:wght@400;500;600;700&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Inter:wght@400;500;600&family=Fira+Code&family=Lexend:wght@400;500;600;700&display=swap">
-    <noscript>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Inter:wght@400;500;600&family=Fira+Code&family=Lexend:wght@400;500;600;700&display=swap">
-    </noscript>
     
     <!-- CSS -->
     <link rel="preload" as="style" href="{{ base_url }}/assets/styles.css">
@@ -223,7 +214,7 @@
             <polyline points="18 15 12 9 6 15"></polyline>
         </svg>
     </button>
-    <script src="https://unpkg.com/lucide@0.344.0/dist/umd/lucide.min.js"></script>
+    <script src="{{ base_url }}/assets/lucide-local.js" defer></script>
     <script src="{{ base_url }}/assets/theme.js" defer></script>
 </body>
 </html>

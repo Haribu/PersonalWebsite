@@ -53,4 +53,4 @@ jobs:
       - name: Install Bandit
         run: pip install bandit
       - name: Run Bandit
-        run: bandit -r website/ -c "bandit.yml" || bandit -r website/ -ll -ii
+        run: bandit -r execution/ website/ -c "bandit.yml" || bandit -r execution/ website/ -ll -ii

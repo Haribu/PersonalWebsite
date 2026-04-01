@@ -3,3 +3,6 @@ Markdown
 MarkupSafe==3.0.3
 python-frontmatter==1.1.0
 PyYAML==6.0.3
+requests
+minify-html
+Pillow
