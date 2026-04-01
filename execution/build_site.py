@@ -21,7 +21,7 @@ DOMAIN = 'https://harrymclaren.co.uk'
 SITE_URL = f"{DOMAIN}{BASE_URL}"
 
 # CSP Configuration
-CSP_BASE = "default-src 'self'; script-src 'self' {hashes}; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; frame-src 'self' https://docs.google.com; upgrade-insecure-requests;"
+CSP_BASE = "default-src 'self'; script-src 'self' https://unpkg.com {hashes}; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; frame-src 'self' https://docs.google.com; upgrade-insecure-requests;"
 
 def calculate_csp_hashes(html_content):
     """Find all inline scripts and return their SHA-256 hashes formatted for CSP."""

@@ -50,12 +50,19 @@
             <div class="card card-timeline">
                 <div class="timeline-header">
                     <h3 class="timeline-title">
-                        {% if item.logo %}<img src="{{ base_url }}/assets/{{ item.logo }}" alt="{{ item.company }}" class="company-logo" loading="lazy" decoding="async">{% endif %}
+                        {% if item.icon %}
+                        <div class="glass-icon-purple" style="display: flex; margin-right: 0.25rem;">
+                            <i data-lucide="{{ item.icon }}" width="20" height="20"></i>
+                        </div>
+                        {% elif item.logo %}
+                        <img src="{{ base_url }}/assets/{{ item.logo }}" alt="{{ item.company }}" class="company-logo" loading="lazy" decoding="async">
+                        {% endif %}
                         {{ item.title }}
                     </h3>
                     {% if item.date %}<span class="timeline-date">{{ item.date }}</span>{% endif %}
                 </div>
                 <div class="timeline-company">{{ item.company }}</div>
+                {% if item.bullets %}
                 <ul class="timeline-list">
                     {% for bullet in item.bullets %}
                     <li>
@@ -64,6 +71,15 @@
                     </li>
                     {% endfor %}
                 </ul>
+                {% endif %}
+                
+                {% if item.resource_link %}
+                <div style="margin-top: 1.25rem; padding-left: 1.5rem;">
+                    <a href="{{ item.resource_link }}" target="_blank" rel="noopener noreferrer" class="glass-action-link" style="font-size: 0.9rem; font-weight: 600;">
+                        Resource &rarr;
+                    </a>
+                </div>
+                {% endif %}
             </div>
         </div>
         {% endfor %}

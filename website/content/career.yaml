@@ -2,36 +2,42 @@ timeline:
 - title: Head of Cyber Defence
   company: Tesco
   logo: logo_tesco.svg
+  icon: shield
   date: Aug 2025 – Present
   bullets:
   - Direct responsibility for the unified defensive function across Prevention, Intelligence, Detection, and Incident Response. I oversee the full "intelligence-to-action" lifecycle, with a pragmatic focus on reducing Mean Time to Contain (MTTC) and translating technical risk into executive-level reporting.
 - title: Head of Cybersecurity Engineering
   company: Tesco
   logo: logo_tesco.svg
+  icon: cpu
   date: Feb 2024 – Aug 2025
   bullets:
   - Architected the design and efficacy of the global security technology stack, including SOAR and advanced monitoring platforms. Led technical roadmaps and engineering recruitment while providing hands-on crisis expertise during major security incidents.
 - title: Director, Product Management
   company: SenseOn
   logo: logo_senseon.svg
+  icon: activity
   date: Mar 2023 – Jan 2024
   bullets:
   - Led strategic initiatives for MITRE ATT&CK coverage. Managed the Security Engineering squad and SIRT. Developed outcome-driven OKRs and established product risk management.
 - title: Advisor (Freelance)
   company: Building Cyber Collective
   logo: ''
+  icon: users
   date: Jan 2023 – Jun 2023
   bullets:
   - Strategic advisor to cybersecurity founders on XDR, EDR, and SIEM product-market fit.
 - title: Senior Product Manager
   company: SenseOn
   logo: logo_senseon.svg
+  icon: bar-chart
   date: Jan 2022 – Feb 2023
   bullets:
   - Defined strategy for multi-cloud detection (AWS/Azure/GCP). Coached detection engineers and collaborated on GTM messaging and competitive analysis.
 - title: Product Lead, Detection & Response
   company: Adarma Security
   logo: logo_adarma.svg
+  icon: zap
   date: Nov 2019 – Jan 2022
   bullets:
   - Directed product vision for 70% of company revenue. Designed SOC Transformation programmes and provided direct line management for software engineers.
@@ -56,18 +62,21 @@ timeline:
 - title: Senior Security Analyst
   company: Adarma Security
   logo: logo_adarma.svg
+  icon: search
   date: May 2013 – Aug 2014
   bullets:
   - SOC analyst for a global bank. Built MI reporting packs and improved SLA accuracy for security alert triage.
 - title: Desktop Support Analyst
   company: BlackRock
   logo: ''
+  icon: monitor
   date: May 2011 – Dec 2012
   bullets:
   - Improved ticket resolution (SLA breaches down from 15% to 1.5%). Led Windows 7 rollout for 500+ users.
 - title: Senior Technician
   company: Hoylake Computer Center
   logo: ''
+  icon: wrench
   date: Jul 2006 – Jul 2010
   bullets:
   - Managed store relocation. Handled hardware diagnostics, repairs, and SOHO network installations.
