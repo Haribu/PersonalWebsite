@@ -1,37 +1,24 @@
 /* UI/UX Design System: Cyber Dark Professional Portfolio */
 
 /* Local Fonts */
-@font-face {
-  font-family: 'Outfit';
-  src: url('/assets/fonts/Outfit-Variable.ttf') format('truetype');
-  font-weight: 100 900;
-  font-display: swap;
-  font-style: normal;
-}
+/* Outfit */
+@font-face { font-family: 'Outfit'; src: url('/assets/fonts/outfit-400.ttf') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Outfit'; src: url('/assets/fonts/outfit-600.ttf') format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Outfit'; src: url('/assets/fonts/outfit-700.ttf') format('truetype'); font-weight: 700; font-style: normal; font-display: swap; }
 
-@font-face {
-  font-family: 'Inter';
-  src: url('/assets/fonts/Inter-Variable.ttf') format('truetype');
-  font-weight: 100 900;
-  font-display: swap;
-  font-style: normal;
-}
+/* Inter */
+@font-face { font-family: 'Inter'; src: url('/assets/fonts/inter-400.ttf') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('/assets/fonts/inter-500.ttf') format('truetype'); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('/assets/fonts/inter-600.ttf') format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
 
-@font-face {
-  font-family: 'Fira Code';
-  src: url('/assets/fonts/FiraCode-Variable.ttf') format('truetype');
-  font-weight: 300 700;
-  font-display: swap;
-  font-style: normal;
-}
+/* Fira Code */
+@font-face { font-family: 'Fira Code'; src: url('/assets/fonts/firacode-400.ttf') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
 
-@font-face {
-  font-family: 'Lexend';
-  src: url('/assets/fonts/Lexend-Variable.ttf') format('truetype');
-  font-weight: 100 900;
-  font-display: swap;
-  font-style: normal;
-}
+/* Lexend */
+@font-face { font-family: 'Lexend'; src: url('/assets/fonts/lexend-400.ttf') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Lexend'; src: url('/assets/fonts/lexend-500.ttf') format('truetype'); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Lexend'; src: url('/assets/fonts/lexend-600.ttf') format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Lexend'; src: url('/assets/fonts/lexend-700.ttf') format('truetype'); font-weight: 700; font-style: normal; font-display: swap; }
 
 :root {
   /* Cyber Dark Color Palette */
