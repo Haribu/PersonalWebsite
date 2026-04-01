@@ -2,6 +2,7 @@
 .env
 credentials.json
 token.json
+*.DS_Store
 
 # IDE
 .vscode/
@@ -18,3 +19,4 @@ venv/
 # Build
 website/public/
 personalwebsite-website
+
