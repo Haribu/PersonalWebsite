@@ -6,14 +6,14 @@
     <title>Strategic Advisory | Harry McLaren</title>
     
     <!-- Security Best Practices -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; frame-src 'self' https://docs.google.com; upgrade-insecure-requests;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-mQ+rJAfEYxpB/uAahPqnOkMn6eGGh61KiKHhfQ0JrdA=' 'sha256-EjOGw6dzo40hdJx3LbawKPwau5UkD1TNUtrMgvDrQbU='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; frame-src 'self' https://docs.google.com; upgrade-insecure-requests;">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta name="description" content="Harry McLaren - Head of Cyber Defence, Writer, and Community Leader.">
     
     <!-- Canonical Link -->
     
-    <link rel="canonical" href="https://harrymclaren.github.io/advisory.html">
+    <link rel="canonical" href="https://harrymclaren.co.uk/advisory.html">
     
 
     <!-- Open Graph (OG) Tags -->
@@ -22,12 +22,22 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Harry McLaren">
     
-    <meta property="og:url" content="https://harrymclaren.github.io/advisory.html">
+    <meta property="og:url" content="https://harrymclaren.co.uk/advisory.html">
     
     
-    <meta property="og:image" content="https://harrymclaren.github.io/assets/favicon.png">
+    <meta property="og:image" content="https://harrymclaren.co.uk/assets/favicon.png">
     
 
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Strategic Advisory | Harry McLaren, Head of Cyber Defence & Strategic Advisor">
+    <meta name="twitter:description" content="Harry McLaren - Head of Cyber Defence, Writer, and Community Leader.">
+    
+    <meta name="twitter:image" content="https://harrymclaren.co.uk/assets/favicon.png">
+    
+    
+    <!-- Schema.org JSON-LD -->
+    
     <!-- Google Analytics (Placeholder) -->
     <!-- When enabling, ensure CSP script-src includes https://www.googletagmanager.com -->
     <!-- 
@@ -40,23 +50,44 @@
     </script>
     -->
     
+    <!-- Prevent FOUC (Flash of Unstyled Content) by applying settings synchronously -->
+    <script>
+        (function() {
+            try {
+                if (localStorage.getItem('theme') === 'light') {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                }
+                if (localStorage.getItem('fontPreference') === 'dyslexic') {
+                    document.documentElement.setAttribute('data-font', 'dyslexic');
+                }
+                var storedSize = localStorage.getItem('textSize');
+                if (storedSize) {
+                    document.documentElement.setAttribute('data-text-size', storedSize);
+                }
+            } catch (e) {}
+        })();
+    </script>
+    
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/assets/favicon.png">
     
     <!-- Typography (Deferred to prevent render blocking) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Inter:wght@400;500;600&family=Fira+Code&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Inter:wght@400;500;600&family=Fira+Code&display=swap">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Inter:wght@400;500;600&family=Fira+Code&family=Lexend:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Inter:wght@400;500;600&family=Fira+Code&family=Lexend:wght@400;500;600;700&display=swap">
     <noscript>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Inter:wght@400;500;600&family=Fira+Code&display=swap">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Inter:wght@400;500;600&family=Fira+Code&family=Lexend:wght@400;500;600;700&display=swap">
     </noscript>
     
     <!-- CSS -->
     <link rel="preload" as="style" href="/assets/styles.css">
     <link rel="stylesheet" href="/assets/styles.css">
+    
+    
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <div class="container">
         <header class="site-header">
             <div class="header-inner">
@@ -66,19 +97,57 @@
                 </a>
                 
                 <nav class="main-nav" id="nav-drawer" aria-label="Main navigation">
-                    <a href="/" class="">Home</a>
-                    <a href="/career.html" class="">Career</a>
-                    <a href="/showcase.html" class="">Showcase</a>
-                    <a href="/advisory.html" class="">Advisory</a>
-                    <a href="/blog.html" class="">Blog</a>
-                    <a href="/contact.html" class="">Contact</a>
+                    <a href="/" >Home</a>
+                    <a href="/career.html" >Career</a>
+                    <a href="/showcase.html" >Showcase</a>
+                    <a href="/advisory.html" >Advisory</a>
+                    <a href="/blog.html" >Blog</a>
+                    <a href="/contact.html" >Contact</a>
                 </nav>
 
                 <div class="header-actions">
-                    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Dark/Light Mode">
-                        <svg id="moon-icon" class="theme-icon-hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-                        <svg id="sun-icon" class="theme-icon-visible" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-                    </button>
+                    <div class="appearance-menu-container">
+                        <button id="appearance-toggle" class="appearance-toggle-btn" aria-label="Appearance Settings" aria-expanded="false" aria-controls="appearance-dropdown">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13.5" cy="6.5" r=".5"></circle><circle cx="17.5" cy="10.5" r=".5"></circle><circle cx="8.5" cy="7.5" r=".5"></circle><circle cx="6.5" cy="12.5" r=".5"></circle><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"></path></svg>
+                        </button>
+                        
+                        <div id="appearance-dropdown" class="appearance-dropdown hidden" aria-hidden="true">
+                            <div class="dropdown-header">
+                                <span class="dropdown-title">Appearance</span>
+                            </div>
+                            
+                            <!-- Theme Toggle -->
+                            <div class="dropdown-section">
+                                <label>Theme</label>
+                                <div class="segmented-control">
+                                    <button id="theme-light-btn" class="segment-btn" aria-label="Light Mode" title="Light Mode">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                                    </button>
+                                    <button id="theme-dark-btn" class="segment-btn" aria-label="Dark Mode" title="Dark Mode">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Font Style -->
+                            <div class="dropdown-section">
+                                <label>Dyslexic Font</label>
+                                <button id="font-toggle" class="dropdown-toggle-btn" aria-pressed="false" aria-label="Toggle Dyslexic Font">
+                                    <span class="toggle-switch"></span>
+                                </button>
+                            </div>
+                            
+                            <!-- Text Size -->
+                            <div class="dropdown-section">
+                                <label>Text Size</label>
+                                <div class="stepper-control">
+                                    <button id="text-decrease" class="stepper-btn" aria-label="Decrease Text Size">A-</button>
+                                    <span id="text-size-display" class="stepper-value">100%</span>
+                                    <button id="text-increase" class="stepper-btn" aria-label="Increase Text Size">A+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <button id="nav-toggle" class="nav-toggle-btn" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-drawer">
                         <!-- Hamburger icon -->
                         <svg class="hamburger-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -96,7 +165,7 @@
             </div>
         </header>
 
-        <main class="content">
+        <main id="main-content" class="content">
             
 <header class="page-hero">
     <h1>Strategic Advisory</h1>
@@ -110,7 +179,7 @@
     <div class="advisory-grid">
         
         <div class="card card-advisory card-advisory-purple">
-            <h3 class="advisory-heading">Non-Executive Director (NED)</h3>
+            <h3 class="advisory-heading gradient-text">Non-Executive Director (NED)</h3>
             <p class="advisory-subtext">
                 Providing independent strategic oversight, constructive challenge, and deep cyber expertise to the boardroom.
             </p>
@@ -131,7 +200,7 @@
         </div>
 
         <div class="card card-advisory card-advisory-purple">
-            <h3 class="advisory-heading">Strategic Advisor</h3>
+            <h3 class="advisory-heading gradient-text">Strategic Advisor</h3>
             <p class="advisory-subtext">
                 Partnering with founders, CISOs, and engineering leaders to evolve security capabilities and product roadmaps.
             </p>
@@ -152,7 +221,7 @@
         </div>
 
         <div class="card card-advisory card-advisory-purple card-full-width">
-            <h3 class="advisory-heading">Charity & Voluntary Advisory</h3>
+            <h3 class="advisory-heading gradient-text">Charity & Voluntary Advisory</h3>
             <p class="advisory-subtext">
                 Contribute to communities, sectors, and organisations in a voluntary capacity.
             </p>
@@ -174,52 +243,55 @@
 
     </div>
 
-    <h2 class="tidir-title">The TIDIR Methodology</h2>
+    <h2 class="tidir-title gradient-text">The TIDIR Methodology</h2>
     <p class="tidir-subtitle">
         A proactive, intelligence-led approach to engineering resilient cybersecurity defence functions.
     </p>
 
     <div class="tidir-pipeline">
         <div class="tidir-node">
-            <h4 class="node-title node-cyan">Threat Intelligence</h4>
+            <h4 class="node-title gradient-text">Threat Intelligence</h4>
             <p class="node-desc">Anticipating actor behaviors and modeling the attack surface to prioritize defense.</p>
         </div>
         <div class="tidir-node">
-            <h4 class="node-title node-cyan">Detection Engineering</h4>
+            <h4 class="node-title gradient-text">Detection Engineering</h4>
             <p class="node-desc">Building robust, logic-driven analytics as code to identify adversary presence.</p>
         </div>
         <div class="tidir-node">
-            <h4 class="node-title node-purple">Investigation</h4>
+            <h4 class="node-title gradient-text">Investigation</h4>
             <p class="node-desc">Rapid triage and deep contextual analysis of alerts to determine blast radius.</p>
         </div>
         <div class="tidir-node">
-            <h4 class="node-title node-purple">Response</h4>
+            <h4 class="node-title gradient-text">Response</h4>
             <p class="node-desc">Automated playbooks and decisive human action to contain and mitigate threats.</p>
         </div>
     </div>
 
-    <h2 class="portfolio-title">Advisory Experience</h2>
+    <h2 class="portfolio-title gradient-text">Advisory Experience</h2>
     <p class="portfolio-subtitle">Sample of organisations I have provided advisory services to, or through.</p>
     <div class="portfolio-grid portfolio-grid-mb">
         <a href="https://www.connectd.com/" target="_blank" rel="noopener noreferrer">
-            <img src="/assets/logo_connectd.png" alt="Connectd Logo">
+            <img src="/assets/logo_connectd.png" alt="Connectd" loading="lazy" decoding="async">
         </a>
         <a href="https://glginsights.com/" target="_blank" rel="noopener noreferrer">
-            <img src="/assets/logo_glg.png" alt="GLG Logo">
+            <img src="/assets/logo_glg.png" alt="GLG" loading="lazy" decoding="async">
         </a>
         <a href="https://prosapient.com/" target="_blank" rel="noopener noreferrer">
-            <img src="/assets/logo_prosapient.png" alt="proSapient Logo">
+            <img src="/assets/logo_prosapient.png" alt="proSapient" loading="lazy" decoding="async">
         </a>
         <a href="https://www.dialectica.io/" target="_blank" rel="noopener noreferrer">
-            <img src="/assets/logo_dialectica.png" alt="Dialectica Logo">
+            <img src="/assets/logo_dialectica.png" alt="Dialectica" loading="lazy" decoding="async">
         </a>
         <a href="https://www.guidepoint.com/" target="_blank" rel="noopener noreferrer">
-            <img src="/assets/logo_guidepoint.png" alt="Guidepoint Logo" class="logo-tall">
+            <img src="/assets/logo_guidepoint.png" alt="Guidepoint" class="logo-tall" loading="lazy" decoding="async">
+        </a>
+        <a href="https://officehours.com/" target="_blank" rel="noopener noreferrer">
+            <img src="/assets/logo_officehours.png" alt="Office Hours" loading="lazy" decoding="async">
         </a>
     </div>
 
     <div class="card card-cta">
-        <h2 class="cta-title">Let's Discuss Your Challenges</h2>
+        <h2 class="cta-title gradient-text">Let's Discuss Your Challenges</h2>
         <p class="cta-desc">If your organisation requires confident, battle-tested cyber leadership at the advisory or board level, I invite you to reach out.</p>
         <a href="/contact.html" class="btn btn-cta">
             Initiate a Conversation

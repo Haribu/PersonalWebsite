@@ -6,52 +6,120 @@ document.addEventListener('DOMContentLoaded', () => {
         content.classList.add('content-visible');
     }
 
-    // Theme Toggle Logic
-    const toggleButton = document.getElementById('theme-toggle');
-    const moonIcon = document.getElementById('moon-icon');
-    const sunIcon = document.getElementById('sun-icon');
+    // Appearance Dropdown Logic
+    const appearanceToggle = document.getElementById('appearance-toggle');
+    const appearanceDropdown = document.getElementById('appearance-dropdown');
     
-    // Function to set theme
+    if (appearanceToggle && appearanceDropdown) {
+        appearanceToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isExpanded = appearanceToggle.getAttribute('aria-expanded') === 'true';
+            appearanceToggle.setAttribute('aria-expanded', !isExpanded);
+            appearanceDropdown.classList.toggle('hidden');
+        });
+
+        // Close when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!appearanceDropdown.contains(e.target) && e.target !== appearanceToggle) {
+                appearanceDropdown.classList.add('hidden');
+                appearanceToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+        
+        // Prevent closing when clicking inside dropdown
+        appearanceDropdown.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+    }
+
+    // Theme Toggle Logic
+    const themeLightBtn = document.getElementById('theme-light-btn');
+    const themeDarkBtn = document.getElementById('theme-dark-btn');
+    
     function setTheme(isLight) {
         if (isLight) {
             document.documentElement.setAttribute('data-theme', 'light');
             localStorage.setItem('theme', 'light');
-            if (moonIcon) {
-                moonIcon.classList.remove('theme-icon-hidden');
-                moonIcon.classList.add('theme-icon-visible');
-            }
-            if (sunIcon) {
-                sunIcon.classList.remove('theme-icon-visible');
-                sunIcon.classList.add('theme-icon-hidden');
-            }
+            if (themeLightBtn) themeLightBtn.classList.add('active');
+            if (themeDarkBtn) themeDarkBtn.classList.remove('active');
         } else {
             document.documentElement.removeAttribute('data-theme');
             localStorage.setItem('theme', 'dark');
-            if (moonIcon) {
-                moonIcon.classList.remove('theme-icon-visible');
-                moonIcon.classList.add('theme-icon-hidden');
-            }
-            if (sunIcon) {
-                sunIcon.classList.remove('theme-icon-hidden');
-                sunIcon.classList.add('theme-icon-visible');
-            }
+            if (themeDarkBtn) themeDarkBtn.classList.add('active');
+            if (themeLightBtn) themeLightBtn.classList.remove('active');
         }
     }
     
-    // Check for saved theme (Apply initial state properly)
+    // UI Hydration for Theme
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'light') {
-        setTheme(true);
+        if (themeLightBtn) themeLightBtn.classList.add('active');
+        if (themeDarkBtn) themeDarkBtn.classList.remove('active');
     } else {
-        setTheme(false);
+        if (themeDarkBtn) themeDarkBtn.classList.add('active');
+        if (themeLightBtn) themeLightBtn.classList.remove('active');
     }
 
-    if (toggleButton) {
-        toggleButton.addEventListener('click', () => {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            setTheme(currentTheme !== 'light');
+    if (themeLightBtn) themeLightBtn.addEventListener('click', () => setTheme(true));
+    if (themeDarkBtn) themeDarkBtn.addEventListener('click', () => setTheme(false));
+
+    // Font Toggle Logic
+    const fontToggleButton = document.getElementById('font-toggle');
+    
+    function setFont(isDyslexic) {
+        if (isDyslexic) {
+            document.documentElement.setAttribute('data-font', 'dyslexic');
+            localStorage.setItem('fontPreference', 'dyslexic');
+            if(fontToggleButton) fontToggleButton.setAttribute('aria-pressed', 'true');
+        } else {
+            document.documentElement.removeAttribute('data-font');
+            localStorage.setItem('fontPreference', 'default');
+            if(fontToggleButton) fontToggleButton.setAttribute('aria-pressed', 'false');
+        }
+    }
+    
+    // UI Hydration for Font
+    const savedFont = localStorage.getItem('fontPreference');
+    if (savedFont === 'dyslexic') {
+        if(fontToggleButton) fontToggleButton.setAttribute('aria-pressed', 'true');
+    } else {
+        if(fontToggleButton) fontToggleButton.setAttribute('aria-pressed', 'false');
+    }
+    
+    if (fontToggleButton) {
+        fontToggleButton.addEventListener('click', () => {
+            const currentFont = document.documentElement.getAttribute('data-font') || savedFont;
+            setFont(currentFont !== 'dyslexic');
         });
     }
+
+    // Text Size Logic
+    const btnDecrease = document.getElementById('text-decrease');
+    const btnIncrease = document.getElementById('text-increase');
+    const sizeDisplay = document.getElementById('text-size-display');
+    
+    let currentTextSize = parseInt(localStorage.getItem('textSize')) || 100;
+    
+    function setTextSize(size) {
+        // Clamp between 90% and 140%
+        size = Math.max(90, Math.min(140, size));
+        currentTextSize = size;
+        
+        document.documentElement.setAttribute('data-text-size', size.toString());
+        localStorage.setItem('textSize', size.toString());
+        
+        if (sizeDisplay) {
+            sizeDisplay.textContent = `${size}%`;
+        }
+    }
+    
+    // UI Hydration for Text Size
+    if (sizeDisplay) {
+        sizeDisplay.textContent = `${currentTextSize}%`;
+    }
+    
+    if (btnDecrease) btnDecrease.addEventListener('click', () => setTextSize(currentTextSize - 10));
+    if (btnIncrease) btnIncrease.addEventListener('click', () => setTextSize(currentTextSize + 10));
 
     // Dynamic Copyright Year
     const yearSpan = document.getElementById('copyright-year');

@@ -1,5 +1,24 @@
 {% extends "base.html" %}
 
+{% block head_extra %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "{{ title }}",
+  "image": [
+    "{% if thumbnail %}{{ site_url }}{{ thumbnail }}{% else %}{{ site_url }}/assets/favicon.png{% endif %}"
+  ],
+  "datePublished": "{{ date }}",
+  "author": {
+    "@type": "Person",
+    "name": "Harry McLaren",
+    "url": "https://www.linkedin.com/in/harrymclaren/"
+  }
+}
+</script>
+{% endblock %}
+
 {% block content %}
 <article class="blog-post">
     <header class="post-header">

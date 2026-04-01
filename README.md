@@ -1,139 +1,108 @@
-# Harry McLaren - Personal Website & AI Orchestration System
+# Harry McLaren — Personal Website
 
-This repository contains the source code for Harry McLaren's static, markdown-powered personal website, as well as the 3-Layer AI Agent Architecture used to collaboratively build, manage, and maintain it. 
+This repository contains the source code for [Harry McLaren's](https://harrymclaren.github.io) highly performant, static personal website. It simultaneously serves as the host repository for a **3-Layer AI Agent Architecture**, allowing autonomous and semi-autonomous AI systems to securely build, manage, and maintain the codebase.
 
-## Project Overview
+## 🌟 Key Features
 
-The project is split into two main components:
-1. **The Website (`website/`)**: A highly performant, static, markdown-powered web application built with a strict Content Security Policy.
-2. **The AI Architecture**: A system that separates intent (Layer 1) from decision-making (Layer 2) and deterministic execution (Layer 3), allowing AI agents to systematically manage and update the repository.
+As a Head of Cyber Defence and Strategic Advisor, the technical foundation of this site mirrors professional priorities: security, speed, accessibility, and modern aesthetics.
 
----
-
-## 🏗️ 3-Layer AI Architecture
-
-This repository is designed to be operated by AI agents within a reliable framework to maximize consistency while manipulating the code and content. The mismatch between probabilistic LLMs and deterministic business logic is bridged via:
-
-* **Layer 1: Directive (What to do)**
-  - Living Standard Operating Procedures (SOPs) residing in the `directives/` directory.
-  - Natural language instructions that define agent goals, inputs, tools, and edge cases.
-* **Layer 2: Orchestration (Decision making)**
-  - This is the AI Agent environment (Claude, Gemini, etc.).
-  - The AI reads directives, performs intelligent routing, calls execution scripts, and updates directives as it learns.
-* **Layer 3: Execution (Doing the work)**
-  - Deterministic Python scripts residing in the `execution/` directory.
-
-For more details on interacting with the architecture as an agent, please read [`ai.md`](ai.md).
+- **Security-First Architecture**: Enforces a strict, dynamic Content Security Policy (CSP) with automated SHA-256 script hashing. The production environment is built on a **Hardened Unprivileged Nginx** foundation, enforcing non-root execution (UID 101) to minimize attack surface.
+- **Automated Verification**: GitHub Actions automatically audits every build via a custom cryptographic verifier (`verify_build.py`), TruffleHog (Secrets), and Bandit (Python SAST).
+- **Accessibility & UX Foundation**: Natively supports Dark/Light mode segmentation, an integrated Dyslexic-Friendly Font switch, and dynamic global text scaling (90% - 140%), fully persisted via local storage. Everything is keyboard and screen-reader navigable.
+- **Technical SEO Optimized**: Automatically builds `sitemap.xml` and `robots.txt` on compilation. Dynamically injects deeply structured `JSON-LD` schemas (Person & BlogPosting) and OpenGraph/Twitter Cards for perfect social media rendering. 
 
 ---
 
-## 🌐 The Website (`website/`)
+## 🏗️ The 3-Layer AI Architecture
 
-The core personal website is generated via a custom static site generator, maintaining a zero-dependency, lightweight footprint.
+This repository is engineered to be collaboratively operated by AI agents (like Claude or Gemini). To bridge the gap between probabilistic Large Language Models and deterministic code infrastructure, the AI operations are split into three layers:
 
-* **Security First:** Strict Content Security Policy (CSP), no backend databases.
-* **Performance:** Minimalist vanilla CSS, no heavy modern JS framing.
-* **Ease of Use:** Content is entirely driven by Markdown configurations or files in `website/content/`.
+1. **Layer 1: Directive (Intent)**
+   - Living Standard Operating Procedures (SOPs) residing in the `directives/` directory.
+   - Natural language instructions that dictate agent boundaries, inputs, tools, and edge cases.
+2. **Layer 2: Orchestration (Decision Making)**
+   - The AI Agent environment context. The AI reads directives intelligently, routes functionality through specialized `skills/` (like the `UX_Skill` or `PM_Skill`), and plans implementations autonomously.
+3. **Layer 3: Execution (Deterministic Output)**
+   - Hardcoded Python routines residing in the `execution/` directory. 
+   - The AI writes or utilizes deterministic scripts (like `build_site.py`) to systematically and safely apply changes across the site without hallucinating logic loops.
 
-### Directory Structure
-* `.github/` - GitHub Actions CI/CD workflows for automatic deployment and security analysis.
-* `.tmp/` - Temporary execution files used during AI processing. (Not committed).
-* `directives/` - Markdown SOPs for AI tools and workflows.
-* `execution/` - Python scripts representing deterministic tools.
-* `skills/` - Custom skill sets that act as agent personas (e.g., UX, Cyber).
-* `website/` - The static website source.
-  * `assets/` - `styles.css` (minimalist design system) and JS theme scripts.
-  * `content/` - YAML data constructs (`career.yaml`, `showcase.yaml`) and the `blog/` markdown folder.
-  * `templates/` - Jinja2 HTML templates used to structure the pages.
-  * `public/` - **DO NOT EDIT.** This folder is auto-generated by the build script and contains the final static HTML.
-  * `build_site.py` - Custom static site generator.
-  * `new_post.py` - Scaffolding helper script.
+For more details on interacting with the architecture as an agent, please reference [`ai.md`](ai.md).
 
 ---
 
-## 📝 How to Maintain Content
+## 🌐 Directory Structure
 
-### 1. Updating Career or Showcase
-Both the Career page and Showcase highlights are powered purely by structured YAML files:
-- Edit `website/content/career.yaml`
-- Edit `website/content/showcase.yaml`
+* `.agents/` - Automated workflows (e.g., local and remote deployments) to orchestrate agent operations.
+* `.github/` - GitHub Actions workflows for continuous integration, security scanning, and deployment straight to GitHub Pages.
+* `directives/` - Markdown SOPs defining specific agent logic.
+* `execution/` - Core Python engine scripts (`build_site.py` for SSG compilation, `verify_build.py` for CSP cryptographic auditing).
+* `skills/` - Extensible Agent personas guiding specialized execution (PM, UX, Optimization, etc.).
+* `website/` - The core frontend interface.
+  * `assets/` - CSS variable-driven design systems (glassmorphism UI) and JS UI hydration logic.
+  * `content/` - YAML data models (`career.yaml`, `showcase.yaml`) and the `.md` blog archive.
+  * `templates/` - Jinja2 HTML templates used to dynamically scaffold the pages.
+  * `public/` - **DO NOT EDIT.** The auto-generated immutable build folder containing the final static HTML output.
 
-#### Career Template (Timeline)
-Copy and paste this into the `timeline:` list:
+---
+
+## 📝 Content Management Guide
+
+The website's data is heavily abstracted from the HTML, allowing for instantaneous, painless updates. 
+
+### 1. Updating the Timeline or Showcase
+The **Career** and **Showcase** pages are powered by structured YAML payloads. Simply copy, paste, and edit these blocks inside `website/content/`.
+
+**Example `career.yaml` entry:**
 ```yaml
-- title: "Your Job Title"
-  company: "Company Name"
-  logo: "logo_filename.svg" # Ensure file exists in website/assets/
-  date: "Month YYYY – Month YYYY"
+- title: "Head of Cyber Defence"
+  company: "CyberCorp"
+  logo: "logo_cybercorp.png" # Place image inside website/assets/
+  date: "Jan 2024 – Present"
   bullets:
-    - "Key achievement or responsibility 1"
-    - "Key achievement or responsibility 2"
+    - "Architected zero-trust frameworks."
 ```
 
-#### Career Template (Volunteer/Education)
-Both follow a similar nested structure:
+**Example `showcase.yaml` entry:**
 ```yaml
-- section: "Organisation Name" # or 'org:' for Education
-  icon: "heart" # or 'book' for Education
-  entries:
-    - title: "Role or Degree Name"
-      desc: "Brief description of impact or grades"
-      date: "YYYY - YYYY"
-```
-
-#### Showcase Template
-Copy and paste this into `showcase.yaml`. The `category` must be exactly one of: `speaking`, `writing`, or `event`.
-```yaml
-- title: "Title of the Contribution"
+- title: "Defending the Modern Enterprise"
   category: "speaking" # speaking | writing | event
-  featured: false      # true to pin to top features
-  date: "YYYY-MM-DD"   # ISO format for sorting
-  external_link: "https://example.com" # Optional
-  summary: "Short one-sentence description" # Optional
+  featured: true
+  date: "2024-03-31" 
+  external_link: "https://example.com/talk"
+  summary: "Keynote presentation at CyberCon."
 ```
 
-### 2. Writing a New Blog Post (Local CLI)
-1. Open your terminal in the `website/` directory.
-2. Run the `new_post.py` script with your title and an optional summary:
-```bash
-python new_post.py "My New Post" -s "This is a short summary."
-```
-3. This will generate a new `.md` file in `website/content/blog/` with the correct date and frontmatter. Open it and start writing!
-
-### 3. Writing a New Blog Post (GitHub Web UI)
-1. Navigate to your repository on GitHub.
-2. Go to `website/content/blog/` and click **Add file** -> **Create new file**.
-3. Name the file with a markdown extension (e.g., `my-new-post.md`).
-4. Copy/paste the frontmatter block at the very top of the file:
+### 2. Drafting a New Blog Post
+Blog posts are written purely in markdown (`.md`). 
+1. Create a new markdown file inside `website/content/blog/` (e.g. `my-new-post.md`).
+2. Add the YAML Frontmatter exactly to the top of the file:
 ```markdown
 ---
-title: "Title of your post"
+title: "Title of your Transmission"
 date: "YYYY-MM-DD"
-summary: "A short 1-2 sentence description for the blog list page."
+summary: "A short 1-2 sentence description for the transmission log feed."
+category: "general"
 ---
-Write your content here...
+Write your markdown content down here...
 ```
-5. Click **Commit changes**.
+3. Commit your changes. The Python engine will dynamically estimate reading times, extract your first image as a thumbnail, wrap it in Schema.org JSON, and compile it!
 
 ---
 
-## 🛠️ Building & Previewing Locally
+## 🛠️ Local Development & Deployment
 
-Whenever you change a template, add a markdown file, or edit YAML content:
-1. Open your terminal in the `website/` folder.
-2. **(Important)** If you deleted a post, wipe the `public/` folder first to prevent ghost artifacts.
-    - Mac/Linux: `rm -rf public/blog/*`
-    - Windows: `Remove-Item -Path "public\blog\*" -Recurse -Force`
-3. Generates the site via Python:
-```bash
-python build_site.py
-```
-*(Alternatively, use `docker compose up --build -d` from the repository root to automatically build and serve the site on `localhost:8080`)*
+Development and verification runs gracefully through Docker, ensuring environment parity.
 
----
+**To rebuild and preview the site locally:**
+1. From the repository root, run the Docker Compose pipeline:
+   ```bash
+   docker-compose up --build -d
+   ```
+2. Navigate your browser to `http://localhost:8080`.
 
-## 🚀 CI/CD & Deployment
+*(Alternatively, you can rebuild the HTML manually by executing `python execution/build_site.py` from the root directory).*
 
-Changes pushed to the `main` branch automatically trigger `.github/workflows/deploy.yml` which rebuilds the static output using `build_site.py` and deploys it directly to **GitHub Pages**.
+## 🚀 CI/CD & Deployment Strategy
 
-Security tests (Trufflehog secret scanning and Bandit SAST scanning) are also executed via GitHub actions upon push (`security.yml`). Dependencies and Actions are strictly pinned via SHA hashes and `requirements.txt` to mitigate supply-chain attacks.
+Changes pushed to the `main` branch automatically trigger `.github/workflows/deploy.yml`. 
+GitHub Actions spins up an isolated Ubuntu runner, compiles `build_site.py` into production-ready HTML, audits the repository against Bandit and Trufflehog rules to guarantee zero secret leakages, and publishes the immutable `public/` directory directly to **GitHub Pages**.
