@@ -82,58 +82,107 @@ TEMPLATE_DIR = os.path.join(WEBSITE_DIR, 'templates')
 PUBLIC_DIR = os.path.join(WEBSITE_DIR, 'public')
 ASSETS_DIR = os.path.join(WEBSITE_DIR, 'assets')
 
-def setup_public_dir():
-    """Ensure public directory exists and copy assets over."""
+def _prepare_public_dirs():
+    """Ensure public directory exists and is clean."""
     if not os.path.exists(PUBLIC_DIR):
         os.makedirs(PUBLIC_DIR)
-        
-    public_assets = os.path.join(PUBLIC_DIR, 'assets')
-    if os.path.exists(public_assets):
-        shutil.rmtree(public_assets)
-    shutil.copytree(ASSETS_DIR, public_assets)
+    
+    # Clean up old generated content, but keep assets if they haven't changed? 
+    # Actually, full rebuild is safer for a static site of this scale.
+    for item in os.listdir(PUBLIC_DIR):
+        item_path = os.path.join(PUBLIC_DIR, item)
+        if os.path.isdir(item_path):
+            shutil.rmtree(item_path)
+        else:
+            os.remove(item_path)
 
-    # Copy .well-known directory for security.txt, etc.
+def _copy_static_files():
+    """Copy non-transformed assets to the public directory."""
+    # Copy Assets (they will be processed in-place later)
+    public_assets = os.path.join(PUBLIC_DIR, 'assets')
+    if os.path.exists(ASSETS_DIR):
+        shutil.copytree(ASSETS_DIR, public_assets)
+
+    # Copy .well-known directory
     well_known_src = os.path.join(WEBSITE_DIR, '.well-known')
     well_known_dest = os.path.join(PUBLIC_DIR, '.well-known')
     if os.path.exists(well_known_src):
-        if os.path.exists(well_known_dest):
-            shutil.rmtree(well_known_dest)
         shutil.copytree(well_known_src, well_known_dest)
 
-    # Minify CSS and JS Assets + Compress Images
+def _process_assets():
+    """Minify CSS/JS and optimize/resize images in the public directory."""
+    public_assets = os.path.join(PUBLIC_DIR, 'assets')
+    if not os.path.exists(public_assets):
+        return
+
     from PIL import Image
     for root, dirs, files in os.walk(public_assets):
         for file in files:
             file_path = os.path.join(root, file)
+            
+            # 1. Minify CSS
             if file.endswith('.css'):
                 with open(file_path, 'r', encoding='utf-8') as f:
                     css_content = f.read()
                 try:
                     minified = minify_html.minify(f"<style>{css_content}</style>", minify_css=True)
-                    minified_css = minified[7:-8] # strip <style> and </style>
+                    minified_css = minified[7:-8] # strip <style> tags
                     with open(file_path, 'w', encoding='utf-8') as f:
                         f.write(minified_css)
                 except Exception as e:
-                    print(f"Failed to minify CSS {file}: {e}")
+                    print(f"  [WARN] Failed to minify CSS {file}: {e}")
+
+            # 2. Minify JS
             elif file.endswith('.js'):
                 with open(file_path, 'r', encoding='utf-8') as f:
                     js_content = f.read()
                 try:
                     minified = minify_html.minify(f"<script>{js_content}</script>", minify_js=True)
-                    minified_js = minified[8:-9] # strip <script> and </script>
+                    minified_js = minified[8:-9] # strip <script> tags
                     with open(file_path, 'w', encoding='utf-8') as f:
                         f.write(minified_js)
                 except Exception as e:
-                    print(f"Failed to minify JS {file}: {e}")
+                    print(f"  [WARN] Failed to minify JS {file}: {e}")
+
+            # 3. Optimize and Resize Images
             elif file.lower().endswith(('.png', '.jpg', '.jpeg')):
                 try:
                     with Image.open(file_path) as img:
-                        # Optimize images in-place
+                        original_size = os.path.getsize(file_path)
+                        
+                        # Special Rule: Favicon Resize (Standard 48x48)
+                        if file == 'favicon.png' and (img.width > 48 or img.height > 48):
+                            img.thumbnail((48, 48), Image.Resampling.LANCZOS)
+                        
+                        # Special Rule: Logo Resize (Max 400px width)
+                        elif file.startswith('logo_') and img.width > 400:
+                            img.thumbnail((400, 400), Image.Resampling.LANCZOS)
+                        
+                        # Special Rule: Header conversion to WebP (keep original for fallback if needed, but here we replace)
+                        if file.startswith('header_') and file.lower().endswith(('.png', '.jpg')):
+                            webp_path = os.path.splitext(file_path)[0] + '.webp'
+                            img.save(webp_path, 'WEBP', quality=85, method=6)
+                            # Update references in build_blog/build_pages if necessary, 
+                            # or just keep both. For now, let's just optimize the original.
+                        
+                        # General Optimization
                         img.save(file_path, optimize=True, quality=85)
+                        
                 except Exception as e:
-                    print(f"Failed to compress image {file}: {e}")
+                    print(f"  [WARN] Failed to process image {file}: {e}")
 
-    # Generate CNAME file for GitHub Pages Custom Domain binding
+def setup_public_dir():
+    """Orchestrate the preparation of the public directory."""
+    print("  Preparing public directory...")
+    _prepare_public_dirs()
+    
+    print("  Copying static assets...")
+    _copy_static_files()
+    
+    print("  Optimizing and minifying assets...")
+    _process_assets()
+
+    # Generate CNAME file for GitHub Pages
     cname_path = os.path.join(PUBLIC_DIR, 'CNAME')
     with open(cname_path, 'w', encoding='utf-8') as f:
         f.write('harrymclaren.co.uk\n')

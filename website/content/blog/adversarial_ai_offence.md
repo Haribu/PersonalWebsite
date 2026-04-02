@@ -4,7 +4,7 @@ date: "2026-03-10"
 summary: "Defenders aren't the only ones using AI. How threat actors are weaponising machine learning."
 ---
 
-![Cyber conflict visualization of two AI entities]({{ base_url }}/assets/header_adversarial_ai.png)
+![Cyber conflict visualization of two AI entities]({{ base_url }}/assets/header_adversarial_ai.webp)
 
 We spend a great deal of time, budget, and executive bandwidth discussing how Artificial Intelligence will bolster our defensive posture. The industry is saturated with promises of AI-powered SOCs, autonomous triage, and neural-network-driven threat hunting. However, amidst this vendor hype, we must acknowledge a deeply uncomfortable truth: threat actors are actively leveraging the exact same technologies to drastically scale their offensive capabilities. 
 
