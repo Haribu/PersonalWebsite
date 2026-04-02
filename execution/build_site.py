@@ -29,6 +29,7 @@ CSP_BASE = (
     "img-src 'self' data:; "
     "font-src 'self' data:; "
     "connect-src 'self'; "
+    "frame-src https://docs.google.com/; "
     "form-action 'self';"
 )
 
