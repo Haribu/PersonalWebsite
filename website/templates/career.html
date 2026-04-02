@@ -29,19 +29,32 @@
     </div>
 
     <!-- Quick Navigation -->
-    <div class="career-nav-container">
-        <span class="career-nav-label">Jump to:</span>
+    <div class="career-nav-controls">
+        <div class="controls-label">
+            <i data-lucide="map-pin" width="16" height="16" class="label-icon"></i>
+            <span>Jump to</span>
+        </div>
         <nav class="career-nav">
-            <a href="#experience" class="career-nav-link">Experience</a>
-            <a href="#awards" class="career-nav-link">Awards</a>
-            <a href="#community" class="career-nav-link">Community</a>
-            <a href="#education" class="career-nav-link">Education</a>
-            <a href="#certifications" class="career-nav-link">Certifications</a>
+            <a href="#experience" class="career-nav-pill">
+                <span class="tab-dot dot-purple"></span> Experience
+            </a>
+            <a href="#awards" class="career-nav-pill">
+                <span class="tab-dot dot-gold"></span> Awards
+            </a>
+            <a href="#community" class="career-nav-pill">
+                <span class="tab-dot dot-cyan"></span> Community
+            </a>
+            <a href="#education" class="career-nav-pill">
+                <span class="tab-dot dot-blue"></span> Education
+            </a>
+            <a href="#certifications" class="career-nav-pill">
+                <span class="tab-dot dot-green"></span> Certifications
+            </a>
         </nav>
     </div>
 </header>
 
-    <h2 id="experience" class="mt-0 gradient-text">Roles & Experience</h2>
+    <h2 id="experience" class="mt-0 gradient-purple">Roles & Experience</h2>
     <p class="section-description" style="color: var(--text-secondary); margin-bottom: 2rem;">An overview of my professional roles, key responsibilities, and achievements across various organisations.</p>
     
     <div class="timeline">
@@ -87,13 +100,13 @@
     </div>
 
     <div id="awards" class="carousel-section">
-        <h2 class="career-section-title gradient-text">Honors & Awards</h2>
+        <h2 class="career-section-title gradient-gold">Honours & Awards</h2>
         <p class="section-description" style="color: var(--text-secondary); margin-bottom: 2rem;">Recognition for my contributions to the cybersecurity industry and community.</p>
         <div class="glass-masonry">
             {% for award in career_awards %}
-            <div class="glass-card card-purple">
+            <div class="glass-card card-gold">
                 <div class="glass-header" style="margin-bottom: 1rem;">
-                    <div class="glass-icon-purple">
+                    <div class="glass-icon-gold">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
                     </div>
                     <h3 class="glass-title">{{ award.org }}</h3>
@@ -111,12 +124,12 @@
         </div>
     </div>
 
-    <div id="community" class="carousel-section">
-        <h2 class="career-section-title gradient-text">Community & Charity</h2>
+    <div class="carousel-section" id="community">
+    <h2 class="career-section-title gradient-cyan">Community & Charity</h2>
         <p class="section-description" style="color: var(--text-secondary); margin-bottom: 2rem;">Contribution to communities, sectors and organisations in a voluntary capacity.</p>
         <div class="glass-masonry">
             {% for comm in career_community %}
-            <div class="glass-card ">
+            <div class="glass-card card-cyan">
                 <div class="glass-header" style="margin-bottom: 1rem;">
                     <div class="glass-icon-cyan">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
@@ -139,14 +152,14 @@
         </div>
     </div>
 
-    <div id="education" class="carousel-section">
-        <h2 class="career-section-title gradient-text">Education</h2>
+    <div class="carousel-section" id="education">
+    <h2 class="career-section-title gradient-blue">Education</h2>
         <p class="section-description" style="color: var(--text-secondary); margin-bottom: 2rem;">Academic background and formal degrees in cybersecurity and related fields.</p>
         <div class="glass-masonry">
             {% for edu in career_education %}
-            <div class="glass-card card-purple">
+            <div class="glass-card card-blue">
                 <div class="glass-header" style="margin-bottom: 1rem;">
-                    <div class="glass-icon-purple">
+                    <div class="glass-icon-blue">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
                     </div>
                     <h3 class="glass-title">{{ edu.org }}</h3>
@@ -167,14 +180,14 @@
         </div>
     </div>
 
-    <div id="certifications" class="carousel-section">
-        <h2 class="career-section-title gradient-text">Certifications</h2>
-        <p class="section-description" style="color: var(--text-secondary); margin-bottom: 2rem;">Professional certifications demonstrating specialized knowledge and commitment to continuous learning.</p>
+    <div class="carousel-section" id="certifications">
+    <h2 class="career-section-title gradient-green">Certifications</h2>
+        <p class="section-description" style="color: var(--text-secondary); margin-bottom: 2rem;">Professional certifications demonstrating specialised knowledge and commitment to continuous learning.</p>
         <div class="glass-masonry">
             {% for cert in career_certifications %}
-            <div class="glass-card ">
-                <div class="glass-header" style="margin-bottom: 0.5rem;">
-                    <div class="glass-icon-cyan">
+            <div class="glass-card card-green">
+        <div class="glass-header" style="margin-bottom: .5rem;">
+            <div class="glass-icon-green">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                     </div>
                     <h3 class="glass-title">{{ cert.org }}</h3>

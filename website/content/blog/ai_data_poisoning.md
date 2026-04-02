@@ -14,7 +14,7 @@ Most security leaders view their telemetry ingestion pipelines as trusted intern
 
 Data poisoning is an insidious risk where adversaries subtly manipulate the training data fed into our security models. Rather than launching a loud, smash-and-grab breach to exfiltrate a database, they slowly, methodically inject malicious activity into the training pipeline over an extended period. 
 
-The rationale behind this is simple but devastating: if an attacker can trick the AI into classifying their specific attack signatures as entirely benign, they effectively render the defense mechanism totally blind to their presence.
+The rationale behind this is simple but devastating: if an attacker can trick the AI into classifying their specific attack signatures as entirely benign, they effectively render the defence mechanism totally blind to their presence.
 
 It is the digital equivalent of a boiling frog. The model's perception of "normal" shifts so gradually that the security team never notices the water getting hotter. By the time a ransomware payload executes, or lateral movement triggers a manual human intervention, the AI has already categorised the entire kill chain as standard weekend service behaviour. 
 
