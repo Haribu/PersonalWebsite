@@ -907,7 +907,6 @@ textarea {
 }
 
 /* Unified Section Navigation (Career & Showcase) */
-/* Unified Section Navigation (Career & Showcase) */
 .career-nav-controls,
 .showcase-controls {
   display: flex;
@@ -1563,14 +1562,6 @@ main.content > section:last-child,
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
 }
 
-.glass-card.card-purple {
-  border-color: rgba(179, 136, 255, 0.2);
-}
-
-.glass-card.card-purple:hover {
-  border-color: var(--accent-purple);
-}
-
 .glass-header {
   display: flex;
   align-items: flex-start;
@@ -1737,13 +1728,6 @@ main.content > section:last-child,
 
 .glass-icon-cyan {
   color: var(--accent-cyan);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.glass-icon-purple {
-  color: var(--accent-purple);
   display: inline-flex;
   align-items: center;
   justify-content: center;
