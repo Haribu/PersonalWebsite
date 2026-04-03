@@ -1,6 +1,6 @@
 # Harry McLaren — Personal Website
 
-This repository contains the source code for [Harry McLaren's](https://harrymclaren.github.io) highly performant, static personal website. It simultaneously serves as the host repository for a **3-Layer AI Agent Architecture**, allowing autonomous and semi-autonomous AI systems to securely build, manage, and maintain the codebase.
+This repository contains the source code for [Harry McLaren's](https://harrymclaren.co.uk) highly performant, static personal website. It simultaneously serves as the host repository for a **3-Layer AI Agent Architecture**, allowing autonomous and semi-autonomous AI systems to securely build, manage, and maintain the codebase.
 
 ## 🌟 Key Features
 
