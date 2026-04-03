@@ -1,4 +1,5 @@
 .tmp
+tmp/
 .env
 credentials.json
 token.json
@@ -18,5 +19,9 @@ venv/
 
 # Build
 website/public/
+execution/public/
 personalwebsite-website
+
+# Logs
+*.log
 

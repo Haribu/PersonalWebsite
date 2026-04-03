@@ -1,6 +1,7 @@
 .git
 .github
 .tmp/
+tmp/
 .env
 credentials.json
 token.json
@@ -10,3 +11,6 @@ __pycache__/
 *.pyo
 venv/
 .venv/
+.agents/
+scripts/
+skills/
