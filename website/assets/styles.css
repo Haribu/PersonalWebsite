@@ -1148,53 +1148,7 @@ main.content > section:last-child,
   transform: scale(1.2);
 }
 
-.timeline-header {
-  display: grid;
-  grid-template-columns: 1fr auto; /* Pinned date column */
-  gap: 1.5rem;
-  align-items: baseline;
-  margin-bottom: 0.5rem;
-}
-
-.timeline-title {
-  margin: 0;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: var(--text-primary);
-}
-
-.timeline-date {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--text-secondary);
-  white-space: nowrap;
-  flex-shrink: 0;
-  text-align: right;
-  font-family: var(--font-body);
-  letter-spacing: 0.02em;
-}
-
-.timeline-company {
-  color: var(--accent-cyan);
-  font-weight: 600;
-  margin-bottom: 1rem;
-  font-size: 1rem;
-}
-
-@media (max-width: 768px) {
-  .timeline-header {
-    grid-template-columns: 1fr;
-    gap: 0.25rem;
-  }
-  
-  .timeline-date {
-    text-align: left;
-    margin-bottom: 0.5rem;
-  }
-}
+/* Timeline header/title/date/company — canonical definitions live in Career Specific Utilities below */
 
 /* TIDIR Diagram */
 .tidir-pipeline {
@@ -1530,7 +1484,7 @@ main.content > section:last-child,
 .edu-desc { font-size: 0.9rem; margin-bottom: 0; }
 .cert-grid { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; }
 .cert-badge {
-  background: linear-gradient(135deg, rgba(0, 229, 255, 0.05), rgba(179, 136, 255, 0.05));
+  background: linear-gradient(135deg, rgba(var(--rgb-cyan), 0.05), rgba(var(--rgb-purple), 0.05));
   border: 1px solid rgba(255, 255, 255, 0.1);
   padding: 0.6rem 1.2rem;
   border-radius: 20px;
@@ -1549,9 +1503,9 @@ main.content > section:last-child,
 
 .cert-badge:hover {
   border-color: var(--accent-purple);
-  background: linear-gradient(135deg, rgba(0, 229, 255, 0.15), rgba(179, 136, 255, 0.15));
+  background: linear-gradient(135deg, rgba(var(--rgb-cyan), 0.15), rgba(var(--rgb-purple), 0.15));
   transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(179, 136, 255, 0.2);
+  box-shadow: 0 6px 15px rgba(var(--rgb-purple), 0.2);
 }
 
 /* Horizontal Scroll Carousel System */
@@ -1615,18 +1569,10 @@ main.content > section:last-child,
 .glass-card.card-blue { --glass-accent-rgb: var(--rgb-blue); border-color: rgba(var(--rgb-blue), 0.2); }
 .glass-card.card-green { --glass-accent-rgb: var(--rgb-green); border-color: rgba(var(--rgb-green), 0.2); }
 
-
 [data-theme="dark"] .glass-card {
   background: rgba(24, 24, 27, 0.4);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-}
-
-.glass-card:hover {
-  transform: translateY(-8px);
-  border-color: var(--accent-cyan);
-  background: var(--bg-surface-hover);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
 }
 
 [data-theme="dark"] .glass-card:hover {
@@ -1642,11 +1588,17 @@ main.content > section:last-child,
 .glass-icon-cyan {
   color: var(--accent-cyan);
   flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .glass-icon-purple {
   color: var(--accent-purple);
   flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .glass-title {
@@ -1790,19 +1742,7 @@ main.content > section:last-child,
 }
 
 /* Showcase Controls & Filtering */
-.glass-icon-purple {
-  color: var(--accent-purple);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.glass-icon-cyan {
-  color: var(--accent-cyan);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
+/* glass-icon-cyan, glass-icon-purple canonical definitions above */
 
 .glass-icon-gold {
   color: var(--accent-speaking);
@@ -1939,9 +1879,7 @@ main.content > section:last-child,
 .filter-event .year-label { color: var(--accent-event); }
 .filter-event .year-line { background: linear-gradient(to right, var(--accent-event), transparent); }
 
-.glass-card.hidden {
-  display: none !important;
-}
+/* .glass-card.hidden and .year-group.hidden covered by the universal .hidden utility below */
 
 /* Category Accents (Badges & Links) */
 .glass-card[data-category="speaking"] .category-badge { background: rgba(255, 213, 79, 0.2) !important; color: var(--accent-speaking) !important; border: 1px solid rgba(255, 213, 79, 0.3); }
@@ -1960,9 +1898,7 @@ main.content > section:last-child,
 .glass-card[data-category="writing"] .category-accent { color: var(--accent-writing) !important; }
 .glass-card[data-category="event"] .category-accent { color: var(--accent-event) !important; }
 
-.year-group.hidden {
-  display: none !important;
-}
+
 
 .no-results {
   text-align: center;
