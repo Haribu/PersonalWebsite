@@ -1,6 +1,6 @@
 ---
 title: "The Automation Paradox: Over-Reliance on Security AI"
-date: "2026-03-11"
+date: "2026-04-04 15:00:00"
 summary: "How blind trust in AI alert triaging degrades analyst intuition and creates new blind spots."
 ---
 

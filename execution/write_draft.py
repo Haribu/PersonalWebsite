@@ -8,6 +8,7 @@ Content is passed via stdin.
 
 import os
 import sys
+import shutil
 import argparse
 from pathlib import Path
 
@@ -21,10 +22,21 @@ def main():
     parser.add_argument("slug", help="Slug for the post filename.")
     args = parser.parse_args()
 
-    # Create drafts directory if it doesn't exist
-    print(f"  → Checking for drafts directory: {DRAFTS_DIR}")
+    # Create/Clean drafts directory
+    print(f"  → Preparing drafts directory: {DRAFTS_DIR}")
+    if os.path.exists(DRAFTS_DIR):
+        print(f"  → Emptying existing drafts directory...")
+        for item in os.listdir(DRAFTS_DIR):
+            item_path = os.path.join(DRAFTS_DIR, item)
+            try:
+                if os.path.isdir(item_path):
+                    shutil.rmtree(item_path)
+                else:
+                    os.unlink(item_path)
+            except Exception as e:
+                print(f"  [WARN] Failed to delete {item_path}: {e}")
     os.makedirs(DRAFTS_DIR, exist_ok=True)
-    print(f"  ✓ Drafts directory verified.")
+    print(f"  ✓ Drafts directory ready.")
 
     # Read content from stdin
     print(f"  → Reading blog post content from stdin...")

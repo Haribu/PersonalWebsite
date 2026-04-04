@@ -13,6 +13,7 @@ import sys
 import json
 import subprocess
 import re
+import shutil
 from datetime import datetime
 
 EXECUTION_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -71,6 +72,25 @@ def parse_frontmatter_and_content(filepath):
         preview = preview[:300] + "..."
 
     return title, words, preview
+
+def cleanup_temporary_files():
+    """Removes all files and subdirectories from the .tmp directory."""
+    print(f"\n  → Cleaning up temporary files in {TMP_DIR}...")
+    if not os.path.exists(TMP_DIR):
+        print("  ✓ .tmp directory does not exist. Skipping.")
+        return
+
+    for item in os.listdir(TMP_DIR):
+        item_path = os.path.join(TMP_DIR, item)
+        try:
+            if os.path.isfile(item_path) or os.path.islink(item_path):
+                os.unlink(item_path)
+            elif os.path.isdir(item_path):
+                shutil.rmtree(item_path)
+        except Exception as e:
+            print(f"  [WARN] Failed to delete {item_path}: {e}")
+
+    print("  ✓ Temporary files cleaned up.")
 
 def main():
     if not os.path.exists(REPORT_PATH):
@@ -179,6 +199,9 @@ def main():
         print(f"  ✓ Issue #{issue_num} closed.")
 
     print("\n🎉 Publish pipeline complete.")
+
+    # 5. Clean up temporary files
+    cleanup_temporary_files()
 
     # Return to main branch
     run_cmd(["git", "checkout", "main"], check=False)

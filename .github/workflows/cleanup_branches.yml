@@ -1,0 +1,38 @@
+name: Cleanup Merged Branches
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  cleanup:
+    # Only run if the PR was merged and not just closed
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Delete head branch
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const branch = context.payload.pull_request.head.ref;
+            const fork = context.payload.pull_request.head.repo.full_name !== context.payload.pull_request.base.repo.full_name;
+            
+            // Never delete main, and don't try to delete branches from forks
+            if (!fork && branch !== 'main') {
+              try {
+                await github.rest.git.deleteRef({
+                  owner,
+                  repo,
+                  ref: `heads/${branch}`,
+                });
+                console.log(`Deleted branch: ${branch}`);
+              } catch (error) {
+                // If it fails (e.g. branch already deleted), don't fail the workflow
+                console.log(`Could not delete branch ${branch}: ${error.message}`);
+              }
+            } else {
+              console.log(`Skipping deletion for branch: ${branch} (fork: ${fork})`);
+            }

@@ -266,11 +266,30 @@ def build_blog():
         word_count = len(TAG_REGEX.sub('', html_content).split())
         read_time = max(1, word_count // 200)
 
+        # Normalize date for sorting (handle date vs datetime objects from frontmatter)
+        from datetime import date as dt_date
+        raw_date = post_data.get('date')
+        if isinstance(raw_date, datetime):
+            sort_date = raw_date
+        elif isinstance(raw_date, dt_date):
+            sort_date = datetime.combine(raw_date, datetime.min.time())
+        elif isinstance(raw_date, str):
+            try:
+                sort_date = datetime.fromisoformat(raw_date.replace('Z', '+00:00'))
+            except ValueError:
+                try:
+                    sort_date = datetime.strptime(raw_date, "%Y-%m-%d")
+                except ValueError:
+                    sort_date = datetime.now()
+        else:
+            sort_date = datetime.now()
+
         # Store post metadata
         external_link = post_data.get('external_link', '')
         post_meta = {
             'title': post_data.get('title', 'Untitled'),
-            'date': post_data.get('date', datetime.now().strftime("%Y-%m-%d")),
+            'date': sort_date.strftime("%Y-%m-%d"),
+            'sort_date': sort_date,
             'summary': post_data.get('summary', ''),
             'category': post_data.get('category', ''),
             'external_link': external_link,
@@ -290,7 +309,7 @@ def build_blog():
             f.write(final_html)
 
     # Output the blog index page
-    posts.sort(key=lambda x: x['date'], reverse=True)
+    posts.sort(key=lambda x: x['sort_date'], reverse=True)
     excluded_categories = {'speaking', 'writing', 'event'}
     blog_posts = [p for p in posts if p.get('category') not in excluded_categories]
     blog_index_html = render_with_csp(blog_list_template, title="Transmission Log", posts=blog_posts, base_url=BASE_URL, site_url=SITE_URL, current_url="/blog.html", og_type="website")
