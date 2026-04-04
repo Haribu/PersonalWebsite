@@ -123,17 +123,24 @@ def stage_post(entry: Dict) -> Dict:
     """
     Stage a single post. Returns a result dict with success status and details.
     """
-    slug = entry["slug"]
-    draft_path = entry["draft_path"]
+    raw_slug = str(entry.get("slug", ""))
+    # Sanitize slug against path traversal
+    slug = re.sub(r"[^a-zA-Z0-9_\-]", "", raw_slug)
+    
+    draft_path = entry.get("draft_path", "")
     image_path = entry.get("image_path")
 
     result = {
-        "slug": slug,
+        "slug": slug if slug else raw_slug,
         "staged": False,
         "dest_path": "",
         "image_staged": False,
         "notes": [],
     }
+    
+    if not slug:
+        result["notes"].append("Invalid slug provided (Path Traversal protection).")
+        return result
 
     # --- Validate draft exists ---
     if not os.path.exists(draft_path):
@@ -150,7 +157,14 @@ def stage_post(entry: Dict) -> Dict:
         markdown_text = f.read()
 
     # --- Create post directory (Page Bundle) ---
-    post_dir = os.path.join(BLOG_CONTENT_DIR, slug)
+    post_dir = os.path.abspath(os.path.join(BLOG_CONTENT_DIR, slug))
+    
+    # Verify post_dir is within BLOG_CONTENT_DIR limits bounds
+    if not post_dir.startswith(os.path.abspath(BLOG_CONTENT_DIR)):
+        result["notes"].append("Path traversal boundaries exceeded.")
+        return result
+        
+    print(f"  → Creating directory: {post_dir}")
     os.makedirs(post_dir, exist_ok=True)
 
     # --- Handle image ---
@@ -168,8 +182,10 @@ def stage_post(entry: Dict) -> Dict:
 
     # --- Write final post ---
     dest_path = os.path.join(post_dir, "index.md")
+    print(f"  → Writing index.md to {dest_path}")
     with open(dest_path, "w", encoding="utf-8") as f:
         f.write(markdown_text)
+    print(f"  ✓ index.md written successfully.")
 
     result["staged"] = True
     result["dest_path"] = dest_path

@@ -82,29 +82,16 @@ python execution/stage_blog_posts.py
 Validates frontmatter, patches `{{ base_url }}` image references, confirms all files
 are in place. Aborts loudly if any post fails validation.
 
-### Step 7 — Branch, commit, push, open PR
+### Step 7 — Publish to GitHub and Clean Up
 ```bash
-git checkout -b draft/weekly-batch-$(date +%Y-%m-%d)
-git add website/content/blog/ website/assets/header_*.png
-git commit -m "draft: weekly blog batch $(date +%Y-%m-%d)"
-git push origin draft/weekly-batch-$(date +%Y-%m-%d)
-gh pr create \
-  --title "[Blog Draft] Week of $(date +%Y-%m-%d) — N post(s)" \
-  --body-file .tmp/pr_body.md \
-  --base main \
-  --assignee "@me"
+python execution/publish_blog_posts.py
 ```
-
-Build `.tmp/pr_body.md` before running `gh pr create`. Include: post titles, word counts,
-source issue links, and first paragraph of each draft as preview.
-
-### Step 8 — Update source issues
-For each processed issue:
-```bash
-gh issue comment <number> --body "✅ Processed — see PR: <pr_url>"
-gh issue edit <number> --remove-label blog-queue --add-label blog-processed
-gh issue close <number>
-```
+This script automates the final pipeline actions:
+1. Creates a local git branch for the weekly batch.
+2. Stages the generated blog contents.
+3. Commits and pushes the branch to remote.
+4. Creates a Pull Request with a dynamically generated description.
+5. Updates all source issues (comments with the PR link, labels as `blog-processed`, and closes them).
 
 ---
 

@@ -18,6 +18,9 @@ import sys
 import json
 from pathlib import Path
 from typing import List, Dict, Optional
+import socket
+import ipaddress
+from urllib.parse import urlparse
 
 import requests
 from dotenv import load_dotenv
@@ -47,6 +50,34 @@ SCRAPE_HEADERS = {
 }
 
 
+def is_safe_url(url: str) -> bool:
+    """
+    Validates that a URL uses http/https and does not resolve to an
+    internal/private IPv4 address (SSRF mitigation).
+    """
+    try:
+        parsed = urlparse(url)
+        if parsed.scheme not in ("http", "https"):
+            print(f"  [WARN] Unsafe URL scheme rejected: {parsed.scheme}")
+            return False
+        
+        hostname = parsed.hostname
+        if not hostname:
+            return False
+            
+        ip_addr = socket.gethostbyname(hostname)
+        ip = ipaddress.ip_address(ip_addr)
+        
+        if ip.is_private or ip.is_loopback or ip.is_link_local or ip.is_multicast or ip.is_unspecified:
+            print(f"  [WARN] SSRF blocked: {hostname} resolves to non-public IP {ip_addr}")
+            return False
+            
+        return True
+    except Exception as e:
+        print(f"  [WARN] URL/DNS validation failed for {url}: {e}")
+        return False
+
+
 def scrape_url(url: str) -> str:
     """
     Attempt to extract clean article text from a URL using trafilatura.
@@ -54,6 +85,9 @@ def scrape_url(url: str) -> str:
     Returns empty string on failure.
     """
     if not url:
+        return ""
+        
+    if not is_safe_url(url):
         return ""
 
     try:
