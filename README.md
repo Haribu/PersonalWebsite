@@ -92,7 +92,7 @@ Alternatively, create the folder and file manually:
 ```markdown
 ---
 title: "Title of your Transmission"
-date: "YYYY-MM-DD"
+date: "YYYY-MM-DD HH:MM:SS"
 summary: "A short 1-2 sentence description for the transmission log feed."
 ---
 
