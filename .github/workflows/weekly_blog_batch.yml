@@ -1,294 +1,101 @@
-name: Weekly Blog Pipeline
+name: Weekly Blog Reminder
 
 on:
   schedule:
-    # Every Monday at 07:00 UTC
-    - cron: '0 7 * * 1'
+    # Sunday 17:00 UTC = 18:00 BST (summer) / 18:00 GMT (winter, 1hr later locally)
+    - cron: '0 17 * * 0'
   workflow_dispatch:
-    # Manual trigger for testing — skips Feedly/Zapier entirely
-    inputs:
-      test_article_url:
-        description: 'Test article URL (optional — bypasses queue, creates a single test issue)'
-        required: false
-        default: ''
 
-# Only one pipeline run at a time
+# Only one run at a time
 concurrency:
-  group: blog-pipeline
-  cancel-in-progress: false
+  group: blog-reminder
+  cancel-in-progress: true
 
 jobs:
-  generate-blog-posts:
+  notify-queue-ready:
     runs-on: ubuntu-latest
     permissions:
-      contents: write       # Push branches, commit files
-      issues: write         # Comment on and close queue issues
-      pull-requests: write  # Open the draft PR
+      issues: write     # Open the reminder issue
+      contents: read    # Checkout repo
 
     steps:
-      # ------------------------------------------------------------------
-      # 1. Checkout
-      # ------------------------------------------------------------------
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GH_PAT }}
-          fetch-depth: 0  # Full history needed for branch creation
 
-      # ------------------------------------------------------------------
-      # 2. Python setup
-      # ------------------------------------------------------------------
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-          cache: 'pip'
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+      - name: Install requests
+        run: pip install requests --quiet
 
-      # ------------------------------------------------------------------
-      # 3. (Optional) Create a test issue for workflow_dispatch test runs
-      # ------------------------------------------------------------------
-      - name: Create test queue issue (workflow_dispatch only)
-        if: github.event_name == 'workflow_dispatch' && inputs.test_article_url != ''
+      - name: Check queue and create reminder issue
         env:
-          GH_TOKEN: ${{ secrets.GH_PAT }}
-        run: |
-          gh issue create \
-            --title "[Queue] Test article: ${{ inputs.test_article_url }}" \
-            --body "## Article Metadata
-          - **URL:** ${{ inputs.test_article_url }}
-          - **Source:** Manual test
-          - **Author:** Unknown
-          - **Date:** $(date -u +%Y-%m-%d)
-
-          ## Article Content (from Feedly)
-          (Test run — content will be scraped from URL)
-
-          ## Harry's Annotations
-          **Highlight:** None
-          **Note:** This is a test run triggered manually via workflow_dispatch." \
-            --label "blog-queue" \
-            --assignee harrymclaren
-
-      # ------------------------------------------------------------------
-      # 4. Fetch the queue
-      # ------------------------------------------------------------------
-      - name: Fetch blog queue from GitHub Issues
-        env:
-          GH_PAT: ${{ secrets.GH_PAT }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          mkdir -p .tmp
-          python execution/fetch_queue.py
-
-      # ------------------------------------------------------------------
-      # 5. Check if queue is empty — exit cleanly if so
-      # ------------------------------------------------------------------
-      - name: Check queue size
-        id: check_queue
-        run: |
-          COUNT=$(python -c "import json; data=json.load(open('.tmp/queue.json')); print(len(data))")
-          echo "count=$COUNT" >> $GITHUB_OUTPUT
-          if [ "$COUNT" -eq "0" ]; then
-            echo "No articles queued this week. Exiting."
-          fi
-
-      # ------------------------------------------------------------------
-      # 6. Scrape articles
-      # ------------------------------------------------------------------
-      - name: Scrape article content
-        if: steps.check_queue.outputs.count != '0'
-        run: python execution/scrape_article.py
-
-      # ------------------------------------------------------------------
-      # 7. Generate blog drafts via Gemini
-      # ------------------------------------------------------------------
-      - name: Generate blog drafts (Gemini 2.5 Pro)
-        if: steps.check_queue.outputs.count != '0'
-        env:
-          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
-        run: python execution/generate_blog_drafts.py
-
-      # ------------------------------------------------------------------
-      # 8. Generate header images via Imagen 4
-      # ------------------------------------------------------------------
-      - name: Generate header images (Imagen 4)
-        if: steps.check_queue.outputs.count != '0'
-        env:
-          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
-        run: python execution/generate_blog_images.py
-
-      # ------------------------------------------------------------------
-      # 9. Stage posts into the repo structure
-      # ------------------------------------------------------------------
-      - name: Stage blog posts
-        if: steps.check_queue.outputs.count != '0'
-        run: python execution/stage_blog_posts.py
-
-      # ------------------------------------------------------------------
-      # 10. Create branch, commit, push
-      # ------------------------------------------------------------------
-      - name: Create draft branch and commit
-        if: steps.check_queue.outputs.count != '0'
-        id: git_commit
-        run: |
-          DATE=$(date -u +%Y-%m-%d)
-          BRANCH="draft/weekly-batch-${DATE}"
-          echo "branch=$BRANCH" >> $GITHUB_OUTPUT
-
-          git config user.name "Blog Pipeline Bot"
-          git config user.email "actions@github.com"
-          git checkout -b "$BRANCH"
-          git add website/content/blog/ website/assets/header_*.png
-          git commit -m "draft: weekly blog batch ${DATE}"
-          git push origin "$BRANCH"
-
-      # ------------------------------------------------------------------
-      # 11. Build PR body from staging report
-      # ------------------------------------------------------------------
-      - name: Build PR description
-        if: steps.check_queue.outputs.count != '0'
-        id: pr_body
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           python - << 'EOF'
-          import json, os, re
+          import json
+          import os
+          import subprocess
+          import sys
 
-          report = json.load(open('.tmp/staging_report.json'))
-          manifest = json.load(open('.tmp/draft_manifest.json'))
-          manifest_by_slug = {m['slug']: m for m in manifest}
+          import requests
 
-          lines = ["## 📝 Weekly Blog Batch\n"]
-          lines.append("| Post | Word Count | Source Issues |")
-          lines.append("|---|---|---|")
+          token = os.environ["GH_TOKEN"]
+          headers = {
+              "Authorization": f"Bearer {token}",
+              "Accept": "application/vnd.github+json",
+              "X-GitHub-Api-Version": "2022-11-28",
+          }
 
-          previews = []
-          for r in report:
-              if not r['staged']:
-                  continue
-              slug = r['slug']
-              m = manifest_by_slug.get(slug, {})
-              title = m.get('suggested_title', slug)
-              issue_nums = r.get('source_issue_numbers', [])
-              issue_links = ', '.join(f"[#{n}](https://github.com/Haribu/PersonalWebsite/issues/{n})" for n in issue_nums)
+          # Fetch all open blog-queue issues
+          r = requests.get(
+              "https://api.github.com/repos/Haribu/PersonalWebsite/issues",
+              params={"labels": "blog-queue", "state": "open", "per_page": 50},
+              headers=headers,
+              timeout=15,
+          )
+          r.raise_for_status()
+          issues = r.json()
+          count = len(issues)
 
-              # Word count from staged file
-              wc = 0
-              if r.get('dest_path') and os.path.exists(r['dest_path']):
-                  with open(r['dest_path']) as f:
-                      text = re.sub(r'<[^>]+>', '', f.read())
-                      text = re.sub(r'---.*?---', '', text, flags=re.DOTALL)
-                  wc = len(text.split())
+          if count == 0:
+              print("No articles in the queue this week. No reminder needed.")
+              sys.exit(0)
 
-              lines.append(f"| **{title}** | ~{wc} words | {issue_links} |")
+          # Build a readable list of queued articles
+          article_lines = "\n".join(
+              f"- [#{i['number']}]({i['html_url']}): {i['title'].removeprefix('[Queue] ')}"
+              for i in issues
+          )
 
-              # First paragraph preview
-              if r.get('dest_path') and os.path.exists(r['dest_path']):
-                  with open(r['dest_path']) as f:
-                      content = f.read()
-                  body = re.sub(r'^---.*?---\s*', '', content, flags=re.DOTALL)
-                  body = re.sub(r'!\[[^\]]*\]\([^\)]+\)', '', body)
-                  paras = [p.strip() for p in body.split('\n\n') if p.strip() and not p.startswith('#')]
-                  if paras:
-                      previews.append(f"### {title}\n\n{paras[0][:400]}...")
+          body = f"""## 📚 {count} Article(s) Ready for Blog Generation
 
-          if previews:
-              lines.append("\n---\n\n### Draft Previews\n")
-              lines.extend(previews)
+          {article_lines}
 
-          lines.append("\n---")
-          lines.append("_Generated by the weekly blog pipeline._")
-          lines.append("_**Approve:** Merge this PR, then run `/deploy_remote` to publish._")
-          lines.append("_**Reject a post:** Delete its `.md` and `header_*.png` files from this branch before merging._")
-          lines.append("_**Reject all:** Close this PR without merging._")
+          ---
+          _Open Antigravity and run `/generate_blog_post` to generate this week's drafts._
+          _Drafts will be written to a new branch and a PR will be opened for your review._"""
 
-          body = '\n'.join(lines)
-          # Write to file — avoids shell quoting issues with GH_OUTPUT
-          with open('.tmp/pr_body.md', 'w') as f:
-              f.write(body)
+          # Dedent (strip leading spaces from heredoc)
+          body = "\n".join(line.lstrip() for line in body.splitlines())
 
-          # Post count for PR title
-          count = len([r for r in report if r['staged']])
-          with open('.tmp/pr_post_count.txt', 'w') as f:
-              f.write(str(count))
+          result = subprocess.run(
+              [
+                  "gh", "issue", "create",
+                  "--title", f"[Blog Queue] {count} article(s) ready to draft",
+                  "--body", body,
+                  "--label", "blog-queue",
+                  "--assignee", "harrymclaren",
+              ],
+              capture_output=True,
+              text=True,
+          )
+
+          if result.returncode != 0:
+              print(f"[ERROR] Failed to create issue: {result.stderr}", file=sys.stderr)
+              sys.exit(1)
+
+          print(f"✅ Reminder issue created: {result.stdout.strip()}")
           EOF
-
-      # ------------------------------------------------------------------
-      # 12. Open pull request
-      # ------------------------------------------------------------------
-      - name: Open pull request
-        if: steps.check_queue.outputs.count != '0'
-        id: open_pr
-        env:
-          GH_TOKEN: ${{ secrets.GH_PAT }}
-        run: |
-          DATE=$(date -u +%Y-%m-%d)
-          COUNT=$(cat .tmp/pr_post_count.txt)
-          BRANCH="${{ steps.git_commit.outputs.branch }}"
-
-          PR_URL=$(gh pr create \
-            --title "[Blog Draft] Week of ${DATE} — ${COUNT} post(s)" \
-            --body-file .tmp/pr_body.md \
-            --base main \
-            --head "$BRANCH" \
-            --assignee harrymclaren)
-
-          echo "pr_url=$PR_URL" >> $GITHUB_OUTPUT
-          echo "PR created: $PR_URL"
-
-      # ------------------------------------------------------------------
-      # 13. Comment on source issues and mark as processed
-      # ------------------------------------------------------------------
-      - name: Update source GitHub Issues
-        if: steps.check_queue.outputs.count != '0'
-        env:
-          GH_TOKEN: ${{ secrets.GH_PAT }}
-          PR_URL: ${{ steps.open_pr.outputs.pr_url }}
-        run: |
-          python - << 'EOF'
-          import json, os, subprocess
-
-          pr_url = os.environ.get('PR_URL', 'N/A')
-          report = json.load(open('.tmp/staging_report.json'))
-
-          processed_issues = set()
-          for r in report:
-              for issue_num in r.get('source_issue_numbers', []):
-                  processed_issues.add(issue_num)
-
-          for num in processed_issues:
-              staged_titles = [
-                  r.get('slug', 'unknown')
-                  for r in report
-                  if num in r.get('source_issue_numbers', []) and r.get('staged')
-              ]
-
-              comment = f"✅ This article has been processed by the weekly blog pipeline.\n\n"
-              if staged_titles:
-                  comment += f"Draft post(s) generated and ready for review: {pr_url}\n"
-              else:
-                  comment += "⚠️ This article was included but its post failed staging (see PR for details).\n"
-
-              # Add comment
-              subprocess.run(['gh', 'issue', 'comment', str(num), '--body', comment], check=True)
-              # Remove blog-queue label, add blog-processed
-              subprocess.run(['gh', 'issue', 'edit', str(num), '--remove-label', 'blog-queue', '--add-label', 'blog-processed'], check=False)
-              # Close the issue
-              subprocess.run(['gh', 'issue', 'close', str(num), '--comment', 'Closing — article has entered the blog pipeline.'], check=False)
-              print(f"  ✓ Updated issue #{num}")
-          EOF
-
-      # ------------------------------------------------------------------
-      # 14. Summary
-      # ------------------------------------------------------------------
-      - name: Pipeline complete
-        if: steps.check_queue.outputs.count != '0'
-        run: |
-          echo "==================================================="
-          echo "✅ Weekly blog pipeline complete."
-          echo "PR: ${{ steps.open_pr.outputs.pr_url }}"
-          echo "Review, edit if needed, and merge to publish."
-          echo "==================================================="
