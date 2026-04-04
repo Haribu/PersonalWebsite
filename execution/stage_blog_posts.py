@@ -171,8 +171,9 @@ def stage_post(entry: Dict) -> Dict:
     if image_path and os.path.exists(image_path):
         dest_image = os.path.join(post_dir, "header.png")
         shutil.copy2(image_path, dest_image)
+        os.remove(image_path)
         result["image_staged"] = True
-        print(f"  ✓ Image staged: {slug}/header.png")
+        print(f"  ✓ Image staged and source removed: {slug}/header.png")
     else:
         result["notes"].append("No header image available — post staged without image.")
         print(f"  [WARN] No image for '{slug}' — staging without it.")

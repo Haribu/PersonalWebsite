@@ -142,7 +142,7 @@ and synthesises from operational experience.
 ```yaml
 ---
 title: "Post Title Here"
-date: "YYYY-MM-DD"
+date: "YYYY-MM-DD HH:MM:SS"
 summary: "A single punchy sentence. Under 160 characters."
 ---
 ```
