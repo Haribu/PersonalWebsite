@@ -16,8 +16,16 @@ Exit codes:
 import os
 import sys
 import json
+from pathlib import Path
+from typing import List, Dict, Optional
 
 import requests
+from dotenv import load_dotenv
+
+# Load .env from project root (Google Drive symlink)
+env_path = Path(__file__).resolve().parent.parent / ".env"
+load_dotenv(env_path)
+
 
 EXECUTION_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(EXECUTION_DIR)
@@ -100,7 +108,7 @@ def scrape_url(url: str) -> str:
     return ""
 
 
-def enrich_articles(queue: list[dict]) -> list[dict]:
+def enrich_articles(queue: List[Dict]) -> List[Dict]:
     """
     For each queued article, ensure full_text is populated.
     Prefers Feedly content; scrapes the URL if it's too thin.

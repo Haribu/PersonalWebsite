@@ -17,9 +17,19 @@ import os
 import sys
 import json
 import re
+import subprocess
 from datetime import datetime, timedelta, timezone
+from pathlib import Path
+from typing import Union, List, Dict, Optional
 
 import requests
+from dotenv import load_dotenv
+
+# Load .env from project root (Google Drive symlink)
+env_path = Path(__file__).resolve().parent.parent / ".env"
+load_dotenv(env_path)
+
+
 
 # ---------------------------------------------------------------------------
 # Config
@@ -35,15 +45,39 @@ OUTPUT_PATH = os.path.join(TMP_DIR, "queue.json")
 
 
 def get_token() -> str:
-    """Resolve GitHub token — prefers GH_PAT, falls back to GITHUB_TOKEN."""
+    """
+    Resolve GitHub token. Priority order:
+      1. GH_PAT env var (from .env)
+      2. GITHUB_TOKEN env var (from .env)
+      3. gh auth token (local gh CLI — works if user is logged in via 'gh auth login')
+    """
     token = os.getenv("GH_PAT") or os.getenv("GITHUB_TOKEN")
-    if not token:
-        print("[FATAL] No GitHub token found. Set GH_PAT or GITHUB_TOKEN.", file=sys.stderr)
-        sys.exit(1)
-    return token
+    if token and not token.startswith("ghp_xxxx") and token != "xxxx":
+        return token
+
+    # Fallback: pull token from the local gh CLI session
+    try:
+        result = subprocess.run(
+            ["gh", "auth", "token"],
+            capture_output=True, text=True, timeout=10
+        )
+        if result.returncode == 0 and result.stdout.strip():
+            print("  Using token from local gh CLI session.")
+            return result.stdout.strip()
+    except (FileNotFoundError, subprocess.TimeoutExpired):
+        pass
+
+    print(
+        "[FATAL] No GitHub token found.\n"
+        "  Options:\n"
+        "  1. Add GH_PAT=<your_token> to your .env file\n"
+        "  2. Run 'gh auth login' to authenticate the gh CLI",
+        file=sys.stderr
+    )
+    sys.exit(1)
 
 
-def github_get(url: str, token: str, params: dict = None) -> dict | list:
+def github_get(url: str, token: str, params: Optional[Dict] = None) -> Union[Dict, List]:
     """Make an authenticated GitHub API GET request."""
     headers = {
         "Authorization": f"Bearer {token}",
@@ -58,7 +92,7 @@ def github_get(url: str, token: str, params: dict = None) -> dict | list:
     return response.json()
 
 
-def parse_issue_body(body: str) -> dict:
+def parse_issue_body(body: str) -> Dict[str, str]:
     """
     Extract structured fields from the Zapier-generated issue body.
 
@@ -131,7 +165,7 @@ def parse_issue_body(body: str) -> dict:
     return result
 
 
-def fetch_issue_comments(issue_number: int, token: str) -> list[str]:
+def fetch_issue_comments(issue_number: int, token: str) -> List[str]:
     """Fetch all human comments on an issue (excludes bot comments)."""
     url = f"https://api.github.com/repos/{REPO}/issues/{issue_number}/comments"
     comments_data = github_get(url, token)
@@ -146,7 +180,7 @@ def fetch_issue_comments(issue_number: int, token: str) -> list[str]:
     return comments
 
 
-def fetch_queue() -> list[dict]:
+def fetch_queue() -> List[Dict]:
     """Fetch and parse all blog-queue issues from the past LOOKBACK_DAYS days."""
     token = get_token()
     cutoff = datetime.now(timezone.utc) - timedelta(days=LOOKBACK_DAYS)

@@ -9,7 +9,8 @@ and runs lint_content.py to validate frontmatter.
 Input:  .tmp/draft_manifest.json
         .tmp/drafts/<slug>.md
         website/assets/header_<slug>.png  (may not exist if image gen failed)
-Output: website/content/blog/<slug>.md
+Output: website/content/blog/<slug>/index.md
+        website/content/blog/<slug>/header.png
         .tmp/staging_report.json
 
 Exit codes:
@@ -23,6 +24,15 @@ import json
 import re
 import shutil
 import subprocess
+from pathlib import Path
+from typing import Tuple, Dict
+
+from dotenv import load_dotenv
+
+# Load .env from project root (Google Drive symlink)
+env_path = Path(__file__).resolve().parent.parent / ".env"
+load_dotenv(env_path)
+
 
 # ---------------------------------------------------------------------------
 # Config
@@ -38,7 +48,7 @@ BLOG_CONTENT_DIR = os.path.join(ROOT_DIR, "website", "content", "blog")
 ASSETS_DIR = os.path.join(ROOT_DIR, "website", "assets")
 
 
-def validate_frontmatter(filepath: str) -> tuple[bool, str]:
+def validate_frontmatter(filepath: str) -> Tuple[bool, str]:
     """
     Basic validation: check the file has a --- frontmatter block with
     required keys (title, date, summary). Full YAML validation is handled
@@ -86,7 +96,7 @@ def patch_image_reference(markdown_text: str, slug: str) -> str:
     or a placeholder.
     """
     # Target the expected header filename pattern
-    correct_ref = f"{{{{ base_url }}}}/assets/header_{slug}.png"
+    correct_ref = "./header.png"
 
     # Match the first image tag in the document
     # Gemini may output: ![...](anything) or ![...](header_slug.png) etc.
@@ -109,7 +119,7 @@ def patch_image_reference(markdown_text: str, slug: str) -> str:
     return markdown_text
 
 
-def stage_post(entry: dict) -> dict:
+def stage_post(entry: Dict) -> Dict:
     """
     Stage a single post. Returns a result dict with success status and details.
     """
@@ -139,13 +149,16 @@ def stage_post(entry: dict) -> dict:
     with open(draft_path, "r", encoding="utf-8") as f:
         markdown_text = f.read()
 
+    # --- Create post directory (Page Bundle) ---
+    post_dir = os.path.join(BLOG_CONTENT_DIR, slug)
+    os.makedirs(post_dir, exist_ok=True)
+
     # --- Handle image ---
     if image_path and os.path.exists(image_path):
-        dest_image = os.path.join(ASSETS_DIR, f"header_{slug}.png")
-        if image_path != dest_image:
-            shutil.copy2(image_path, dest_image)
+        dest_image = os.path.join(post_dir, "header.png")
+        shutil.copy2(image_path, dest_image)
         result["image_staged"] = True
-        print(f"  ✓ Image staged: header_{slug}.png")
+        print(f"  ✓ Image staged: {slug}/header.png")
     else:
         result["notes"].append("No header image available — post staged without image.")
         print(f"  [WARN] No image for '{slug}' — staging without it.")
@@ -154,7 +167,7 @@ def stage_post(entry: dict) -> dict:
     markdown_text = patch_image_reference(markdown_text, slug)
 
     # --- Write final post ---
-    dest_path = os.path.join(BLOG_CONTENT_DIR, f"{slug}.md")
+    dest_path = os.path.join(post_dir, "index.md")
     with open(dest_path, "w", encoding="utf-8") as f:
         f.write(markdown_text)
 
