@@ -97,4 +97,19 @@ echo -e "${YELLOW}Installing/Updating requirements...${NC}"
 ./venv/bin/python3 -m pip install --upgrade pip > /dev/null
 ./venv/bin/python3 -m pip install -r "$(dirname "$0")/../requirements.txt" > /dev/null
 
+# --- 5. GitHub CLI Setup ---
+echo -e "\n${CYAN}--- Checking GitHub CLI ---${NC}"
+if ! command -v gh &> /dev/null; then
+    echo -e "${YELLOW}Installing GitHub CLI (gh) via Homebrew...${NC}"
+    brew install gh
+else
+    echo -e "${GRAY}✓ GitHub CLI is already installed.${NC}"
+fi
+
+echo -e "\n${CYAN}--- GitHub Authentication ---${NC}"
+echo -e "${YELLOW}The generation workflows require GitHub authentication to create Pull Requests.${NC}"
+echo -e "${YELLOW}Note: Fine-grained PATs often fail to create PRs if they lack the 'Workflows' permission.${NC}"
+echo -e "${YELLOW}The most reliable authentication method is to run the following in your terminal:${NC}"
+echo -e "${GREEN}gh auth login${NC}"
+
 echo -e "\n${GREEN}✓ Setup Complete! Your environment is ready.${NC}"

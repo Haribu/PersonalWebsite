@@ -92,7 +92,7 @@ gh pr create \
   --title "[Blog Draft] Week of $(date +%Y-%m-%d) — N post(s)" \
   --body-file .tmp/pr_body.md \
   --base main \
-  --assignee harrymclaren
+  --assignee "@me"
 ```
 
 Build `.tmp/pr_body.md` before running `gh pr create`. Include: post titles, word counts,
@@ -202,4 +202,5 @@ prompt improvements discovered._
 
 | Date | Issue | Fix Applied |
 |---|---|---|
-| — | — | — |
+| 2026-04-04 | PR failed due to repo PR toggle disabled | Enabled pull requests inside repo settings via API. |
+| 2026-04-04 | PR failed due to invalid assignee | Changed `--assignee harrymclaren` to `--assignee "@me"`. |
