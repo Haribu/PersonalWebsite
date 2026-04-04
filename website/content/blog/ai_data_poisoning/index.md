@@ -4,7 +4,7 @@ date: "2026-03-12"
 summary: "Why the data feeding your threat detection models might be your greatest vulnerability."
 ---
 
-![Abstract representation of poisoned data streams]({{ base_url }}/assets/header_data_poisoning.webp)
+![Abstract representation of poisoned data streams](./header.png)
 
 Artificial Intelligence has fundamentally changed how we process logs and identify threats at scale. We now rely heavily on machine learning models to establish baselines of "normal" behaviour and flag anomalies within those massive datasets. Yet, this reliance poses a critical, often ignored question: what exactly happens when the baseline itself is compromised?
 

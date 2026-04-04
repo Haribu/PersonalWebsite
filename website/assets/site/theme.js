@@ -16,12 +16,19 @@ document.addEventListener('DOMContentLoaded', () => {
             const isExpanded = appearanceToggle.getAttribute('aria-expanded') === 'true';
             appearanceToggle.setAttribute('aria-expanded', !isExpanded);
             appearanceDropdown.classList.toggle('hidden');
+            // Toggle inert to properly block/restore focus & AT visibility
+            if (appearanceDropdown.classList.contains('hidden')) {
+                appearanceDropdown.setAttribute('inert', '');
+            } else {
+                appearanceDropdown.removeAttribute('inert');
+            }
         });
 
         // Close when clicking outside
         document.addEventListener('click', (e) => {
             if (!appearanceDropdown.contains(e.target) && e.target !== appearanceToggle) {
                 appearanceDropdown.classList.add('hidden');
+                appearanceDropdown.setAttribute('inert', '');
                 appearanceToggle.setAttribute('aria-expanded', 'false');
             }
         });

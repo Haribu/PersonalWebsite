@@ -31,7 +31,7 @@
     {% if thumbnail %}
     <meta property="og:image" content="{{ site_url }}{{ thumbnail }}">
     {% else %}
-    <meta property="og:image" content="{{ site_url }}/assets/favicon.png">
+    <meta property="og:image" content="{{ site_url }}/assets/brand/favicon.png">
     {% endif %}
 
     <!-- Twitter Card -->
@@ -41,7 +41,7 @@
     {% if thumbnail %}
     <meta name="twitter:image" content="{{ site_url }}{{ thumbnail }}">
     {% else %}
-    <meta name="twitter:image" content="{{ site_url }}/assets/favicon.png">
+    <meta name="twitter:image" content="{{ site_url }}/assets/brand/favicon.png">
     {% endif %}
     
     <!-- Schema.org JSON-LD -->
@@ -52,7 +52,7 @@
       "@type": "Person",
       "name": "Harry McLaren",
       "url": "{{ site_url }}",
-      "image": "{{ site_url }}/assets/favicon.png",
+      "image": "{{ site_url }}/assets/brand/favicon.png",
       "jobTitle": "Head of Cyber Defence & Strategic Advisor",
       "sameAs": [
         "https://www.linkedin.com/in/harrymclaren/",
@@ -82,13 +82,10 @@
     </script>
     
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="{{ base_url }}/assets/favicon.png">
+    <link rel="icon" type="image/png" href="{{ base_url }}/assets/brand/favicon.png">
     
     <!-- CSS -->
-    <link rel="preload" as="style" href="{{ base_url }}/assets/styles.css">
-    <link rel="preload" as="font" href="{{ base_url }}/assets/fonts/outfit-700.ttf" type="font/ttf" crossorigin="anonymous">
-    <link rel="preload" as="font" href="{{ base_url }}/assets/fonts/inter-400.ttf" type="font/ttf" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ base_url }}/assets/styles.css">
+    <link rel="stylesheet" href="{{ base_url }}/assets/site/styles.css">
     
     {% block head_extra %}{% endblock %}
 </head>
@@ -117,7 +114,7 @@
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13.5" cy="6.5" r=".5"></circle><circle cx="17.5" cy="10.5" r=".5"></circle><circle cx="8.5" cy="7.5" r=".5"></circle><circle cx="6.5" cy="12.5" r=".5"></circle><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"></path></svg>
                         </button>
                         
-                        <div id="appearance-dropdown" class="appearance-dropdown hidden" aria-hidden="true">
+                        <div id="appearance-dropdown" class="appearance-dropdown hidden" inert>
                             <div class="dropdown-header">
                                 <span class="dropdown-title">Appearance</span>
                             </div>
@@ -206,7 +203,7 @@
             <polyline points="18 15 12 9 6 15"></polyline>
         </svg>
     </button>
-    <script src="{{ base_url }}/assets/lucide-local.js" defer></script>
-    <script src="{{ base_url }}/assets/theme.js" defer></script>
+    <script src="{{ base_url }}/assets/site/lucide-local.js" defer></script>
+    <script src="{{ base_url }}/assets/site/theme.js" defer></script>
 </body>
 </html>

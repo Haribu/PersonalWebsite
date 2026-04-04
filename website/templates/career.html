@@ -55,7 +55,7 @@
 </header>
 
     <h2 id="experience" class="mt-0 gradient-purple">Roles & Experience</h2>
-    <p class="section-description" style="color: var(--text-secondary); margin-bottom: 2rem;">An high-level timeline and overview of my professional roles, key responsibilities, and achievements across various organisations (detail is available in my <a href="{{ base_url }}/assets/harry_mclaren_resume.pdf" target="_blank" rel="noopener noreferrer">resume</a>).</p>
+    <p class="section-description" style="color: var(--text-secondary); margin-bottom: 2rem;">An high-level timeline and overview of my professional roles, key responsibilities, and achievements across various organisations (detail is available in my <a href="{{ base_url }}/assets/profile/harry_mclaren_resume.pdf" target="_blank" rel="noopener noreferrer">resume</a>).</p>
     
     <div class="timeline">
         {% for item in career_timeline %}
@@ -68,7 +68,7 @@
                             <i data-lucide="{{ item.icon }}" width="20" height="20"></i>
                         </div>
                         {% elif item.logo %}
-                        <img src="{{ base_url }}/assets/{{ item.logo }}" alt="{{ item.company }}" class="company-logo" loading="lazy" decoding="async">
+                        <img src="{{ base_url }}/assets/brand/{{ item.logo }}" alt="{{ item.company }}" class="company-logo" loading="lazy" decoding="async">
                         {% endif %}
                         {{ item.title }}
                     </h3>

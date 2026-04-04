@@ -82,6 +82,9 @@ TEMPLATE_DIR = os.path.join(WEBSITE_DIR, 'templates')
 PUBLIC_DIR = os.path.join(WEBSITE_DIR, 'public')
 ASSETS_DIR = os.path.join(WEBSITE_DIR, 'assets')
 
+# Asset subdirectory names (within ASSETS_DIR and public/assets/)
+ASSET_SUBDIRS = ['site', 'brand', 'profile']
+
 def _prepare_public_dirs():
     """Ensure public directory exists and is clean."""
     if not os.path.exists(PUBLIC_DIR):
@@ -98,10 +101,22 @@ def _prepare_public_dirs():
 
 def _copy_static_files():
     """Copy non-transformed assets to the public directory."""
-    # Copy Assets (they will be processed in-place later)
     public_assets = os.path.join(PUBLIC_DIR, 'assets')
+    os.makedirs(public_assets, exist_ok=True)
+
     if os.path.exists(ASSETS_DIR):
-        shutil.copytree(ASSETS_DIR, public_assets)
+        # Copy structured subdirectories (site/, brand/, profile/)
+        for subdir in ASSET_SUBDIRS:
+            src = os.path.join(ASSETS_DIR, subdir)
+            dst = os.path.join(public_assets, subdir)
+            if os.path.exists(src):
+                shutil.copytree(src, dst)
+
+        # Copy any remaining files at the root of assets/ (e.g. legacy files)
+        for item in os.listdir(ASSETS_DIR):
+            src_path = os.path.join(ASSETS_DIR, item)
+            if os.path.isfile(src_path):
+                shutil.copy2(src_path, os.path.join(public_assets, item))
 
     # Copy .well-known directory
     well_known_src = os.path.join(WEBSITE_DIR, '.well-known')
@@ -188,7 +203,7 @@ def setup_public_dir():
         f.write('harrymclaren.co.uk\n')
 
 def build_blog():
-    """Convert .md files in content/blog to .html files in public/blog."""
+    """Convert folder-based blog posts (content/blog/<slug>/index.md) to HTML."""
     env = Environment(loader=FileSystemLoader(TEMPLATE_DIR), autoescape=True)
     post_template = env.get_template('post.html')
     blog_list_template = env.get_template('blog_list.html')
@@ -196,64 +211,86 @@ def build_blog():
     blog_content_dir = os.path.join(CONTENT_DIR, 'blog')
     if not os.path.exists(blog_content_dir):
         os.makedirs(blog_content_dir)
-        
+
+    output_dir = os.path.join(PUBLIC_DIR, 'blog')
+    os.makedirs(output_dir, exist_ok=True)
+
     posts = []
     
     # Initialize markdown converter once
     md = markdown.Markdown(extensions=['fenced_code', 'tables', 'codehilite'])
 
-    # Process each markdown file
-    for filename in os.listdir(blog_content_dir):
-        if filename.endswith('.md'):
-            filepath = os.path.join(blog_content_dir, filename)
-            
-            # Extract frontmatter and content
-            post_data = frontmatter.load(filepath)
-            
-            # Convert markdown to html
-            html_content = md.convert(post_data.content)
-            md.reset()  # Reset the markdown instance for the next use
-            
-            out_filename = filename.replace('.md', '.html')
-            
-            img_match = IMG_REGEX.search(html_content)
-            thumbnail = img_match.group(1).replace('{{ base_url }}', BASE_URL) if img_match else ''
+    # Process each post directory (slug/index.md)
+    for entry in os.scandir(blog_content_dir):
+        if not entry.is_dir():
+            continue
+        slug = entry.name
+        index_path = os.path.join(entry.path, 'index.md')
+        if not os.path.exists(index_path):
+            print(f"  [WARN] Blog folder '{slug}' has no index.md — skipping.")
+            continue
 
-            # Approximate reading time: 200 words per minute
-            word_count = len(TAG_REGEX.sub('', html_content).split())
-            read_time = max(1, word_count // 200)
+        # Extract frontmatter and content
+        post_data = frontmatter.load(index_path)
 
-            # Store post metadata for the index page
-            external_link = post_data.get('external_link', '')
-            post_meta = {
-                'title': post_data.get('title', 'Untitled'),
-                'date': post_data.get('date', datetime.now().strftime("%Y-%m-%d")),
-                'summary': post_data.get('summary', ''),
-                'category': post_data.get('category', ''),
-                'external_link': external_link,
-                'featured': post_data.get('featured', False),
-                'thumbnail': thumbnail,
-                'read_time': read_time,
-                'url': external_link if external_link else f'{BASE_URL}/blog/{out_filename}',
-                'current_url': f'/blog/{out_filename}',
-                'content': html_content.replace('{{ base_url }}', BASE_URL)
-            }
-            posts.append(post_meta)
-            
-            # Render individual post with dynamic CSP
-            final_html = render_with_csp(post_template, **post_meta, base_url=BASE_URL, site_url=SITE_URL, og_type="article")
-            
-            # Save output
-            output_dir = os.path.join(PUBLIC_DIR, 'blog')
-            if not os.path.exists(output_dir):
-                os.makedirs(output_dir)
-                
-            with open(os.path.join(output_dir, out_filename), 'w', encoding='utf-8') as f:
-                f.write(final_html)
+        # Resolve co-located images: copy to public/assets/blog/<slug>/ and
+        # replace ./filename references with the public URL.
+        public_post_assets = os.path.join(PUBLIC_DIR, 'assets', 'blog', slug)
+        post_asset_url_base = f'{BASE_URL}/assets/blog/{slug}'
+
+        raw_content = post_data.content
+
+        for asset_file in os.listdir(entry.path):
+            if asset_file == 'index.md':
+                continue
+            src = os.path.join(entry.path, asset_file)
+            if os.path.isfile(src):
+                os.makedirs(public_post_assets, exist_ok=True)
+                shutil.copy2(src, os.path.join(public_post_assets, asset_file))
+                # Replace relative ./ references in markdown source
+                raw_content = raw_content.replace(
+                    f'./{asset_file}', f'{post_asset_url_base}/{asset_file}'
+                )
+
+        # Convert markdown to HTML
+        html_content = md.convert(raw_content)
+        md.reset()
+
+        out_filename = f'{slug}.html'
+
+        # Resolve {{ base_url }} in image src attributes
+        img_match = IMG_REGEX.search(html_content)
+        thumbnail = img_match.group(1).replace('{{ base_url }}', BASE_URL) if img_match else ''
+
+        # Approximate reading time: 200 words per minute
+        word_count = len(TAG_REGEX.sub('', html_content).split())
+        read_time = max(1, word_count // 200)
+
+        # Store post metadata
+        external_link = post_data.get('external_link', '')
+        post_meta = {
+            'title': post_data.get('title', 'Untitled'),
+            'date': post_data.get('date', datetime.now().strftime("%Y-%m-%d")),
+            'summary': post_data.get('summary', ''),
+            'category': post_data.get('category', ''),
+            'external_link': external_link,
+            'featured': post_data.get('featured', False),
+            'thumbnail': thumbnail,
+            'read_time': read_time,
+            'url': external_link if external_link else f'{BASE_URL}/blog/{out_filename}',
+            'current_url': f'/blog/{out_filename}',
+            'content': html_content.replace('{{ base_url }}', BASE_URL)
+        }
+        posts.append(post_meta)
+        
+        # Render individual post with dynamic CSP
+        final_html = render_with_csp(post_template, **post_meta, base_url=BASE_URL, site_url=SITE_URL, og_type="article")
+        
+        with open(os.path.join(output_dir, out_filename), 'w', encoding='utf-8') as f:
+            f.write(final_html)
 
     # Output the blog index page
     posts.sort(key=lambda x: x['date'], reverse=True)
-    # Use Set lookup O(1) instead of List lookup O(N)
     excluded_categories = {'speaking', 'writing', 'event'}
     blog_posts = [p for p in posts if p.get('category') not in excluded_categories]
     blog_index_html = render_with_csp(blog_list_template, title="Transmission Log", posts=blog_posts, base_url=BASE_URL, site_url=SITE_URL, current_url="/blog.html", og_type="website")

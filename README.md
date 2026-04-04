@@ -37,8 +37,11 @@ For more details on interacting with the architecture as an agent, please refere
 * `execution/` - Core Python engine scripts (`build_site.py` for SSG compilation, `verify_build.py` for CSP cryptographic auditing).
 * `skills/` - Extensible Agent personas guiding specialized execution (PM, UX, Optimization, etc.).
 * `website/` - The core frontend interface.
-  * `assets/` - CSS variable-driven design systems (glassmorphism UI) and JS UI hydration logic.
-  * `content/` - YAML data models (`career.yaml`, `showcase.yaml`) and the `.md` blog archive.
+  * `assets/` - Static assets, organised into subdirectories for clarity and scale:
+    * `site/` - CSS, JavaScript, and fonts (global design system and UI logic).
+    * `brand/` - Logos and favicons.
+    * `profile/` - Personal documents (CV, resume).
+  * `content/` - YAML data models (`career.yaml`, `showcase.yaml`) and folder-based blog posts (each post lives in its own `content/blog/<slug>/` folder alongside its images).
   * `templates/` - Jinja2 HTML templates used to dynamically scaffold the pages.
   * `public/` - **DO NOT EDIT.** The auto-generated immutable build folder containing the final static HTML output.
 
@@ -55,7 +58,7 @@ The **Career** and **Showcase** pages are powered by structured YAML payloads. S
 ```yaml
 - title: "Head of Cyber Defence"
   company: "CyberCorp"
-  logo: "logo_cybercorp.png" # Place image inside website/assets/
+  logo: "logo_cybercorp.png" # Place image inside website/assets/brand/
   date: "Jan 2024 – Present"
   bullets:
     - "Architected zero-trust frameworks."
@@ -71,20 +74,38 @@ The **Career** and **Showcase** pages are powered by structured YAML payloads. S
   summary: "Keynote presentation at CyberCon."
 ```
 
-### 2. Drafting a New Blog Post
-Blog posts are written purely in markdown (`.md`). 
-1. Create a new markdown file inside `website/content/blog/` (e.g. `my-new-post.md`).
-2. Add the YAML Frontmatter exactly to the top of the file:
+### 2. Adding a Company Logo
+Drop the logo image into `website/assets/brand/` and reference it by filename in `career.yaml` or `showcase.yaml`.
+
+### 3. Drafting a New Blog Post
+Blog posts use a **folder-based structure** — each post lives in its own directory under `website/content/blog/<slug>/`.
+
+**The fastest way** is to use the scaffold script from the `website/` directory:
+```bash
+python new_post.py "My Post Title" --summary "A short summary."
+```
+This creates `website/content/blog/my-post-title/index.md` pre-populated with frontmatter.
+
+Alternatively, create the folder and file manually:
+1. Create a folder: `website/content/blog/my-post-title/`
+2. Create `index.md` inside it with the YAML frontmatter:
 ```markdown
 ---
 title: "Title of your Transmission"
 date: "YYYY-MM-DD"
 summary: "A short 1-2 sentence description for the transmission log feed."
-category: "general"
 ---
-Write your markdown content down here...
+
+![Post header image](./header.png)
+
+Write your markdown content here...
 ```
-3. Commit your changes. The Python engine will dynamically estimate reading times, extract your first image as a thumbnail, wrap it in Schema.org JSON, and compile it!
+3. Drop your header image into the same folder as `header.png`.
+
+At build time, the Python engine will:
+- Copy `header.png` to `public/assets/blog/<slug>/header.png`
+- Resolve the `./header.png` reference to the correct public URL
+- Estimate reading time, extract the thumbnail, inject Schema.org JSON, and compile the HTML
 
 ---
 
