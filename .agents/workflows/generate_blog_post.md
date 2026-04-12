@@ -64,7 +64,7 @@ Wait for confirmation. Adjust angles if redirected.
 ### Step 4 — Write drafts (Antigravity does this directly)
 
 For each decided post, write a complete draft using `write_to_file` to:
-`website/content/blog/<slug>.md`
+`.tmp/drafts/<slug>.md`
 
 Follow the authorial voice brief below in full. Include valid frontmatter.
 
@@ -73,7 +73,22 @@ Follow the authorial voice brief below in full. Include valid frontmatter.
 Use the `generate_image` tool for each post. Derive a specific visual subject from
 the post title and summary. Apply the standard style defined below.
 
-Save to: `website/assets/header_<slug>.png`
+Save to: `.tmp/drafts/header_<slug>.png`
+
+### Step 5.5 — Author Draft Manifest (Antigravity does this directly)
+
+You MUST create `.tmp/draft_manifest.json` so the staging script knows how to link the drafts with source issue numbers. Use this schema list:
+```json
+[
+  {
+    "slug": "synthetic_authority_vulnerability",
+    "suggested_title": "The Milgram Trap",
+    "draft_path": ".tmp/drafts/synthetic_authority_vulnerability.md",
+    "image_path": ".tmp/drafts/header_synthetic_authority_vulnerability.png",
+    "source_issue_numbers": [14, 15]
+  }
+]
+```
 
 ### Step 6 — Stage and validate
 ```bash

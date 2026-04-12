@@ -44,6 +44,8 @@ For more details on interacting with the architecture as an agent, please refere
   * `content/` - YAML data models (`career.yaml`, `showcase.yaml`) and folder-based blog posts (each post lives in its own `content/blog/<slug>/` folder alongside its images).
   * `templates/` - Jinja2 HTML templates used to dynamically scaffold the pages.
   * `public/` - **DO NOT EDIT.** The auto-generated immutable build folder containing the final static HTML output.
+* `.tmp/` - Temporary intermediate files generated during execution. Never committed, always regenerated.
+* `.env`, `credentials.json`, `token.json` - Environment variables and API credentials.
 
 ---
 
