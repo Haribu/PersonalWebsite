@@ -4,8 +4,9 @@ publish_blog_posts.py — Layer 3 Execution Script
 Automates Step 7 & 8 of the blog generation workflow:
 1. Creates a git branch for the batch
 2. Commits staged files
-3. Pushes to remote and creates a PR
-4. Comments on, labels, and closes the source issues
+3. Pushes to remote
+4. Creates a PR via GitHub REST API
+5. Comments on, labels, and closes the source issues via GitHub REST API
 """
 
 import os
@@ -15,12 +16,63 @@ import subprocess
 import re
 import shutil
 from datetime import datetime
+from pathlib import Path
+
+import requests
+from dotenv import load_dotenv
+
+# Load .env from project root
+env_path = Path(__file__).resolve().parent.parent / ".env"
+load_dotenv(env_path)
 
 EXECUTION_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(EXECUTION_DIR)
 TMP_DIR = os.path.join(ROOT_DIR, ".tmp")
 REPORT_PATH = os.path.join(TMP_DIR, "staging_report.json")
 PR_BODY_PATH = os.path.join(TMP_DIR, "pr_body.md")
+
+REPO = "Haribu/PersonalWebsite"
+
+def get_token() -> str:
+    token = os.getenv("GH_PAT") or os.getenv("GITHUB_TOKEN")
+    if token and not token.startswith("ghp_xxxx") and token != "xxxx":
+        return token
+    print("[FATAL] No GitHub token found. Add GH_PAT to .env", file=sys.stderr)
+    sys.exit(1)
+
+def github_api(method: str, endpoint: str, data: dict = None) -> dict:
+    # Use relative endpoint if it starts with standard API path
+    if endpoint.startswith("http"):
+        url = endpoint
+    else:
+        url = f"https://api.github.com/repos/{REPO}/{endpoint}"
+        
+    headers = {
+        "Authorization": f"Bearer {get_token()}",
+        "Accept": "application/vnd.github+json",
+        "X-GitHub-Api-Version": "2022-11-28",
+    }
+    if method.upper() == "GET":
+        response = requests.get(url, headers=headers)
+    elif method.upper() == "POST":
+        response = requests.post(url, headers=headers, json=data)
+    elif method.upper() == "PATCH":
+        response = requests.patch(url, headers=headers, json=data)
+    elif method.upper() == "DELETE":
+        response = requests.delete(url, headers=headers)
+    elif method.upper() == "PUT":
+        response = requests.put(url, headers=headers, json=data)
+    else:
+        raise ValueError(f"Unsupported method: {method}")
+        
+    if response.status_code >= 400:
+        print(f"[ERROR] API request failed ({method} {endpoint}): {response.status_code} {response.text}", file=sys.stderr)
+        return {}
+    
+    if response.status_code == 204: # No content
+        return {}
+        
+    return response.json()
 
 def run_cmd(cmd, check=True, capture=True):
     """Run a shell command and return its stdout."""
@@ -116,6 +168,7 @@ def main():
     # 1. Git branch, add, commit, push
     run_cmd(["git", "checkout", "-b", branch_name])
     run_cmd(["git", "add", "website/content/blog/"])
+    run_cmd(["git", "add", "website/assets/"])
     
     # Check if there is anything to commit
     status = run_cmd(["git", "status", "--porcelain"])
@@ -162,40 +215,50 @@ def main():
         pr_body_lines.append("")
 
     print(f"  → Generating PR body markdown...")
+    pr_body_text = "\n".join(pr_body_lines)
     with open(PR_BODY_PATH, "w", encoding="utf-8") as f:
-        f.write("\n".join(pr_body_lines))
+        f.write(pr_body_text)
     print(f"  ✓ PR body written to {PR_BODY_PATH}")
 
-    # 3. Create PR
+    # 3. Create PR via GitHub API
     pr_title = f"[Blog Draft] Week of {date_str} — {len(staged_posts)} post(s)"
-    pr_url = run_cmd([
-        "gh", "pr", "create",
-        "--title", pr_title,
-        "--body-file", PR_BODY_PATH,
-        "--base", "main",
-        "--assignee", "@me"
-    ])
+    print(f"  → Creating PR via GitHub API...")
     
+    pr_data = {
+        "title": pr_title,
+        "body": pr_body_text,
+        "head": branch_name,
+        "base": "main"
+    }
+    
+    pr_response = github_api("POST", "pulls", pr_data)
+    pr_url = pr_response.get("html_url", "URL not found")
+    pr_number = pr_response.get("number")
     print(f"\n✅ PR Created: {pr_url}")
 
-    # 4. Update source issues
+    if pr_number:
+        # Assign to self by resolving the authenticated user
+        user_info = github_api("GET", "https://api.github.com/user")
+        if user_info and "login" in user_info:
+            print(f"  → Assigning PR to {user_info['login']}...")
+            github_api("POST", f"issues/{pr_number}/assignees", {"assignees": [user_info['login']]})
+
+    # 4. Update source issues via GitHub API
     for issue_num in all_issue_numbers:
         print(f"Updating Issue #{issue_num}...")
+        
         # Comment
-        run_cmd([
-            "gh", "issue", "comment", str(issue_num),
-            "--body", f"✅ Processed — see PR: {pr_url}"
-        ])
-        # Edit labels
-        run_cmd([
-            "gh", "issue", "edit", str(issue_num),
-            "--remove-label", "blog-queue",
-            "--add-label", "blog-processed"
-        ])
+        github_api("POST", f"issues/{issue_num}/comments", {
+            "body": f"✅ Processed — see PR: {pr_url}"
+        })
+        
+        # Edit labels (remove blog-queue, add blog-processed)
+        github_api("DELETE", f"issues/{issue_num}/labels/blog-queue")
+        github_api("POST", f"issues/{issue_num}/labels", {"labels": ["blog-processed"]})
+        
         # Close issue
-        run_cmd([
-            "gh", "issue", "close", str(issue_num)
-        ])
+        github_api("PATCH", f"issues/{issue_num}", {"state": "closed"})
+        
         print(f"  ✓ Issue #{issue_num} closed.")
 
     print("\n🎉 Publish pipeline complete.")
