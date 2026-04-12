@@ -67,23 +67,18 @@ def get_token() -> str:
     except (FileNotFoundError, subprocess.TimeoutExpired):
         pass
 
-    print(
-        "[FATAL] No GitHub token found.\n"
-        "  Options:\n"
-        "  1. Add GH_PAT=<your_token> to your .env file\n"
-        "  2. Run 'gh auth login' to authenticate the gh CLI",
-        file=sys.stderr
-    )
-    sys.exit(1)
+    print("  Bypassing token requirement for public repository.")
+    return ""
 
 
 def github_get(url: str, token: str, params: Optional[Dict] = None) -> Union[Dict, List]:
     """Make an authenticated GitHub API GET request."""
     headers = {
-        "Authorization": f"Bearer {token}",
         "Accept": "application/vnd.github+json",
         "X-GitHub-Api-Version": "2022-11-28",
     }
+    if token:
+        headers["Authorization"] = f"Bearer {token}"
     response = requests.get(url, headers=headers, params=params, timeout=30)
     if response.status_code == 401:
         print("[FATAL] GitHub token is invalid or expired.", file=sys.stderr)
