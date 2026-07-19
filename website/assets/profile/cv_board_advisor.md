@@ -2,7 +2,7 @@
 Edinburgh, Scotland, UK | (+44) 77 244 613 18 | info@harrymclaren.co.uk | linkedin.com/in/harrymclaren/
 
 ## ADVISORY PROFILE
-Highly accomplished technology and cybersecurity board advisor specializing in scaling product operations, building high-performing technical teams, and optimizing product-led growth (PLG) strategies. Offers founders and investors elite pattern recognition across startup milestones, from early product-market validation to enterprise scaling. Deploys a deep professional network and extensive knowledge of risk-based governance to help startups navigate critical inflections, secure capital, and avoid costly operational mistakes without imposing bureaucratic overhead.
+Highly accomplished technology and cybersecurity board advisor specialising in scaling product operations, building high-performing technical teams, and optimising product-led growth (PLG) strategies. Offers founders and investors elite pattern recognition across startup milestones, from early product-market validation to enterprise scaling. Deploys a deep professional network and extensive knowledge of risk-based governance to help startups navigate critical inflections, secure capital, and avoid costly operational mistakes without imposing bureaucratic overhead.
 
 ## CORE ADVISORY EXPANSIONS
 * **Strategic Capability**: Product-Led Growth, Product Portfolio Design, Market-Entry Speed.
@@ -26,20 +26,20 @@ Highly accomplished technology and cybersecurity board advisor specializing in s
 
 ### Cyber Scotland Connect | Co-Founder & Strategic Advisor | January 2018 – Present
 * Co-founded a safe, sales-free, and value-driven hub to connect, unify, and elevate the cybersecurity community across Scotland, supporting over 1,000 members.
-* Designed community involvement programs, hosted local meetups, and presented on modern security operations and talent recruitment strategies.
+* Designed community involvement programmes, hosted local meetups, and presented on modern security operations and talent recruitment strategies.
 
 ## RELEVANT EXECUTIVE TRANSFORMATIONS
 
 ### FTSE 100 Threat Defence Execution (Tesco PLC, 2024–Present)
-* Led strategic cyber defense transformations, managing a global operational budget of £8 million and directing squads up to 60 headcount (60 for Cyber Defence, 30 for Cybersecurity Engineering).
-* Focused on optimizing away from compliance checks to threat-focused outcomes, and built technical platform architecture (SIEM/SOAR/Automation/AI) to prepare and test detection/response capabilities.
+* Led strategic cyber defence transformations, managing a global operational budget of £8 million and directing squads up to 60 headcount (60 for Cyber Defence, 30 for Cybersecurity Engineering).
+* Focused on optimising away from compliance checks to threat-focused outcomes, and built technical platform architecture (SIEM/SOAR/Automation/AI) to prepare and test detection/response capabilities.
 
 ### Series A Product Scaling (SenseOn, 2022–2024)
-* Aligned cyber defense product strategies with critical enterprise pain points, establishing product-level risk management and outcome-driven OKRs.
+* Aligned cyber defence product strategies with critical enterprise pain points, establishing product-level risk management and outcome-driven OKRs.
 * Guided the security engineering squad to expand threat detection capabilities and scale operations.
 
 ### Consultancy Team Growth (Adarma, 2013–2022)
-* Designed and executed a strategic talent pipeline program that grew the consulting footprint from 4 to 47 consultants.
+* Designed and executed a strategic talent pipeline programme that grew the consulting footprint from 4 to 47 consultants.
 
 ## ADVISORY EDUCATION & RECOGNITION
 * **CPD-Accredited Certified Board Advisor** – Connectd Academy
