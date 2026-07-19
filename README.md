@@ -37,15 +37,13 @@ For more details on interacting with the architecture as an agent, please refere
 * `execution/` - Core Python engine scripts (`build_site.py` for SSG compilation, `verify_build.py` for CSP cryptographic auditing).
 * `skills/` - Extensible Agent personas guiding specialized execution (PM, UX, Optimization, etc.).
 * `website/` - The core frontend interface.
-  * `assets/` - Static assets, organised into subdirectories for clarity and scale:
-    * `site/` - CSS, JavaScript, and fonts (global design system and UI logic).
-    * `brand/` - Logos and favicons.
-    * `profile/` - Personal documents (CV, resume).
-  * `content/` - YAML data models (`career.yaml`, `showcase.yaml`) and folder-based blog posts (each post lives in its own `content/blog/<slug>/` folder alongside its images).
-  * `templates/` - Jinja2 HTML templates used to dynamically scaffold the pages.
-  * `public/` - **DO NOT EDIT.** The auto-generated immutable build folder containing the final static HTML output.
-* `.tmp/` - Temporary intermediate files generated during execution. Never committed, always regenerated.
-* `.env`, `credentials.json`, `token.json` - Environment variables and API credentials.
+*   `assets/` - Static assets, organised into subdirectories for clarity and scale:
+    *   `site/` - CSS, JavaScript, and fonts (global design system and UI logic).
+    *   `brand/` - Logos and favicons.
+    *   `profile/` - Personal documents (CVs, resume, LinkedIn optimizations).
+*   `content/` - YAML data models (`career.yaml`, `showcase.yaml`) defining timelines, awards, and community entries.
+*   `templates/` - Jinja2 HTML templates used to dynamically scaffold the pages (`index.html`, `executive.html`, `advisory.html`, `insights.html`, `contact.html`).
+*   `public/` - **DO NOT EDIT.** The auto-generated immutable build folder containing the final static HTML output.
 
 ---
 
@@ -54,75 +52,52 @@ For more details on interacting with the architecture as an agent, please refere
 The website's data is heavily abstracted from the HTML, allowing for instantaneous, painless updates. 
 
 ### 1. Updating the Timeline or Showcase
-The **Career** and **Showcase** pages are powered by structured YAML payloads. Simply copy, paste, and edit these blocks inside `website/content/`.
+The **Executive Portfolio** and **Community & Insights** pages are powered by structured YAML payloads. Simply copy, paste, and edit these blocks inside `website/content/`.
 
 **Example `career.yaml` entry:**
 ```yaml
 - title: "Head of Cyber Defence"
-  company: "CyberCorp"
-  logo: "logo_cybercorp.png" # Place image inside website/assets/brand/
-  date: "Jan 2024 – Present"
+  company: "Tesco"
+  logo: "logo_tesco.svg" # Place image inside website/assets/brand/
+  date: "Aug 2025 – Present"
   bullets:
-    - "Architected zero-trust frameworks."
+    - "Direct responsibility for the unified global cyber defence function..."
 ```
 
 **Example `showcase.yaml` entry:**
 ```yaml
-- title: "Defending the Modern Enterprise"
+- title: "Presented on Emerging Technology"
   category: "speaking" # speaking | writing | event
-  featured: true
-  date: "2024-03-31" 
-  external_link: "https://example.com/talk"
-  summary: "Keynote presentation at CyberCon."
+  featured: false
+  date: "2025-10-06"
+  summary: "Keynote presentation at TechCon."
 ```
 
 ### 2. Adding a Company Logo
 Drop the logo image into `website/assets/brand/` and reference it by filename in `career.yaml` or `showcase.yaml`.
 
-### 3. Drafting a New Blog Post
-Blog posts use a **folder-based structure** — each post lives in its own directory under `website/content/blog/<slug>/`.
-
-**The fastest way** is to use the scaffold script from the `website/` directory:
-```bash
-python new_post.py "My Post Title" --summary "A short summary."
-```
-This creates `website/content/blog/my-post-title/index.md` pre-populated with frontmatter.
-
-Alternatively, create the folder and file manually:
-1. Create a folder: `website/content/blog/my-post-title/`
-2. Create `index.md` inside it with the YAML frontmatter:
-```markdown
----
-title: "Title of your Transmission"
-date: "YYYY-MM-DD HH:MM:SS"
-summary: "A short 1-2 sentence description for the transmission log feed."
----
-
-![Post header image](./header.png)
-
-Write your markdown content here...
-```
-3. Drop your header image into the same folder as `header.png`.
-
-At build time, the Python engine will:
-- Copy `header.png` to `public/assets/blog/<slug>/header.png`
-- Resolve the `./header.png` reference to the correct public URL
-- Estimate reading time, extract the thumbnail, inject Schema.org JSON, and compile the HTML
-
 ---
 
 ## 🛠️ Local Development & Deployment
 
-Development and verification runs gracefully through Docker, ensuring environment parity.
+Development and verification runs gracefully through Python or Docker, ensuring environment parity.
 
-**To rebuild and preview the site locally:**
-1. From the repository root, run the Docker Compose pipeline:
+**To compile and verify the site locally:**
+1. From the repository root, run the compilation script:
    ```bash
-   docker-compose up --build -d
+   ./venv/bin/python execution/build_site.py
    ```
-2. Navigate your browser to `http://localhost:8080`.
+2. Verify the CSP cryptographic hashes:
+   ```bash
+   ./venv/bin/python execution/verify_build.py
+   ```
+3. Serve the public directory:
+   ```bash
+   ./venv/bin/python -m http.server 8080 --directory website/public
+   ```
+4. Navigate your browser to `http://localhost:8080`.
 
-*(Alternatively, you can rebuild the HTML manually by executing `python execution/build_site.py` from the root directory).*
+*(Alternatively, you can run the Docker compose pipeline via `docker-compose up --build -d` if Docker is running).*
 
 ## 🚀 CI/CD & Deployment Strategy
 
