@@ -2,7 +2,7 @@
 Edinburgh, Scotland, UK | (+44) 77 244 613 18 | info@harrymclaren.co.uk | linkedin.com/in/harrymclaren/
 
 ## PROFESSIONAL SUMMARY
-Seasoned cybersecurity executive with a proven track record of leading global technology transformations and driving business resilience across FTSE 100 and fast-growth environments. Specialises in scaling high-performing cybersecurity engineering teams, managing multi-million-pound budgets, and designing threat detection and response architectures. Expert in translating complex technical risk into strategic, board-level business enablers, utilizing product management mindsets to ensure security acts as a driver of commercial acceleration. Highly focused on optimising security operations away from generic compliance checks toward intelligence-led, threat-focused outcomes. Dedicated mentor and community leader who integrates kindness, operational empathy, and psychological safety directly into corporate culture to support workforce well-being.
+Cybersecurity executive leading global technology transformations and threat defence across FTSE 100 and scale-up environments. Expert in scaling high-performing engineering teams, managing multi-million-pound budgets, and designing resilient detection and response architectures. Translates technical risk into clear board-level business decisions, applying a product management mindset to align security operations directly with commercial outcomes. Focuses on shifting operations away from compliance checklists to threat-led, intelligence-driven defence. Active community leader and co-founder of Cyber Scotland Connect, advocating for workforce well-being, mentoring, and psychological safety.
 
 ## CORE COMPETENCIES
 * **Executive Leadership**: Unified Cyber Defence, Scaling Engineering Teams, Resource & Budget Allocation, Talent Mentoring.
@@ -15,18 +15,18 @@ Seasoned cybersecurity executive with a proven track record of leading global te
 
 ### Tesco | FTSE 100 Retailer | Edinburgh, UK (Hybrid)
 #### Head of Cyber Defence & Strategic Advisor | August 2025 – Present
-* Direct responsibility for the unified defensive function across Prevention, Intelligence, Detection, and Incident Response, managing a global operational budget of £8 million and directing a team of 60 headcount.
-* Steered the "intelligence-to-action" lifecycle, driving the strategic alignment of defensive activities with the enterprise risk appetite and optimising security operations away from compliance and busy work to threat-focused outcomes.
-* Spearheaded strategic efforts to balance the opportunities of automation and AI against the growing threat landscape, ensuring security controls remain robust and adapt to emerging risks.
-* Established a personal, empathetic leadership culture focused on the mental well-being and health of the security defence team, ensuring individuals are treated as valued contributors.
-* Provided regular strategic briefings to C-level executives and risk committees on emerging threat landscapes, cyber-attack mitigation, and material operational controls.
+* Direct responsibility for the unified global cyber defence function across Prevention, Intelligence, Detection, and Incident Response, managing a global operational budget of £8 million and directing a team of 60 cybersecurity professionals.
+* Steered the "intelligence-to-action" lifecycle, aligning defensive capabilities with enterprise risk appetite and moving operations away from compliance checklists to threat-led outcomes.
+* Balanced automation and AI opportunities against emerging systemic threats, ensuring security controls remain resilient and adapt dynamically.
+* Built a high-trust engineering culture focused on mental well-being, psychological safety, and individual growth.
+* Delivered regular strategic briefings to C-level executives and risk committees on emerging threats, control efficacy, and governance.
 
 #### Head of Cybersecurity Engineering | February 2024 – August 2025
-* Managed three large engineering teams (30 headcount), overseeing the design, efficacy, and continuous monitoring of the global technology stack, including SOAR and advanced SIEM platforms.
+* Managed three global cybersecurity engineering squads (30 headcount) responsible for the design, efficacy, and monitoring of the global technology stack, including advanced SIEM/SOAR platforms.
 * Directed the technical roadmap and prioritised activities to ensure security acted as a business enabler without creating operational bottlenecks for the wider IT organisation.
-* Structured, prepared, and tested threat detection and response capabilities, leveraging industry-standard maturity models to assess current state, define future state, and execute a roadmap of change.
+* Prepared and tested threat detection and response capabilities, leveraging industry-standard maturity models to assess current state and construct future-state roadmaps of change.
 * Challenged legacy vendor frameworks constructively, optimising the cost-effectiveness and ROI of third-party contracts.
-* Provided critical technical guidance and hands-on crisis expertise during major enterprise security incidents, minimizing potential financial and reputational damage.
+* Provided critical technical guidance and hands-on crisis expertise during major enterprise security incidents, minimising potential financial and reputational damage.
 
 ### SenseOn | Series A Security Technology Startup | Remote
 #### Director of Product | February 2023 – February 2024

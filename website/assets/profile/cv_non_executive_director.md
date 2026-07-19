@@ -2,7 +2,7 @@
 Edinburgh, Scotland, UK | (+44) 77 244 613 18 | info@harrymclaren.co.uk | linkedin.com/in/harrymclaren/
 
 ## BOARD VALUE PROPOSITION
-Highly qualified cybersecurity and technology non-executive director with deep expertise in corporate governance, enterprise risk management, and the oversight of complex digital transformations. Offers independent perspective on the intersection of cyber threat landscapes with business model sustainability, helping boards navigate regulatory compliance and Provision 29 material control declarations with absolute clarity. Combines a strong background in large-scale FTSE 100 threat defence (overseeing an £8M budget and 60 headcount) with a dedicated commitment to board-level stewardship, ethical technology adoption, and corporate culture alignment.
+Cybersecurity and technology non-executive director with deep expertise in corporate governance, enterprise risk management, and digital transformations. Provides independent boardroom oversight and constructive challenge on threat landscapes, security-by-design, and business model sustainability. Experienced in guiding boards through Provision 29 material controls declarations under the UK Corporate Governance Code. Combines FTSE 100 threat defence leadership (managing an £8M budget and 60 headcount) with a commitment to board-level stewardship and ethical technology adoption.
 
 ## CORE BOARD COMPETENCIES
 * **Risk Governance & Compliance**: UK Corporate Governance Code, Provision 29 Compliance, Assurance Mapping.
