@@ -2,7 +2,7 @@
 Edinburgh, Scotland, UK | (+44) 77 244 613 18 | info@harrymclaren.co.uk | linkedin.com/in/harrymclaren/
 
 ## ADVISORY PROFILE
-Technology and cybersecurity board advisor specialising in scaling product operations, technical teams, and product-led growth (PLG) strategies. Provides founders and investors with deep pattern recognition across startup milestones—from early validation to enterprise procurement readiness. Leverages an extensive professional network and governance expertise to help startups navigate growth inflections, secure capital, and avoid operational pitfalls without adding unnecessary bureaucracy.
+Technology and cybersecurity board advisor specialising in scaling product operations, technical teams, and product-led growth (PLG) strategies. Provides founders and investors with deep pattern recognition across startup milestones—from early validation to enterprise procurement readiness. Leverages an extensive professional network and governance expertise to design right-sized, pragmatic security architectures that help startups navigate growth inflections, pass enterprise audits, and secure capital without introducing enterprise overhead.
 
 ## CORE ADVISORY EXPANSIONS
 * **Strategic Capability**: Product-Led Growth, Product Portfolio Design, Market-Entry Speed.
