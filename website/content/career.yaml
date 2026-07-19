@@ -7,7 +7,9 @@ timeline:
   icon: shield
   accent: cyan
   bullets:
-  - Direct responsibility for the unified defensive function across Prevention, Intelligence, Detection, and Incident Response. I oversee the full "intelligence-to-action" lifecycle, with a pragmatic focus on reducing Mean Time to Contain (MTTC) and translating technical risk into executive-level reporting.
+  - Direct responsibility for the unified global cyber defence function across Prevention, Intelligence, Detection, and Incident Response, managing a global operational budget of £8 million and directing a team of 60 cybersecurity professionals.
+  - Oversee the strategic shift from compliance-driven activities and busy work to intelligence-led, threat-focused cybersecurity outcomes.
+  - Advise executive committees and risk forums on strategic technology roadmaps, balancing the deployment of automation and AI against the evolving enterprise threat landscape.
 - title: Head of Cybersecurity Engineering
   company: Tesco
   logo: logo_tesco.svg
@@ -16,7 +18,9 @@ timeline:
   icon: settings
   accent: cyan
   bullets:
-  - Architected the design and efficacy of the global security technology stack, including SOAR and advanced monitoring platforms. Led technical roadmaps and engineering recruitment while providing hands-on crisis expertise during major security incidents.
+  - Managed three global cybersecurity engineering squads (30 headcount) responsible for the design, efficacy, and monitoring of the global technology stack, including advanced SIEM/SOAR platforms.
+  - Prepared and tested threat detection and response capabilities, leveraging industry-standard maturity models to assess current state and construct future-state roadmaps of change.
+  - Challenged legacy vendor frameworks constructively, optimizing the cost-effectiveness and ROI of third-party contracts.
 - title: Director, Product Management
   company: SenseOn
   logo: logo_senseon.svg

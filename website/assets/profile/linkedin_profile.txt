@@ -1,0 +1,39 @@
+LINKEDIN PROFILE OPTIMIZATION SPECIFICATION
+Harry McLaren
+
+--------------------------------------------------------------------------------
+1. HEADLINE OPTIMIZATION
+--------------------------------------------------------------------------------
+Cybersecurity Executive | Head of Cyber Defence at Tesco PLC | Non-Executive Director & Trustee | Scale-Up Board Advisor | Fellow of CIISec
+
+--------------------------------------------------------------------------------
+2. "ABOUT" SECTION (2,500 Character Narrative)
+--------------------------------------------------------------------------------
+A progressive cybersecurity executive, board trustee, and strategic advisor with a career built on translating complex, high-risk technical environments into business-enabling enterprise strategies. With over fifteen years of hands-on and leadership experience across the technology lifecycle, the candidate aligns cyber security and threat-led defenses with overall enterprise risk appetite to drive commercial acceleration and organizational resilience.
+
+The executive's philosophy rejects generic security checkboxes. Instead, the focus is on a product-management mindset that optimizes security operations and fosters a culture of operational empathy and psychological safety. Throughout his leadership at Tesco, SenseOn, and Adarma, there is a proven dedication to mentoring talent, building robust capabilities, and ensuring that individuals are treated with respect while maintaining central connections to company values.
+
+As a governance professional and trustee, the candidate brings direct board-level stewardship, financial oversight, and risk committee experience, actively helping boards prepare for UK Corporate Governance Code Provision 29 material control declarations. Through his work on the Splunk Executive Advisory Board, Nightline Association, and Positive Realities, he has demonstrated the ability to provide constructive challenge and independent thought to support long-term stakeholder interests.
+
+An active contributor to the technology ecosystem, the candidate co-founded Cyber Scotland Connect, creating a safe, judgment-free hub to diversify and strengthen the Scottish security community. He is a regular industry speaker, university contributor, and recipient of numerous accolades, including Cyber Evangelist of the Year and the Napier Alumni Excellence Award.
+
+CORE FOCUS AREAS:
+* Enterprise Cyber Defence: Threat intelligence, incident response, SIEM, SOAR, and risk quantification.
+* Boardroom Governance: UK Corporate Governance Code, Provision 29 compliance, independent challenge, risk committees.
+* Startup & Scale-Up Advisory: Product-led growth, operational scaling, investor confidence, founder mentoring.
+* Human-Centric Culture: Workforce well-being, empathetic leadership, capability development, mentoring.
+
+--------------------------------------------------------------------------------
+3. EXPERIENCE ENTRY - Head of Cyber Defence at Tesco PLC
+--------------------------------------------------------------------------------
+Direct responsibility for the unified defensive security function across Prevention, Intelligence, Detection, and Incident Response. Managing a global operational budget of £8 million and directing a team of 60 headcount (60 for Cyber Defence, 30 for Cybersecurity Engineering) to design, scale, and continuously monitor the global cybersecurity technology stack. Strategic focus on optimizing security operations away from compliance and busy work toward intelligence-led, threat-focused outcomes. Lead efforts in balancing the opportunities of automation and AI against the growing threat landscape, and preparing evidence baselines to meet the material controls requirements of the updated UK Corporate Governance Code. Fosters a high-trust, kind culture focused on employee well-being and development.
+
+--------------------------------------------------------------------------------
+4. EXPERIENCE ENTRY - Board Trustee at Nightline Association
+--------------------------------------------------------------------------------
+Served as a Board Trustee, providing fiduciary, strategic, and technology governance to a national student support network. Monitored the risk management framework to protect sensitive operational data and ensure compliance with digital safety standards. Challenged executive leadership constructively on resource allocation, volunteer well-being, and alignment with regulatory standards, helping to protect long-term stakeholder value.
+
+--------------------------------------------------------------------------------
+5. EXPERIENCE ENTRY - Co-Founder at Cyber Scotland Connect
+--------------------------------------------------------------------------------
+Co-founded and continues to advise a safe, sales-free, and value-driven professional network to connect and strengthen the cybersecurity community in Scotland. Designed educational programs and community meetups, connecting students, enthusiasts, and senior industry experts to diversify and elevate the technology sector.

@@ -428,9 +428,9 @@ def _build_career_data():
     return career_data, community_data, education_data
 
 def build_pages(posts=[]):
-    """Build root-level pages (Home, About, Contact)."""
+    """Build root-level pages (Home, Executive, Advisory, Insights, Contact)."""
     env = Environment(loader=FileSystemLoader(TEMPLATE_DIR), autoescape=True)
-    pages = ['index.html', 'advisory.html', 'career.html', 'contact.html', 'showcase.html']
+    pages = ['index.html', 'advisory.html', 'executive.html', 'contact.html', 'insights.html']
     
     for page in pages:
         try:
@@ -439,9 +439,9 @@ def build_pages(posts=[]):
             title_map = {
                 "index.html": None, 
                 "advisory.html": "Strategic Advisory", 
-                "career.html": "Career & Experience", 
+                "executive.html": "Executive Portfolio", 
                 "contact.html": "Contact", 
-                "showcase.html": "Showcase & Contributions"
+                "insights.html": "Community & Insights"
             }
             page_title = title_map.get(page)
             
@@ -454,20 +454,21 @@ def build_pages(posts=[]):
             }
 
             if page == 'index.html':
-                ctx['recent_posts'] = posts[:2]
-            elif page == 'showcase.html':
+                pass
+            elif page == 'insights.html':
                 featured_posts, grouped_showcase, counts = _build_showcase_data()
+                career_data, community_data, education_data = _build_career_data()
                 ctx.update({
                     'featured_posts': featured_posts,
                     'grouped_showcase': grouped_showcase,
-                    'counts': counts
+                    'counts': counts,
+                    'career_awards': career_data.get('awards', []),
+                    'career_community': community_data
                 })
-            elif page == 'career.html':
+            elif page == 'executive.html':
                 career_data, community_data, education_data = _build_career_data()
                 ctx.update({
                     'career_timeline': career_data.get('timeline', []),
-                    'career_awards': career_data.get('awards', []),
-                    'career_community': community_data,
                     'career_education': education_data,
                     'career_certifications': career_data.get('certifications', [])
                 })
@@ -485,22 +486,13 @@ def build_pages(posts=[]):
 
 
 def build_sitemap_and_robots(posts, pages):
-    """Generate sitemap.xml and robots.txt based on generated posts and pages."""
+    """Generate sitemap.xml and robots.txt based on generated pages."""
     sitemap_lines = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     
     # Add pages
     for page in pages:
         url_path = "" if page == "index.html" else f"/{page}"
         sitemap_lines.append(f'  <url>\n    <loc>{SITE_URL}{url_path}</loc>\n    <changefreq>weekly</changefreq>\n  </url>')
-        
-    # Add blog index
-    sitemap_lines.append(f'  <url>\n    <loc>{SITE_URL}/blog.html</loc>\n    <changefreq>weekly</changefreq>\n  </url>')
-    
-    # Add posts
-    for post in posts:
-        if post["current_url"].startswith('http'):
-            continue
-        sitemap_lines.append(f'  <url>\n    <loc>{SITE_URL}{post["current_url"]}</loc>\n    <lastmod>{post["date"]}</lastmod>\n  </url>')
         
     sitemap_lines.append('</urlset>\n')
     
@@ -524,7 +516,7 @@ if __name__ == "__main__":
             sys.exit(1)
     
     setup_public_dir()
-    posts = build_blog()
+    posts = []
     pages = build_pages(posts)
     build_sitemap_and_robots(posts, pages)
     print("Site built successfully in the /public directory!")
