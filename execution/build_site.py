@@ -124,6 +124,12 @@ def _copy_static_files():
     if os.path.exists(well_known_src):
         shutil.copytree(well_known_src, well_known_dest)
 
+    # Copy lifeos-mcp directory
+    lifeos_mcp_src = os.path.join(WEBSITE_DIR, 'lifeos-mcp')
+    lifeos_mcp_dest = os.path.join(PUBLIC_DIR, 'lifeos-mcp')
+    if os.path.exists(lifeos_mcp_src):
+        shutil.copytree(lifeos_mcp_src, lifeos_mcp_dest)
+
 def _process_assets():
     """Minify CSS/JS and optimize/resize images in the public directory."""
     public_assets = os.path.join(PUBLIC_DIR, 'assets')

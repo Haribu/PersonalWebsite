@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Privacy Policy for LifeOS MCP — Outlining data handling, security practices, and compliance with Google API Services User Data Policy.">
+  <title>Privacy Policy — LifeOS MCP</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-container">
+      <a href="index.html" class="brand">
+        <span>LifeOS MCP</span>
+        <span class="brand-badge">Privacy Policy</span>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="privacy.html" class="active">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="content-area">
+    <div class="meta-box">
+      <div class="meta-item">
+        <span class="meta-label">Effective Date</span>
+        <span class="meta-value">September 7, 2026</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Application</span>
+        <span class="meta-value">LifeOS MCP</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Owner & Developer</span>
+        <span class="meta-value">Harry McLaren</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Contact</span>
+        <span class="meta-value"><a href="mailto:info@harrymclaren.co.uk">info@harrymclaren.co.uk</a></span>
+      </div>
+    </div>
+
+    <h1>Privacy Policy</h1>
+    <p>
+      This Privacy Policy describes how <strong>LifeOS MCP</strong> ("the Application", "we", "us", or "our"), an internal personal productivity tool created and maintained by Harry McLaren, accesses, handles, processes, stores, and protects personal data, with specific reference to Google Workspace APIs and user accounts.
+    </p>
+
+    <div class="callout verified">
+      <div class="callout-title">🔒 Single-User & Internal Operation</div>
+      <p>
+        LifeOS MCP is a non-commercial, private software tool developed exclusively for personal use by its creator. We do not offer public registrations, commercial services, or multi-tenant user accounts.
+      </p>
+    </div>
+
+    <h2>1. Google API Data Accessed</h2>
+    <p>
+      LifeOS MCP integrates with Google Workspace APIs via the Model Context Protocol (MCP) to automate personal scheduling and productivity workflows under explicit user authorization. Depending on authorized scopes, the Application accesses:
+    </p>
+    <ul>
+      <li><strong>Google Calendar:</strong> Reading upcoming calendar events, checking schedule conflicts, creating scheduled activities, and updating or canceling calendar entries upon request.</li>
+      <li><strong>Gmail:</strong> Querying email threads, reading message contents to summarize or extract action items, and drafting or sending contextual responses as directed by the user.</li>
+      <li><strong>Google Drive, Docs & Sheets:</strong> Accessing, creating, reading, and updating documents, spreadsheets, and files stored within the user's authorized Google Drive.</li>
+      <li><strong>Google Tasks:</strong> Reading, adding, modifying, and completing personal task items and task lists.</li>
+      <li><strong>Basic Profile & Authentication Data:</strong> Google account email address and identity tokens to authenticate API sessions.</li>
+    </ul>
+
+    <h2>2. Purpose of Data Processing</h2>
+    <p>
+      Data obtained via Google APIs is used strictly to fulfill direct, user-initiated functional instructions. These include:
+    </p>
+    <ul>
+      <li>Allowing personal agentic AI assistants to review the user's daily itinerary and schedule appointments.</li>
+      <li>Managing personal to-do lists and synchronizing commitments between local task runners and Google Tasks.</li>
+      <li>Drafting correspondence and triaging inbound communications with human-in-the-loop verification.</li>
+      <li>Reading and writing structured data within user-owned Google Sheets and Docs for personal project tracking.</li>
+    </ul>
+
+    <div class="callout verified">
+      <div class="callout-title">📜 Google API Limited Use Disclosure</div>
+      <p>
+        <strong>LifeOS MCP's use and transfer to any other app of information received from Google APIs will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener noreferrer">Google API Services User Data Policy</a>, including the Limited Use requirements.</strong>
+      </p>
+    </div>
+
+    <h2>3. Artificial Intelligence & Machine Learning (AI/ML) Models</h2>
+    <p>
+      We maintain an explicit commitment regarding AI safety and data sovereignty:
+    </p>
+    <ul>
+      <li><strong>No Model Training:</strong> Google user data accessed by LifeOS MCP is <strong>never</strong> used to train, retrain, fine-tune, or improve generalized or commercial artificial intelligence (AI), machine learning (ML), or foundation models.</li>
+      <li><strong>Context-Only Inference:</strong> Data retrieved from Google APIs is passed solely into temporary context windows during active tool execution to answer specific user queries or execute immediate actions.</li>
+    </ul>
+
+    <h2>4. Data Storage, Retention & Security</h2>
+    <p>
+      LifeOS MCP employs a secure, non-custodial architecture:
+    </p>
+    <ul>
+      <li><strong>Local Credential Storage:</strong> OAuth client secrets, refresh tokens, and access tokens are stored in encrypted form locally on the developer's secure environment.</li>
+      <li><strong>Ephemeral Processing:</strong> Content retrieved from Google APIs (such as email messages, calendar entries, and document contents) is processed in-memory during task execution and is not stored in a persistent external database.</li>
+      <li><strong>No Centralized SaaS Database:</strong> LifeOS MCP operates without an external public server or multi-tenant database storing user Google data.</li>
+    </ul>
+
+    <h2>5. Third-Party Data Sharing & Transfer</h2>
+    <p>
+      We do not share, sell, rent, trade, or transfer any personal information or Google user data to third parties, external advertisers, data brokers, or marketing networks. Data transfers only occur directly between the authorized Google API servers and the local LifeOS MCP runner via secure, TLS-encrypted connections.
+    </p>
+
+    <h2>6. User Control & Access Revocation</h2>
+    <p>
+      The user retains total control over their data and permissions:
+    </p>
+    <ul>
+      <li><strong>Revoke Access:</strong> You can revoke LifeOS MCP's access to your Google account at any time via the Google Security permissions portal at <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener noreferrer">https://myaccount.google.com/permissions</a>.</li>
+      <li><strong>Token Deletion:</strong> Local OAuth tokens and cache files can be permanently erased at any time by deleting the local authentication configuration.</li>
+    </ul>
+
+    <h2>7. Changes to This Privacy Policy</h2>
+    <p>
+      This Privacy Policy may be updated periodically to reflect changes in API functionality, regulatory standards, or Google verification requirements. Any updates will be published directly to this page with an updated Effective Date.
+    </p>
+
+    <h2>8. Contact Information</h2>
+    <p>
+      If you have questions, feedback, or require further clarification regarding this Privacy Policy or our security practices, please contact:
+    </p>
+    <p>
+      <strong>Harry McLaren</strong><br>
+      Email: <a href="mailto:info@harrymclaren.co.uk">info@harrymclaren.co.uk</a><br>
+      Website: <a href="https://harrymclaren.co.uk" target="_blank" rel="noopener noreferrer">https://harrymclaren.co.uk</a>
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="https://harrymclaren.co.uk">harrymclaren.co.uk</a>
+      </div>
+      <div>&copy; 2026 Harry McLaren. All rights reserved. LifeOS MCP Privacy Policy.</div>
+    </div>
+  </footer>
+
+</body>
+</html>
