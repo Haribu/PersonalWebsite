@@ -505,7 +505,24 @@ def build_sitemap_and_robots(posts, pages):
     with open(os.path.join(PUBLIC_DIR, 'sitemap.xml'), 'w', encoding='utf-8') as f:
         f.write('\n'.join(sitemap_lines))
         
-    robots_txt = f"User-agent: *\nAllow: /\nSitemap: {SITE_URL}/sitemap.xml\n"
+    ai_bots = [
+        "Google-Extended",
+        "GPTBot",
+        "CCBot",
+        "anthropic-ai",
+        "Claude-Web",
+        "PerplexityBot",
+        "Bytespider",
+        "cohere-ai"
+    ]
+    bot_rules = "\n\n".join([f"User-agent: {bot}\nDisallow: /lifeos-mcp/" for bot in ai_bots])
+    robots_txt = (
+        f"User-agent: *\n"
+        f"Allow: /\n"
+        f"Sitemap: {SITE_URL}/sitemap.xml\n\n"
+        f"# Prohibit AI Scrapers and Model Training on LifeOS MCP\n"
+        f"{bot_rules}\n"
+    )
     with open(os.path.join(PUBLIC_DIR, 'robots.txt'), 'w', encoding='utf-8') as f:
         f.write(robots_txt)
 
